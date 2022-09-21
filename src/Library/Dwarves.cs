@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CharacterWizard;
+namespace Characters;
 
 public class Dwarves : ICharacter
 {

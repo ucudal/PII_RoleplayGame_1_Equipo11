@@ -2,7 +2,7 @@
 using System.Collections;
 using CharacterActions;
 
-namespace CharacterWizard;
+namespace Characters;
 
 public class Wizards : ICharacter
 {

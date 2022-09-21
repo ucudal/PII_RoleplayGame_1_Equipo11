@@ -1,13 +1,14 @@
 ﻿using System;
-using CharacterWizard;
-namespace CharacterActions;
+
+namespace Characters;
 
 public interface ICharacter
 {
-    int Health {get;} 
-    void Attack(ICharacter enemy)
-    { 
-    }
-    
+    int HP { get; set; }
+    int Attack();
+    void Equip(); //Para equipar nuevas armaduras o armas
+    void Remove(); //Para deshacerse de armaduras o armas; 
+                   //se podria hacer una funcionalidad de inventario que solo permita una limitada cantidad de items
+
 
 }
