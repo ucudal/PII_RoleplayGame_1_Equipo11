@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Characters;
+namespace Inventory;
 
 public class ItemsStore //Esto serian todas los items disponibles a conseguir, puse 3 como ejemplo nomas
 {

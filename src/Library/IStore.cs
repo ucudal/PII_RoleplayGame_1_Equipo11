@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace Characters;
+namespace Inventory;
 
 public interface IStore
 {

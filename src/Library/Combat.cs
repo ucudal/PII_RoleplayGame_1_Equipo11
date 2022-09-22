@@ -11,4 +11,5 @@ public class Combat
     {
         defender.HP-= attacker.Attack();
     }
+    //ya pregunte si iba o no para esta entrega, cuando me respondan aviso
 }
