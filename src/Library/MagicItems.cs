@@ -3,7 +3,7 @@ using Characters;
 
 namespace Inventory;
 
-public class MagicItems : IStore
+public class MagicItems : IStore, IItems
 {
     ICharacter character;
 
@@ -23,7 +23,6 @@ public class MagicItems : IStore
                 this.ItemName= itemName;
             }
         }
-
     }
     //seguir haciendo el resto (precio, poder)
     //metodos de comprar, vender, tradear, equipar, desequipar

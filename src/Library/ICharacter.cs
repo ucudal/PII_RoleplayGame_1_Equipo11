@@ -1,14 +1,16 @@
 ﻿using System;
+using System.Collections.Generic;
+using Inventory;
 
 namespace Characters;
 
 public interface ICharacter
 {
-    int HP { get; set; }
-    int Attack();
-    void Equip(); //Para equipar nuevas armaduras o armas
-    void Remove(); //Para deshacerse de armaduras o armas; 
-                   //se podria hacer una funcionalidad de inventario que solo permita una limitada cantidad de items
-
+    List<Armors> Armors {get; set;}
+    int HP { get; set;}
+    int Coins { get; set;}
+    void Attack(Weapons weapon, ICharacter defender);
+    void Equip(IItems item); //Para equipar nuevas armaduras/armas/objetos
+    void Remove(IItems item); //Para deshacerse de armaduras/armas/objetos
 
 }
