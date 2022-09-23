@@ -15,6 +15,9 @@ public class Elves : ICharacter
     public List<Weapons> Weapons { get; set; } //lista de armas
     public List<Armors> Armors { get; set; } //lista de piezas de armadura
     public List<MagicItems> MagicItems { get; set; } //lista de items magicos
+
+    public int Damage {get; set;}
+    public int Armor {get; set;}
     public int Coins { get; set; } //dinero del personaje
     public string Name
     {
@@ -41,6 +44,17 @@ public class Elves : ICharacter
         this.Coins = 20; //riqueza 
         this.Strength = 8; // cada golpe saca 8 de vida
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
+        if(initialArmor==null)
+        {
+            this.Armor= 0;
+        }
+        else
+        {
+            foreach(var Defense in Armors)
+            {
+                this.Armor+=Defense.ArmorProtection;
+            }
+        }
     }
 
 

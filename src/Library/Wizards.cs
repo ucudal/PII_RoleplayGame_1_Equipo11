@@ -1,4 +1,5 @@
-﻿using System;
+//Juan Magrini
+using System;
 using Characters;
 using Inventory;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Collections;
 namespace WizardCharacter;
 public class Wizards : ICharacter
 {
+    ICharacter character;
     public string Name
     {
         get
@@ -21,6 +23,8 @@ public class Wizards : ICharacter
             }
         }
     }
+    public List<MagicItems> MagicItems {get; set;} //Lista que contiene los items del character
+
     public List <Weapons> Weapons {get; set;}
 
     public List<Armors> Armors {get; set;}
@@ -31,11 +35,11 @@ public class Wizards : ICharacter
 
     public int Armor {get; set;}
 
-    public Wizards(string name, List<Armors> Armors, List<Weapons> Weapons)
+    public Wizards(string name, Armors itemArmor, Weapons itemWeapon, MagicItems magicItems)
     {
-        Weapons.Add(new Weapons("Melee",this.Damage,100));
-        this.Weapons= Weapons;
-        if(Armors==null)
+        Weapons.Add(new Weapons("Melee",this.Damage));
+        this.Weapons.Add(itemWeapon);
+        if(itemArmor==null)
         {
             this.Armor= 0;
         }
@@ -48,56 +52,49 @@ public class Wizards : ICharacter
         }
         
         this.Description= "This character has the power of magic";
-        this.Damage = 20;
+        this.Damage = 20+itemWeapon.Damage;
         this.HP= 100;
         this.Coins=500;
+        this.MagicItems.Add(magicItems);
     }
     
 
-    public void Attack(Weapons weapon, ICharacter enemy)
+    public void Attack(Weapons itemWeapon, ICharacter enemy)
     {
         int enemysHP= enemy.HP+enemy.Armor;
-        if(this.Weapons.Contains(weapon))
+        if(this.Weapons.Contains(itemWeapon))
         {
-            this.Damage+=weapon.Damage;
-            enemysHP-=this.Damage;
-            if(weapon.WeaponName!="Melee")
+            if(itemWeapon.WeaponDurability<10)
             {
-                weapon.WeaponDurability-=10;
+                Console.WriteLine("This weapon is about to get broken, you are not able to use it");
             }
-        }
-
-    }
-
-    public void Equip(IItems itemToBeAdded)
-    {
-        if(Weapons.Count+Armors.Count==5)
-        {
-            Console.WriteLine("Your invetory is full, you need to remove at least one item in order to carry another one.");
+            else
+            {
+                enemysHP-=this.Damage;
+                if(itemWeapon.WeaponName!="Melee")
+                {
+                    itemWeapon.WeaponDurability-=10;
+                }
+            }
         }
         else
         {
-            //Aca se me armo quilombo 
+            Console.WriteLine("You do not have this weapon in your posession");
         }
+
     }
 
-    public void Remove(string itemToBeDropped)
+    public bool IsAlive()
     {
-        foreach(var itemWeapon in Weapons)
+        if(this.HP<=0)
         {
-            foreach(var itemArmor in Armors)
-            {
-                if(itemWeapon.WeaponName==itemToBeDropped)
-                {
-                    Weapons.Remove(itemWeapon);
-                    Console.WriteLine("Item succesfully dropped");
-                }
-                else
-                {
-                    Armors.Remove(itemArmor);
-                    Console.WriteLine("Item succesfully dropped");
-                }
-            }
+            Console.WriteLine($"¡\"{this.Name}\" could not survive the attack!");
+            return false;
+        }
+        else
+        {
+            Console.WriteLine($"\"{this.Name}\" is still alive: {this.HP} HP.");
+            return true;
         }
     }
 }
