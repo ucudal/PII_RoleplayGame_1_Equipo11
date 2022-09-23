@@ -47,7 +47,7 @@ public class Armors
     }
     public int ArmorDurability { get; set; }
 
-    public Armors(string armorName, int armorProtection, int armorDurability)
+    public Armors(string armorName, int armorProtection)
     {
         this.ArmorName = armorName;
         this.ArmorProtection = armorProtection;

@@ -5,13 +5,18 @@ namespace Characters;
 public class Dwarves : ICharacter
 {
     string Description { get; }
-    //public string Name { get ; set; } --> despues poner lineas en el Program.cs
-    public ItemsStore items { get; } // instancia "items" de la clase ItemsStore 
-    //public HealthPoints healthPoints { get; } --> instancia "healthPoints" de la clase HealthPoints (todavia no creada)     
+    public string Name { get ; set; } //hacer la comprobacion de que el string no este vacio
+         
     public Dwarves()
     {
-        //this.Name = name;
         this.Description= "Son seres temperamentales que se destacan en el combate, su gran resistencia y lealtad.";
-
+        /*this.Name = Name; //nombre
+        this.Weapons = weapons; //armas
+        this.Armors = armors; //armaduras
+        this.MagicItems = magicItems; //objetos magicos
+        this.Coins = coins; //riqueza 
+        this.Strength = ; // cada golpe saca (¿?) de vida
+        this.HP = ; //tiene una vida maxima de (¿?), otros personajes pueden tener mas o menos*/
     }
+    //el que escriba esta, si quiere vea la clase elves que es muy similar y esta bastante desarrollada
 }

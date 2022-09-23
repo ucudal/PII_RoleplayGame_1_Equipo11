@@ -27,7 +27,7 @@ public class Weapons : IItems
     public int WeaponDurability { get; set; }
     public int Damage { get; set; }
 
-    public Weapons(string weaponName, int damage, int weaponDurability)
+    public Weapons(string weaponName, int damage)
     {
         this.WeaponName = weaponName;
         this.Damage = damage;
@@ -137,6 +137,20 @@ public class Weapons : IItems
         else
         {
             Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
+        }
+        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
+        //Tambien se podria dar un aviso cuando este al borde de romperse
+    }
+    public void Break()
+    {
+        if (this.WeaponDurability<=0) 
+        {
+            this.Remove(character); //se elimina el arma del personaje
+            Console.WriteLine($"¡\"{this.weaponName}\" has broken! You should buy a new one."); //aviso
+        }
+        if (this.WeaponDurability<=15) //aviso de cuando este por romperse
+        {
+            Console.WriteLine($"¡\"{this.weaponName}\" is about to break! You should repair it."); //aviso
         }
     }
 }
