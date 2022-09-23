@@ -25,5 +25,17 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Wizard Cloak", "Camouflage"},
         {"Golden Crown", "Fortune"},
     };
+    public static Dictionary <string, int> Prices= new Dictionary<string, int>
+    {
+        {"Ultimate Sword", 69},
+        {"Viking Axe", 13},
+        {"Spear", 7},
+        {"Merlin Cape", 32},
+        {"Spirit Belt", 18},
+        {"Guardian Chest", 12},
+        {"Book of Spells", 35}, 
+        {"Wizard Cloak", 22},
+        {"Golden Crown", 63},
+    };
 //Estaria bueno de alguna forma poder asociar los strings "magic", "camouflage", "fortune" a habilidades 
 }

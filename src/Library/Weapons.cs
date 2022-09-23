@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Characters;
 
 namespace Inventory;
-public class Weapons 
+public class Weapons
 {
     ICharacter character;
     private string weaponName;
@@ -38,35 +38,36 @@ public class Weapons
     {
         if (this.WeaponName.Equals(character))
         {
-            int repairCost= ((100-this.WeaponDurability)*2)/10; //simple regla de tres que establece que cada 10% que se arregla, 
-                                                            //se cobran 2 coins; y calcula cuanto cuesta arreglar la weapon hasta llegar a 100%
-        if (character.Coins>=repairCost) //tiene suficientes coins
-        {
-            this.WeaponDurability= 100;
-            Console.WriteLine($"{this.WeaponName} has been fully repaired.");
+            int repairCost = ((100 - this.WeaponDurability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
+                                                                       //se cobran 2 coins; y calcula cuanto cuesta arreglar la weapon hasta llegar a 100%
+            if (character.Coins >= repairCost) //tiene suficientes coins
+            {
+                this.WeaponDurability = 100;
+                Console.WriteLine($"{this.WeaponName} has been fully repaired.");
+            }
+            else
+            {
+                this.WeaponDurability = +(character.Coins * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
+                Console.WriteLine($"{this.WeaponName} has been repaired up to {this.WeaponDurability}");
+            }
         }
         else
         {
-            this.WeaponDurability =+ (character.Coins*10)/2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
-            Console.WriteLine($"{this.WeaponName} has been repaired up to {this.WeaponDurability}");
+
         }
-        }
-        else
-        {
-            
-        }
-        
+
     }
     public void Sell(ICharacter character)
     {
-        if (this.WeaponDurability==100)
+        if (this.WeaponDurability == 100)
         {
-            //que la venda a precio completo de la tienda (primero programar la tienda)
+            character.Coins += ItemsStore.Prices[this.WeaponName];
         }
         else
         {
             //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
             //sino se puede hacer regla de tres de acuerdo a que tan roto esta
+            character.Coins += (ItemsStore.Prices[this.WeaponName]/2);
         }
         //quitar el arma del inventario (desde Program llamar a character.Remove())
     }
@@ -76,9 +77,28 @@ public class Weapons
         //hacer calculos (ver si puede o no comprar)
         //agregue el arma al inventario (desde Program llamar a charcater.Equip())
     }
-    public void Trade (ICharacter character1, ICharacter character2, IItems item2)
+    public void Trade(ICharacter character1, ICharacter character2, IItems item2)
     {
         //llamar al character.Remove() --> character2.Equip()
         //llamar al character2.Remove() --> character.Equip()
     }
+
+    public void Equip(ICharacter character)
+
+    {
+        if (character.Armors.Count + character.Weapons.Count + character.MagicItems.Count <= 5)
+        {
+            character.Weapons.Add(this);
+        }
+        else
+        {
+            Console.WriteLine("You are only allowed to carry a maximum of 5 items.");
+        }
+    }
+    public void Remove(ICharacter character)
+    {
+        character.Weapons.Remove(this);
+        Console.WriteLine($"Item removed successfully. You now carry {character.Armors.Count + character.Weapons.Count + character.MagicItems.Count} items.");
+    }
 }
+

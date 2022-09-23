@@ -50,42 +50,23 @@ public class Elves : ICharacter
         if (this.Weapons.Contains(weapon))
         {
             int weaponDamage = ItemsStore.Weapons[weapon.WeaponName] * 1 / 2; //Se multiplica el golpe por la mitad de daño del arma, es simplemente por jugabilidad, abierto a modificaciones
-            int finalDamage = this.Strength + weaponDamage;
-            if (deffender.Armor==null)
+            int finalDamage = this.Strength + weaponDamage; //sumo el daño del arma mas el daño predeterminado del personaje
+            if (deffender.Armors == null) //aseguro que el personaje tenga una armadura equipada
             {
                 deffender.HP = deffender.HP - finalDamage;
             }
             else
             {
                 foreach (Armors garment in deffender.Armors)
-                int deffender.Armors.= finalDamage
-                finalDamage= finalDamage - 
+                {
+                    int protection = (finalDamage * garment.ArmorProtection) / 100; //regla de tres donde calculo, en base al puntaje de armorProtection cuanta vida salva
+                    deffender.HP = deffender.HP - finalDamage + protection;
+                }
             }
-            
-            
-        }
-
-
-    }
-
-    public void Equip(IItems newObject)
-
-    {
-        if (this.Inventory["Weapons"].Count + this.Inventory["Armors"].Count + this.Inventory["Items"].Count <= 5)
-        {
-
-            this.Inventory.Add(newObject);
-        }
-        else
-        {
-            Console.WriteLine("You are only allowed to carry a maximum of 5 items.");
         }
     }
-    public void Remove(IItems eliminatedObject)
-    {
-        this.Inventory.Remove(eliminatedObject);
-        Console.WriteLine($"Item removed successfully. You now carry {this.Inventory.Count} items.");
-    }
+
+
 
 
 
