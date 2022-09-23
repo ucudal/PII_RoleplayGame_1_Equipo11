@@ -11,8 +11,7 @@ public interface ICharacter
     List<MagicItems> MagicItems {get; set;}
     int HP { get; set;}
     int Coins { get; set;}
+    string Name {get;}
     void Attack(Weapons weapon, ICharacter defender);
-    void Equip(IItems item); //Para equipar nuevas armaduras/armas/objetos
-    void Remove(IItems item); //Para deshacerse de armaduras/armas/objetos
 
 }

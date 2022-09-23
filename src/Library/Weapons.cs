@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Characters;
 
 namespace Inventory;
-public class Weapons
+public class Weapons : IItems
 {
     ICharacter character;
     private string weaponName;
@@ -36,7 +36,8 @@ public class Weapons
 
     public void Repair(ICharacter character)
     {
-        if (this.WeaponName.Equals(character))
+
+        if (character.Weapons.Contains(this))
         {
             int repairCost = ((100 - this.WeaponDurability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
                                                                        //se cobran 2 coins; y calcula cuanto cuesta arreglar la weapon hasta llegar a 100%
@@ -44,38 +45,68 @@ public class Weapons
             {
                 this.WeaponDurability = 100;
                 Console.WriteLine($"{this.WeaponName} has been fully repaired.");
+                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
             }
             else
             {
                 this.WeaponDurability = +(character.Coins * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
                 Console.WriteLine($"{this.WeaponName} has been repaired up to {this.WeaponDurability}");
+                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
             }
         }
         else
         {
-
+            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
         }
 
     }
     public void Sell(ICharacter character)
     {
-        if (this.WeaponDurability == 100)
+        if (character.Weapons.Contains(this))
         {
-            character.Coins += ItemsStore.Prices[this.WeaponName];
+            if (this.WeaponDurability == 100)
+            {
+                character.Coins += ItemsStore.Prices[this.WeaponName];
+                character.Weapons.Remove(this);
+            }
+            else
+            {
+                //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
+                //sino se puede hacer regla de tres de acuerdo a que tan roto esta
+                character.Coins += (ItemsStore.Prices[this.WeaponName] / 2);
+                Console.WriteLine($"\"{this.weaponName}\" has been sold, and removed succesfully.");
+                 Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
+
+            }
         }
         else
         {
-            //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
-            //sino se puede hacer regla de tres de acuerdo a que tan roto esta
-            character.Coins += (ItemsStore.Prices[this.WeaponName]/2);
+            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
         }
-        //quitar el arma del inventario (desde Program llamar a character.Remove())
+
     }
     public void Buy(ICharacter character)
     {
-        //Busque en la tienda el arma por su nombre (weapon.WeaponName) y busque su precio
-        //hacer calculos (ver si puede o no comprar)
-        //agregue el arma al inventario (desde Program llamar a charcater.Equip())
+        if (ItemsStore.Weapons.ContainsKey(this.WeaponName))
+        {
+            if (character.Armors.Count + character.Weapons.Count + character.MagicItems.Count <= 5)
+            {
+                if (character.Coins >= ItemsStore.Prices[this.WeaponName])
+                {
+                    character.Coins = -ItemsStore.Prices[this.WeaponName];
+                    Console.WriteLine($"\"{this.weaponName}\" has been bought, and equiped succesfully.");
+                    Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error: You are only allowed to carry a maximum of 5 items.");
+            }
+        }
+        else
+        {
+            Console.WriteLine($"Error: the store does not include the weapon \"{this.weaponName}\".");
+        }
     }
     public void Trade(ICharacter character1, ICharacter character2, IItems item2)
     {
@@ -83,22 +114,30 @@ public class Weapons
         //llamar al character2.Remove() --> character.Equip()
     }
 
-    public void Equip(ICharacter character)
+    public void Equip(ICharacter character) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
 
     {
         if (character.Armors.Count + character.Weapons.Count + character.MagicItems.Count <= 5)
         {
             character.Weapons.Add(this);
+            Console.WriteLine($"\"{character.Name}\" now equips \"{this.WeaponName}\".");
         }
         else
         {
-            Console.WriteLine("You are only allowed to carry a maximum of 5 items.");
+            Console.WriteLine("Error: You are only allowed to carry a maximum of 5 items.");
         }
     }
     public void Remove(ICharacter character)
     {
-        character.Weapons.Remove(this);
-        Console.WriteLine($"Item removed successfully. You now carry {character.Armors.Count + character.Weapons.Count + character.MagicItems.Count} items.");
+        if (character.Weapons.Contains(this))
+        {
+            character.Weapons.Remove(this);
+            Console.WriteLine($"Item removed successfully. You now carry {character.Armors.Count + character.Weapons.Count + character.MagicItems.Count} items.");
+        }
+        else
+        {
+            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
+        }
     }
 }
 
