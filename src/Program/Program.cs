@@ -15,6 +15,7 @@ namespace Program
 
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadon's hat"), new Armors("Merlin Cape"), new MagicItems("Book of spells"));
             //Primer instancia de un Wizard
+            Console.WriteLine(wizard.Weapon.WeaponName);
         }
     }
 }

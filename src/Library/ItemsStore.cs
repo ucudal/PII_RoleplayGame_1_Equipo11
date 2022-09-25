@@ -36,6 +36,7 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Ultimate Sword", 69},
         {"Viking Axe", 13},
         {"Rabadon's Hat",40},
+        {"Wizard Melee",0},
         {"Spear", 7},
         {"Merlin Cape", 32},
         {"Spirit Belt", 18},
