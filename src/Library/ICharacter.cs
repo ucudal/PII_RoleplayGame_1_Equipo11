@@ -6,20 +6,11 @@ namespace Characters;
 
 public interface ICharacter
 {
-<<<<<<< HEAD
     Armors Armor {get; set;} //Lista que contiene las piezas de armadura del character
     Weapons Weapon {get; set;} //Lista que contiene las armas del character
     MagicItems MagicItem {get; set;} //Lista que contiene los items del character --> ver como hacer con los dwarves que no tienen habilidades magicas
-=======
-    List<Armors> Armors {get; set;} //Lista que contiene las piezas de armadura del character
-    List<Weapons> Weapons {get; set;} //Lista que contiene las armas del character
-    List<MagicItems> MagicItems {get; set;} //Lista que contiene los items del character
-    int Armor {get; set;}
     int Damage {get; set;}
-<<<<<<< HEAD
->>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
-=======
->>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
+
     int HP { get; set;} //Health Points; permite fijar y modificar la vida de un personaje luego de reciber ataques
     int Coins { get; set;} //Dinero; permite fijar y modificar el dinero de un personaje luego de realizar compra/venta de objetos
     string Name {get;} //Nombre; permite el facil acceso al nombre del personaje en cuestion para su facil impresion en la consola (impresiones de interaccion: jugador-juego)
@@ -27,5 +18,5 @@ public interface ICharacter
 
     bool IsAlive(); //indica si el character sigue vivo luego de haber recibido un ataque
 
-   // void Steal(); se podria hacer un metodo que luego de un personaje matar a otro, le permita llotear un solo objeto 
+   // void Steal(); se podria hacer un metodo que luego de un personaje matar a otro, le permita lootear un solo objeto 
 }

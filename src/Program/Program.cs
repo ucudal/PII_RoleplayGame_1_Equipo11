@@ -9,9 +9,7 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Weapons elfHammer= new Weapons("Elf Hammer");
-            List<Weapons> elF1Weapons= new List<Weapons> (elfHammer);
-            ICharacter elf1= new Elves("Ragnar", elF1Weapons );
+            ICharacter elf1 = new Elves("Ragnar", new Weapons("Elf Hammer"), new Armors("Iron Helmet"), new MagicItems("Rabbit´s Foot"));
             //Primera instancia de un elf
         }
     }

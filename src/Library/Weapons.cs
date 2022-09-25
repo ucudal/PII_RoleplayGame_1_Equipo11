@@ -1,3 +1,4 @@
+//Felipe Villaronga
 using System;
 using System.Collections.Generic;
 using Characters;
@@ -8,11 +9,12 @@ public class Weapons : IItems
     public Weapons(string weaponName)
     {
         this.WeaponName = weaponName;
-        this.Damage = ItemsStore.Weapons[weaponName];
+        this.Damage = damage;
         this.WeaponDurability = 100; //arranca con 100%, en cada ataque va a ir disminuyendo
     }
     ICharacter character;
     private string weaponName;
+    private int damage;
     public string WeaponName
     {
 
@@ -31,7 +33,23 @@ public class Weapons : IItems
 
     }
     public int WeaponDurability { get; set; }
-    public int Damage { get; }
+    public int Damage
+    {
+
+        get
+        {
+            return this.damage;
+        }
+
+        set
+        {
+            if (ItemsStore.Weapons.ContainsKey(this.WeaponName)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+            {
+                this.damage = ItemsStore.Weapons[weaponName];
+            }
+        }
+
+    }
 
     public void Repair(ICharacter character)
     {
@@ -109,33 +127,33 @@ public class Weapons : IItems
         character.Weapon = this;
         Console.WriteLine($"\"{character.Name}\" now equips \"{this.WeaponName}\".");
     }
-}
-public void Desequip(ICharacter character)
-{
-    if (character.Weapon == this)
-    {
-        character.Weapon= null;
-        Console.WriteLine($"Item removed successfully. You now carry {character.Armors.Count + character.Weapons.Count + character.MagicItems.Count} items.");
-    }
-    else
-    {
-        Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
-    }
-    //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
-    //Tambien se podria dar un aviso cuando este al borde de romperse
-}
 
-public void Break()
-{
-    if (this.WeaponDurability <= 0)
+    public void Desequip(ICharacter character)
     {
-        character.Weapons.Remove(this); //se elimina el arma del personaje
-        Console.WriteLine($"¡\"{this.WeaponName}\" has broken! You should buy a new one."); //aviso
+        if (character.Weapon == this)
+        {
+            Console.WriteLine($"{character.Weapon.WeaponName} removed successfully.");
+            character.Weapon = null;
+        }
+        else
+        {
+            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
+        }
+        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
+        //Tambien se podria dar un aviso cuando este al borde de romperse
     }
-    if (this.WeaponDurability <= 15) //aviso de cuando este por romperse
+
+    public void Break()
     {
-        Console.WriteLine($"¡\"{this.WeaponName}\" is about to break! You should repair it."); //aviso
+        if (this.WeaponDurability <= 0)
+        {
+            Console.WriteLine($"¡\"{this.WeaponName}\" has broken! You should buy a new one."); //aviso
+            character.Weapon = null; //se elimina el arma del personaje
+        }
+        if (this.WeaponDurability <= 15) //aviso de cuando este por romperse
+        {
+            Console.WriteLine($"¡\"{this.WeaponName}\" is about to break! You should repair it."); //aviso
+        }
     }
-}
 }
 

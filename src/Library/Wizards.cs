@@ -1,4 +1,4 @@
-//Juan Magrini
+﻿//Juan Magrini
 using System;
 using Characters;
 using Inventory;

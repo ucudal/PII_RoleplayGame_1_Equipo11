@@ -1,4 +1,4 @@
-using NUnit.Framework;
+/*using NUnit.Framework;
 using Inventory;
 using WizardCharacter;
 using Characters;
@@ -23,4 +23,4 @@ namespace Test.Library
             
         }
     }
-}
+}*/
