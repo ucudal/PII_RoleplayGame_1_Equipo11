@@ -3,7 +3,7 @@ using Characters;
 
 namespace Inventory;
 
-public class MagicItems : IItems
+public class MagicItems //: IItems
 {
     ICharacter character;
 
@@ -13,14 +13,14 @@ public class MagicItems : IItems
 
         get
         {
-            return this.Name;
+            return this.name;
         }
 
         set
         {
-            if (ItemsStore.Items.ContainsKey(name)) //comprueba que el nombre del item exista en la "base de datos" (ItemsStore)
+            if (ItemsStore.Items.ContainsKey(value)) //comprueba que el nombre del item exista en la "base de datos" (ItemsStore)
             {
-                this.Name= name;
+                this.name= value;
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace Characters;
 
-public class Dwarves : ICharacter
+public class Dwarves 
 {
     string Description { get; }
     public string Name { get ; set; } //hacer la comprobacion de que el string no este vacio
@@ -13,7 +13,7 @@ public class Dwarves : ICharacter
         /*this.Name = Name; //nombre
         this.Weapons = weapons; //armas
         this.Armors = armors; //armaduras
-        this.MagicItems = magicItems; //objetos magicos
+        Recordar que los enanos no tienen capacidades magicas
         this.Coins = coins; //riqueza 
         this.Strength = ; // cada golpe saca (¿?) de vida
         this.HP = ; //tiene una vida maxima de (¿?), otros personajes pueden tener mas o menos*/

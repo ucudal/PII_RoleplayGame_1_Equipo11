@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using Characters;
 using Inventory;
 using System.Collections.Generic;
@@ -100,4 +100,4 @@ public class Wizards : ICharacter
             }
         }
     }
-}
+}*/

@@ -5,7 +5,13 @@ namespace Inventory;
 
 public class Armors
 {
-    ICharacter character;
+    public Armors(string armorName)
+    {
+        this.ArmorName = armorName;
+        this.ArmorProtection = ItemsStore.Armors[armorName];
+        this.ArmorDurability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
+    }
+    //ICharacter character;
 
     private string armorName;
     public string ArmorName
@@ -13,44 +19,21 @@ public class Armors
 
         get
         {
-            return this.ArmorName;
+            return this.armorName;
         }
 
         set
         {
-            if (ItemsStore.Armors.ContainsKey(armorName)) //comprueba que el nombre del armor exista en la "base de datos" (ItemsStore)
+            if (ItemsStore.Armors.ContainsKey(value)) //comprueba que el nombre del armor exista en la "base de datos" (ItemsStore)
             {
-                this.ArmorName = armorName;
+                this.armorName = value;
             }
         }
         //seguir haciendo el resto (durabilidad, precio, proteccion)
         //metodos de comprar, vender, tradear, reparar, mejorar(¿?), equipar, y quitar del inventario
     }
 
-    private int armorProtection;
-    public int ArmorProtection
-    {
-
-        get
-        {
-            return this.ArmorProtection;
-        }
-
-        set
-        {
-            if (ItemsStore.Armors.ContainsKey(armorName)) //comprueba que el nombre del armor exista en la "base de datos" (ItemsStore)
-            {
-                this.ArmorProtection = armorProtection;
-            }
-        }
-
-    }
+    public int ArmorProtection {get;}
     public int ArmorDurability { get; set; }
 
-    public Armors(string armorName, int armorProtection)
-    {
-        this.ArmorName = armorName;
-        this.ArmorProtection = armorProtection;
-        this.ArmorDurability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
-    }
 }
