@@ -12,7 +12,6 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Viking Axe", 15},
         {"Wizard Melee",20},
         {"Spear", 8},
-        {"Rabadons Hat",20},
         {"Mythril BattleAxe",26},
         {"Rabadon's Hat",20}
     }; //asocia nombres de armas con el daño que infligen
