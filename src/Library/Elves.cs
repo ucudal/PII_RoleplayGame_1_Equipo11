@@ -23,9 +23,18 @@ public class Elves : ICharacter
     private string name;
     public int HP { get; set; } //medido en porcentaje del 1 al 100
     public int Strength { get; } //medido en porcentaje del 1 al 100
+<<<<<<< HEAD
     public Weapons Weapon { get; set; } //lista de armas
     public Armors Armor { get; set; } //lista de piezas de armadura
     public MagicItems MagicItem { get; set; } //lista de items magicos
+=======
+    public List<Weapons> Weapons { get; set; } //lista de armas
+    public List<Armors> Armors { get; set; } //lista de piezas de armadura
+    public List<MagicItems> MagicItems { get; set; } //lista de items magicos
+
+    public int Damage {get; set;}
+    public int Armor {get; set;}
+>>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
     public int Coins { get; set; } //dinero del personaje
     public string Name
     {
@@ -43,9 +52,38 @@ public class Elves : ICharacter
     }
     public void Attack(ICharacter deffender) //Este seria el modelo de ataque de un elfo, se llama al metodo mediante la interfaz aun no creada "IAttack"
     {
+<<<<<<< HEAD
         int finalDamage = this.Strength;
         int protection = 0;
         if (this.Weapon != null) //compruebo que el elfo disponga de dicha arma
+=======
+        this.Description = "Son criaturas supernaturales que tambien poseen características mágicas, se destacan por su compañerismo";
+        this.Name = Name; //nombre
+        this.Weapons.Add(initialWeapon); //armas
+        this.Armors.Add(initialArmor); //armaduras
+        this.MagicItems.Add(initialMagicItem); //objetos magicos
+        this.Coins = 20; //riqueza 
+        this.Strength = 8; // cada golpe saca 8 de vida
+        this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
+        if(initialArmor==null)
+        {
+            this.Armor= 0;
+        }
+        else
+        {
+            foreach(var Defense in Armors)
+            {
+                this.Armor+=Defense.ArmorProtection;
+            }
+        }
+    }
+
+
+
+    public void Attack(Weapons weapon, ICharacter deffender) //Este seria el modelo de ataque de un elfo, se llama al metodo mediante la interfaz aun no creada "IAttack"
+    {
+        if (this.Weapons.Contains(weapon)) //compruebo que el elfo disponga de dicha arma
+>>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
         {
             int weaponDamage = ItemsStore.Weapons[this.Weapon.WeaponName] * 1 / 2; //Se multiplica el golpe por la mitad de daño del arma, es simplemente por jugabilidad, abierto a modificaciones
             this.Weapon.WeaponDurability -= 5; //la "vida" del arma disminuye un 5% con cada golpe
