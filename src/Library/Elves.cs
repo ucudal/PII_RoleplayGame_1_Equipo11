@@ -30,7 +30,7 @@ public class Elves : ICharacter
 
 
     public int Damage { get; set; }
-    public int Coins { get; set; } //dinero del personaje
+    
     public string Name
     {
         get
@@ -73,7 +73,7 @@ public class Elves : ICharacter
             this.Armor = null;
             this.Weapon = null;
             this.MagicItem = null;
-            this.Coins = this.Coins / 2;
+            Transaction(false,this.Coins/2);// divide su oro a la mitad
             return false;
         }
         else
@@ -81,5 +81,24 @@ public class Elves : ICharacter
             Console.WriteLine($"\"{this.Name}\" is still alive: {this.HP} HP.");
             return true;
         }
+    }
+    public int Coins { get;set;}
+    public int GetCoins()
+    {
+        return this.Coins;
+    }
+    
+    public bool Transaction(bool operation, int value)
+    {
+        if (operation)
+        {
+            this.Coins += value; 
+            return true;
+        }
+        else 
+        {
+            if (value<this.Coins){this.Coins-=value; return true;}           //determina si la operacion es posible
+            else{Console.WriteLine($"{this.name} no tiene oro suficiente!"); return false;}
+        }  
     }
 }
