@@ -12,13 +12,13 @@ public interface ICharacter
     int Damage {get; set;}
 
     int HP { get; set;} //Health Points; permite fijar y modificar la vida de un personaje luego de reciber ataques
-    public int Coins { get;set;}//Dinero; permite fijar y modificar el dinero de un personaje luego de realizar compra/venta de objetos
+    
     string Name {get;} //Nombre; permite el facil acceso al nombre del personaje en cuestion para su facil impresion en la consola (impresiones de interaccion: jugador-juego)
     void Attack(ICharacter defender); //metodo de ataque de un personaje a otro; permite elegir con que arma atacar en caso que el personaje disponga de varias
 
     bool IsAlive(); //indica si el character sigue vivo luego de haber recibido un ataque
 
-   // void Steal(); se podria hacer un metodo que luego de un personaje matar a otro, le permita lootear un solo objeto 
-   bool Transaction(bool operation,int value); //hace una transaccion el operation determina si se añade o pierde dinero, el bool determina si fue posible o no
-
+    // void Steal(); se podria hacer un metodo que luego de un personaje matar a otro, le permita lootear un solo objeto 
+    bool Transaction(bool operation,int value); //hace una transaccion ,el operation determina si se añade o pierde dinero, el bool determina si fue posible o no
+    int GetCoins();  //get de coins
 }
