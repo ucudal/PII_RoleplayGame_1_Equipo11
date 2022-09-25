@@ -82,7 +82,7 @@ public class Elves : ICharacter
             return true;
         }
     }
-    public int Coins { get;set;}
+    private int Coins { get;set;}
     public int GetCoins()
     {
         return this.Coins;

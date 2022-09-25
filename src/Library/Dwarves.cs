@@ -40,7 +40,7 @@ public class Dwarves : ICharacter
     public Weapons Weapon { get; set; } //lista de armas
     public Armors Armor { get; set; } //lista de piezas de armadura
     public int Damage { get; set; }
-    public int Coins { get;set;}
+    private int Coins { get;set;}
     public int GetCoins()
     {
         return this.Coins;
