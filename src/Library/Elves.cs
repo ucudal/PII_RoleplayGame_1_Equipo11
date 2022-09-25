@@ -34,6 +34,9 @@ public class Elves : ICharacter
 
     public int Damage {get; set;}
     public int Armor {get; set;}
+<<<<<<< HEAD
+>>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
+=======
 >>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
     public int Coins { get; set; } //dinero del personaje
     public string Name

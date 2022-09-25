@@ -16,6 +16,9 @@ public interface ICharacter
     List<MagicItems> MagicItems {get; set;} //Lista que contiene los items del character
     int Armor {get; set;}
     int Damage {get; set;}
+<<<<<<< HEAD
+>>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
+=======
 >>>>>>> 80934dcb9af6113b4800214bc02b27ecaa25f555
     int HP { get; set;} //Health Points; permite fijar y modificar la vida de un personaje luego de reciber ataques
     int Coins { get; set;} //Dinero; permite fijar y modificar el dinero de un personaje luego de realizar compra/venta de objetos
