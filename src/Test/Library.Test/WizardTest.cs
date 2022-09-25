@@ -1,4 +1,4 @@
-/*using NUnit.Framework;
+using NUnit.Framework;
 using Inventory;
 using WizardCharacter;
 using Characters;
@@ -10,17 +10,14 @@ namespace Test.Library
         [Test]
         public void correctWizardInput()
         {
-            ICharacter wizard = new Wizards("Snoopy", new Armors("Merlin Cape",10), new Weapons("Master Wand",12), new MagicItems("Book of spells"));
-            string expectedName= "Snoopy";
+            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadon's hat"), new Armors("Merlin Cape"), new MagicItems("Book of spells"));
+            string expectedName= "Kassadin";
             int expectedArmor= 10;
-            int expectedDamage=32;
-            bool expectedMagicItem= true;
+            int expectedDamage=40;
             Assert.AreEqual(wizard.Name,expectedName);
             Assert.AreEqual(wizard.Armor,expectedArmor);
             Assert.AreEqual(expectedDamage,wizard.Damage);
-            Assert.AreEqual(expectedMagicItem,wizard.MagicItems.ToString().Contains("Book of spells"));
-
-            
+            Assert.IsTrue(wizard.Weapon.WeaponName ==" Rabadon's hat");
         }
     }
-}*/
+}
