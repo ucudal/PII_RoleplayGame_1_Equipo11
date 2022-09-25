@@ -9,7 +9,21 @@ namespace WizardCharacter;
 public class Wizards : ICharacter
 {
     ICharacter character;
-    public string Name {get; set;}
+    private string name;
+    public string Name
+    {
+        get
+        {
+            return this.name;
+        }
+        set
+        {
+            if (!string.IsNullOrEmpty(value)) //comprueba que no se haya ingresado una string vacia
+            {
+                this.name = value;
+            }
+        }
+    }
 
     public MagicItems MagicItem {get; set;} //Lista que contiene los items del character
 
@@ -25,27 +39,11 @@ public class Wizards : ICharacter
 
     public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
     {
-        if(itemArmor!=null)
-        {
-            this.ArmorDefense=itemArmor.ArmorProtection;
-            this.Armor=itemArmor;
-        }
-        else
-        {
-            this.ArmorDefense=0;
-        }
+        this.ArmorDefense=itemArmor.ArmorProtection;
+        this.Armor=itemArmor;
         this.Description= "This character has the power of magic";
-        if(itemWeapon!=null)
-        {
-            this.Damage=20+itemWeapon.Damage;
-            this.Weapon=itemWeapon;
-        }
-        else
-        {
-            this.Weapon= new Weapons("Wizard Melee");
-            this.Damage=Weapon.Damage;
-            Console.WriteLine("The weapon you entered does not exist");
-        }
+        this.Damage=20+itemWeapon.Damage;
+        this.Weapon=itemWeapon;
         this.HP= 100;
         this.Coins=500;
         this.MagicItem= magicItems;
@@ -55,8 +53,6 @@ public class Wizards : ICharacter
 
     public void Attack(ICharacter enemy)
     {
-        if(Weapon.WeaponName!="Wizard Melee")
-        {
             if(Weapon.WeaponDurability>10)
             {
                 int enemysHP= enemy.HP+enemy.Armor.ArmorProtection;
@@ -67,7 +63,6 @@ public class Wizards : ICharacter
             {
                 Console.WriteLine("Your weapon is about to get broken, you need to fix it in order to use it.");
             }
-        }
     }
 
 
