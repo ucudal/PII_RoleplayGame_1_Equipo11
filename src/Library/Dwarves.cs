@@ -46,7 +46,7 @@ public class Dwarves : ICharacter
         return this.Coins;
     }
     
-    public bool Transaction(bool operation, int value)
+    public bool Transaction(bool operation, int value)  //true significa q recibe dinero, y false q se le resta
     {
         if (operation)
         {
