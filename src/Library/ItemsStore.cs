@@ -11,6 +11,7 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Ultimate Sword", 32},
         {"Viking Axe", 15},
         {"Spear", 8},
+        {"Mythril BattleAxe",26}
     }; //asocia nombres de armas con el daño que infligen
     //se incluyen tanto armas predeterminadas (iniciales) de cada personaje como aquellas adquiribles desde la tienda
 
@@ -20,6 +21,7 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Merlin Cape", 10},
         {"Spirit Belt", 5},
         {"Guardian Chest", 4},
+        {"Dwarf heavy Chain Chesplate",12}
     }; //asocia nombres de armaduras con la proteccion que otorgan
     
     public static Dictionary <string, string> Items= new Dictionary<string, string> 
@@ -40,6 +42,8 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Book of Spells", 35}, 
         {"Wizard Cloak", 22},
         {"Golden Crown", 63},
+        {"Dwarf heavy Chain Chesplate",40},
+        {"Mythril BattleAxe",50}
     }; //asocia armas/armaduras/items a su precio de venta; aquellas predeterminadas de cada personaje no se pueden comprar, razon por la cual no se incluyen aqui
 }
 /*NOTAS:
