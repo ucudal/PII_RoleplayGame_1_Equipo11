@@ -79,4 +79,18 @@ public class Wizards : ICharacter
             return true;
         }
     }
+    public bool Transaction(bool operation, int value)
+    {
+        if (operation)
+        {
+            this.Coins += value; 
+            return true;
+        }
+        else 
+        {
+            if (value<this.Coins){this.Coins-=value; return true;}           //determina si la operacion es posible
+            else{Console.WriteLine($"{this.name} no tiene oro suficiente!"); return false;}
+        }  
+    }
 }
+
