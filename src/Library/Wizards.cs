@@ -1,4 +1,4 @@
-﻿//Juan Magrini
+//Juan Magrini
 using System;
 using Characters;
 using Inventory;
@@ -9,80 +9,62 @@ namespace WizardCharacter;
 public class Wizards : ICharacter
 {
     ICharacter character;
+    private string name;
     public string Name
     {
         get
         {
-            return this.Name;
+            return this.name;
         }
         set
         {
-            if(!string.IsNullOrEmpty(value))
+            if (!string.IsNullOrEmpty(value)) //comprueba que no se haya ingresado una string vacia
             {
-                this.Name=value;
+                this.name = value;
             }
         }
     }
-    public List<MagicItems> MagicItems {get; set;} //Lista que contiene los items del character
 
-    public List <Weapons> Weapons {get; set;}
+    public MagicItems MagicItem {get; set;} //Lista que contiene los items del character
 
-    public List<Armors> Armors {get; set;}
+    public int ArmorDefense {get; set;}
     public int Coins {get; set;}
     public string Description {get;}
     public int Damage {get; set;}
     public int HP {get; set;}
 
-    public int Armor {get; set;}
+    public Weapons Weapon {get; set;}
 
-    public Wizards(string name, Armors itemArmor, Weapons itemWeapon, MagicItems magicItems)
+    public Armors Armor {get; set;}
+
+    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
     {
-        Weapons.Add(new Weapons("Melee",this.Damage));
-        this.Weapons.Add(itemWeapon);
-        if(itemArmor==null)
-        {
-            this.Armor= 0;
-        }
-        else
-        {
-            foreach(var Defense in Armors)
-            {
-                this.Armor+=Defense.ArmorProtection;
-            }
-        }
-        
+        this.ArmorDefense=itemArmor.ArmorProtection;
+        this.Armor=itemArmor;
         this.Description= "This character has the power of magic";
-        this.Damage = 20+itemWeapon.Damage;
+        this.Damage=20+itemWeapon.Damage;
+        this.Weapon=itemWeapon;
         this.HP= 100;
         this.Coins=500;
-        this.MagicItems.Add(magicItems);
+        this.MagicItem= magicItems;
+        this.Name=name;
     }
     
 
-    public void Attack(Weapons itemWeapon, ICharacter enemy)
+    public void Attack(ICharacter enemy)
     {
-        int enemysHP= enemy.HP+enemy.Armor;
-        if(this.Weapons.Contains(itemWeapon))
-        {
-            if(itemWeapon.WeaponDurability<10)
+            if(Weapon.WeaponDurability>10)
             {
-                Console.WriteLine("This weapon is about to get broken, you are not able to use it");
+                int enemysHP= enemy.HP+enemy.Armor.ArmorProtection;
+                enemysHP-=this.Damage;
+                Weapon.WeaponDurability-=10;
             }
             else
             {
-                enemysHP-=this.Damage;
-                if(itemWeapon.WeaponName!="Melee")
-                {
-                    itemWeapon.WeaponDurability-=10;
-                }
+                Console.WriteLine("Your weapon is about to get broken, you need to fix it in order to use it.");
             }
-        }
-        else
-        {
-            Console.WriteLine("You do not have this weapon in your posession");
-        }
-
     }
+
 
     public bool IsAlive()
     {

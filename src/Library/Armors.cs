@@ -12,7 +12,6 @@ public class Armors
         this.ArmorDurability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
     }
     //ICharacter character;
-
     private string armorName;
     public string ArmorName
     {

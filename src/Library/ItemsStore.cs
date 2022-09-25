@@ -10,8 +10,13 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Elf Hammer", 5}, 
         {"Ultimate Sword", 32},
         {"Viking Axe", 15},
+        {"Wizard Melee",20},
         {"Spear", 8},
+<<<<<<< HEAD
         {"Mythril BattleAxe",26}
+=======
+        {"Rabadon's Hat",20}
+>>>>>>> 056850102983760da6c3f19136b0276bfca6a490
     }; //asocia nombres de armas con el daño que infligen
     //se incluyen tanto armas predeterminadas (iniciales) de cada personaje como aquellas adquiribles desde la tienda
 
@@ -35,6 +40,8 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
     {
         {"Ultimate Sword", 69},
         {"Viking Axe", 13},
+        {"Rabadon's Hat",40},
+        {"Wizard Melee",0},
         {"Spear", 7},
         {"Merlin Cape", 32},
         {"Spirit Belt", 18},
