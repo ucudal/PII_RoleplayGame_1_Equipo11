@@ -1,4 +1,5 @@
 //Felipe Villaronga
+
 using System;
 using System.Collections.Generic;
 using Characters;
@@ -6,16 +7,18 @@ using Characters;
 namespace Inventory;
 public class Weapons : IItems
 {
-    public Weapons(string weaponName)
+    public Weapons(string name)
     {
-        this.name = weaponName;
+        this.Name = name;
         this.Power = power;
-        this.Durability = 100; //arranca con 100%, en cada ataque va a ir disminuyendo
+        this.Durability = 100; 
     }
     ICharacter character;
     public string name { get; set; }
     private int power;
-    public string WeaponName
+
+    //nombre del arma --> se asegura que exista un arma con dicho nombre en el ItemsStore 
+    public string Name
     {
 
         get
@@ -32,7 +35,12 @@ public class Weapons : IItems
         }
 
     }
+
+    //propiedad que mide la durabilidad de un arma en enteros del 1 al 100
     public int Durability { get; set; }
+
+    /// propiedad relativa al daño que ejerce un arma, de acuerdo al entero asociado a la clave "name" en el ItemsStore
+    /// tiene un set ya que puede incrementar mediante encantamientos y otras acciones
     public int Power
     {
 
@@ -52,16 +60,19 @@ public class Weapons : IItems
 
     } 
 
+    //metodo mediante el cual se elimina el arma del inventario de un personaje si su durabilidad es igual o menor a 0
     public void Break(ICharacter character)
-    {
+    {   
+        //se elimina el arma del personaje
         if (this.Durability <= 0)
         {
             ConsolePrinter.brokenItem(this);
-            character.Weapon = null; //se elimina el arma del personaje
+            character.Weapon = null; 
         }
-        if (this.Durability <= 15) //aviso de cuando este por romperse
+        //aviso de cuando este por romperse
+        if (this.Durability <= 15) 
         {
-            ConsolePrinter.aboutToGetBrokenItem(this); //aviso
+            ConsolePrinter.aboutToGetBrokenItem(this); 
         }
     }
 

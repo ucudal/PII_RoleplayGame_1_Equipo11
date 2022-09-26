@@ -1,3 +1,5 @@
+//Felipe Villaronga
+
 using NUnit.Framework;
 using Inventory;
 using Characters;
