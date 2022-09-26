@@ -28,11 +28,7 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-<<<<<<< HEAD
-            ConsolePrinter.NotInInventory(item);
-=======
-            ConsolePrinter.ItemNotEquipped(Armor);
->>>>>>> ec7dc4c269526dcfd9cd81873680ef18246a5a98
+            ConsolePrinter.NotInInventory(Armor);
         }
     }
     public void ArmorEnchantment(ICharacter character, Armors Armor)
@@ -52,11 +48,7 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-<<<<<<< HEAD
-            ConsolePrinter.NotInInventory(item);
-=======
-            ConsolePrinter.ItemNotEquipped(Armor);
->>>>>>> ec7dc4c269526dcfd9cd81873680ef18246a5a98
+            ConsolePrinter.NotInInventory(Armor);
         }
     }
 //-----------------weapons------------------
@@ -82,7 +74,7 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(weapon);
+            ConsolePrinter.NotInInventory(weapon);
         }
     }
     public void WeaponEnchantment(ICharacter character, Weapons weapon)
@@ -102,7 +94,7 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(weapon);
+            ConsolePrinter.NotInInventory(weapon);
         }
     }
 
