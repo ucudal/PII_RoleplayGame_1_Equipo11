@@ -1,4 +1,4 @@
-using System;
+/* using System;
 using Characters;
 
 namespace Inventory;
@@ -54,4 +54,4 @@ public class MagicItems
     //metodos de comprar, vender, tradear, equipar, desequipar
     //ver la clase weapons que en principio es similar y ya esta bastnate desarrollada
 
-}
+} */
