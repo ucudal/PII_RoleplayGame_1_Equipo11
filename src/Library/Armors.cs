@@ -24,10 +24,14 @@ public class Armors : IItems
 
         set
         {
-            if (ItemsStore.Armors.ContainsKey(this.name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+            if (name != null)
             {
-                this.power = ItemsStore.Armors[this.name];
+                if (ItemsStore.Armors.ContainsKey(this.name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+                {
+                    this.power = ItemsStore.Armors[this.name];
+                }
             }
+
         }
 
     }

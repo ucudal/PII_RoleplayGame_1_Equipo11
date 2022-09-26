@@ -25,7 +25,7 @@ public class AttackInitiator
                 Attacker.Weapon.Durability -= 5;
 
                 //  sumo el daño del arma mas el daño predeterminado del personaje
-                finalDamage += weaponDamage; 
+                finalDamage *= weaponDamage; 
             }
             //  aseguro que el personaje tenga una armadura equipada
             if (deffender.Armor != null) 
@@ -34,7 +34,7 @@ public class AttackInitiator
                 protection = (finalDamage * deffender.Armor.Power) / 100; 
 
                 //  la "vida" de cada pieza disminuye en un 5% por cada golpe
-                Attacker.Armor.Durability -= 5; 
+                deffender.Armor.Durability -= 5; 
             }
             //  el daño final termina siendo el daño total del pj - la proteccion de la armadura de quien se defiende
             finalDamage -= protection; 
@@ -43,7 +43,11 @@ public class AttackInitiator
             deffender.HPChanger(-finalDamage); 
 
             ConsolePrinter.AttackOnTarget(Attacker, deffender);
-            ConsolePrinter.DeathPrinter(deffender,Attacker);
+            if (!deffender.IsAlive())
+            {
+                ConsolePrinter.DeathPrinter(deffender,Attacker);
+            }
+            
         }
         else 
         {
