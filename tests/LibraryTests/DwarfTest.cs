@@ -1,4 +1,4 @@
-using NUnit.Framework;
+/*using NUnit.Framework;
 using Inventory;
 using Characters;
 
@@ -27,4 +27,4 @@ namespace Test.Library
             Assert.AreEqual(expectedName,NTest.Name);
         }
     }
-}
+}*/
