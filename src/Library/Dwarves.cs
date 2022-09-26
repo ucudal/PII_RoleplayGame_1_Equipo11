@@ -16,8 +16,11 @@ public class Dwarves : ICharacter
         this.Coins = 30; //riqueza 
         this.Strength = 10 ; // cada golpe saca 10 de vida
         this.HP = 120; //tiene una vida maxima de 120, otros personajes pueden tener mas o menos, son los mas robustos*/
+        
+        this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
+
     }
-    
+    public List<IItems> Inventory;
     public string Description { get; }
     private string name;
     public string Name
@@ -81,4 +84,13 @@ public class Dwarves : ICharacter
             return true;
         }
     }
+    public void InventoryAdd(IItems item)
+    {
+        this.Inventory.Add(item);
+    }
+    public void InventoryRemove(IItems item)
+    {
+        this.Inventory.Remove(item);
+    }
 }
+   

@@ -49,6 +49,11 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
         {"Dwarf heavy Chain Chesplate",40},
         {"Mythril BattleAxe",50}
     }; //asocia armas/armaduras/items a su precio de venta; aquellas predeterminadas de cada personaje no se pueden comprar, razon por la cual no se incluyen aqui
+
+    public static int GetPrice(IItems item)
+    {
+        return Prices.GetValueOrDefault(item.name,99999999);
+    }
 }
 /*NOTAS:
 Hay que crear muchos mas elementos

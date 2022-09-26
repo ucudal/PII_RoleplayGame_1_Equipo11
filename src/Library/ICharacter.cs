@@ -23,4 +23,7 @@ public interface ICharacter
     int GetCoins();  //get de coins
     void HPChanger(int value);
     int GetHP();
+    
+    void InventoryAdd(IItems item);
+    void InventoryRemove(IItems item);
 }

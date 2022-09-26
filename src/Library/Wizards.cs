@@ -38,6 +38,7 @@ public class Wizards : ICharacter
 
     public Weapons Weapon { get; set; }
 
+<<<<<<< HEAD
     public Armors Armor { get; set; }
 
     public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
@@ -53,6 +54,24 @@ public class Wizards : ICharacter
         this.Name = name;
         this.Strength = 1;
         this.Magic = 5; //este entero mide posibilidades de realizar habilidades unicas gracias a la magia
+=======
+    public Armors Armor {get; set;}
+    public List<IItems> Inventory;
+
+    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
+    {
+        this.ArmorDefense=itemArmor.ArmorProtection;
+        this.Armor=itemArmor;
+        this.Description= "This character has the power of magic";
+        this.Damage=20+itemWeapon.Damage;
+        this.Weapon=itemWeapon;
+        this.HP= 100;
+        this.Coins=500;
+        this.MagicItem= magicItems;
+        this.Name=name;
+        this.Strength=1;
+        this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
+>>>>>>> c8351a8d6a5b762efee6116f3633ba69e628eeee
     }
 
     public int GetCoins()
@@ -146,6 +165,14 @@ public class Wizards : ICharacter
         if (spell == "Weapon Enchantment") { this.Weapon.Damage = this.Weapon.Damage * (5 / 4); Console.WriteLine($"Weapon Enchantment! {this.Weapon}´s damage has increased by 25%."); } //mejora el daño en un 25%
         if (spell == "Armor Enchantment") { this.ArmorDefense = this.ArmorDefense * (5 / 4); Console.WriteLine($"¡Armor Enchantment! {this.Armor}´s protection has increased by 25%."); }
         if (spell == "Magic Improvement") { this.Magic += 2; Console.WriteLine($"¡Magic Improvement! {this.Name} has learnt a new spell. Your chances of successfully casting a Magic Spell has increased");} //mejora probabilidades de MagicSpell un 2%
+    }
+    public void InventoryAdd(IItems item)
+    {
+        this.Inventory.Add(item);
+    }
+    public void InventoryRemove(IItems item)
+    {
+        this.Inventory.Remove(item);
     }
 }
 
