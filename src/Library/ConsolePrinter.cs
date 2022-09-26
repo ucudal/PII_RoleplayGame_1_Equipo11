@@ -87,20 +87,20 @@ public class ConsolePrinter
     }
 
 
-    //Spell Printers
+    //  --------------Spell Printers--------------
     public static void spellSuccessfullyCast()
     {
         Console.WriteLine("¡Yes! The magic spell was casted succesfully. The spell is...");
     }
-    public static void FortuneSpell(ICharacter magician)
+    public static void FortuneSpell(IMagic magician)
     {
         Console.WriteLine($"¡Fortune! {magician.Name}'s coins have been doubled; you now have {magician.GetCoins()}"); 
     }
-    public static void CurativeSpell(ICharacter magician)
+    public static void CurativeSpell(IMagic magician)
     {
         Console.WriteLine($"¡Healing Poiton! {magician.Name} gained 10 Health Points."); 
     }
-    public static void PoisonSpell(ICharacter magician)
+    public static void PoisonSpell(IMagic magician)
     {
         Console.WriteLine($"¡Oh no! The spell was Poison gas. {magician.Name} lost 10 Health Points."); 
     }

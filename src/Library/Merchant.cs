@@ -32,7 +32,7 @@ public class Merchant
         }
         else
         {
-            ConsolePrinter.notInInventoryItem();
+            ConsolePrinter.NotInInventory(Armor);
         }
     }
 
@@ -66,7 +66,7 @@ public class Merchant
         }
         else
         {
-            ConsolePrinter.NotInInventory(item);
+            ConsolePrinter.NotInInventory(weapon);
         }
     }
 }

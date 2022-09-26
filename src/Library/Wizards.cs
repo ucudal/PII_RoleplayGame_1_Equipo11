@@ -6,10 +6,24 @@ using System.Collections.Generic;
 namespace Characters;
 public class Wizards : ICharacter, IBalance, IMagic, IInventory
 {
+    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
+    {
+        this.ArmorDefense = itemArmor.Power;
+        this.Armor = itemArmor;
+        this.Description = "This character has the power of magic";
+        this.Damage = 20 + itemWeapon.Power;
+        this.Weapon = itemWeapon;
+        this.HP = 100;
+        this.Coins = 500;
+        this.MagicItem = magicItems;
+        this.Name = name;
+        this.Strength = 1;
+        this.WeaponInventory = new List<Weapons>() {this.Weapon };
+        this.ArmorInventory = new List<Armors>() { this.Armor};
+    }
     ICharacter character;
     IMagic magician;
     private string name;
-
     public int Strength { get; }
     public string Name
     {
@@ -40,23 +54,9 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     public Armors Armor { get; set; }
     public List<IItems> Inventory { get; set; }
 
-    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
-    {
-        this.ArmorDefense = itemArmor.Power;
-        this.Armor = itemArmor;
-        this.Description = "This character has the power of magic";
-        this.Damage = 20 + itemWeapon.Power;
-        this.Weapon = itemWeapon;
-        this.HP = 100;
-        this.Coins = 500;
-        this.MagicItem = magicItems;
-        this.Name = name;
-        this.Strength = 1;
-        this.WeaponInventory = new List<Weapons>() {this.Weapon };
-        this.ArmorInventory = new List<Armors>() { this.Armor};
-
-    }
-
+    
+    public List<Weapons> WeaponInventory {get; set;}
+    public List<Armors> ArmorInventory {get; set;}
     public int GetCoins()
     {
         return this.Coins;
@@ -74,15 +74,13 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     {
         if (this.HP <= 0)
         {
-            //ConsolePrinter.DeathPrinter(character);
             this.Armor = null;
             this.Weapon = null;
-            Transaction(false, this.Coins / 2);// divide su oro a la mitad
+            Transaction(false, this.Coins / 2);
             return false;
         }
         else
         {
-            ConsolePrinter.AlivePrinter(character);
             return true;
         }
     }
@@ -104,18 +102,6 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
                 ConsolePrinter.NotEnoughCoins();
                 return false;
             }
-        }
-    }
-    public void Unequip(IItems item)
-    {
-        if (this.Inventory.Contains(item))
-        {
-            this.Inventory.Remove(item);
-            ConsolePrinter.unequippedItem(this, item);
-        }
-        else
-        {
-            ConsolePrinter.NotInInventory(item);
         }
     }
 
@@ -161,48 +147,25 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         }
     }
 
-<<<<<<< HEAD
-    
-    public void InventoryAdd(IItems item)
-=======
-    //Poderes del Book Of Spells:
-
-    public void Spells(string spell)
-    {
-        if (spell == "Fortune") { this.Transaction(true, this.GetCoins() * 2); Console.WriteLine($"¡Fortune! {this.Name}'s coins have been doubled; you now have {this.GetCoins}"); }
-        if (spell == "Healing Potion") { this.HPChanger(10); Console.WriteLine($"¡Healing Poiton! {this.Name} gained 10 Health Points."); }
-        if (spell == "Poison Gas") { this.HPChanger(-10); Console.WriteLine($"¡Oh no! The spell was Poison gas. {this.Name} lost 10 Health Points."); }
-        if (spell == "Weapon Enchantment") { this.Weapon.Power = this.Weapon.Power * (5 / 4); Console.WriteLine($"Weapon Enchantment! {this.Weapon}´s damage has increased by 25%."); } //mejora el daño en un 25%
-        if (spell == "Armor Enchantment") { this.ArmorDefense = this.ArmorDefense * (5 / 4); Console.WriteLine($"¡Armor Enchantment! {this.Armor}´s protection has increased by 25%."); }
-        if (spell == "Magic Improvement") { this.Magic += 2; Console.WriteLine($"¡Magic Improvement! {this.Name} has learnt a new spell. Your chances of successfully casting a Magic Spell has increased"); } //mejora probabilidades de MagicSpell un 2%
-    }
-    //-----------WeaponInventory----------
-    public List<Weapons> WeaponInventory { get; set; }
-    public List<Armors> ArmorInventory { get; set; }
+    //------------------------WeaponEquipment----------
     public void WeaponInventoryAdd(Weapons weapon)
->>>>>>> ec7dc4c269526dcfd9cd81873680ef18246a5a98
     {
-        this.WeaponInventory.Add(Weapon);
+        this.WeaponInventory.Add(weapon);
     }
     public void WeaponInventoryRemove(Weapons weapon)
     {
         this.WeaponInventory.Remove(weapon);
     }
-    public void WeaponEquip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    public void WeaponEquip(Weapons weapon) 
     {
         if (this.WeaponInventory.Contains(weapon))
         {
             this.Weapon=weapon;
         }
-<<<<<<< HEAD
         else
         {
-            ConsolePrinter.NotInInventory(item);
+            ConsolePrinter.NotInInventory(weapon);
         }
-        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
-        //Tambien se podria dar un aviso cuando este al borde de romperse
-=======
->>>>>>> ec7dc4c269526dcfd9cd81873680ef18246a5a98
     }
     public void WeaponUnequip()
     {
