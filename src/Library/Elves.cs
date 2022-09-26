@@ -56,7 +56,7 @@ public class Elves : ICharacter
     {
         if (this.HP <= 0)
         {
-            Console.WriteLine($"¡\"{this.Name}\" could not survive the attack!");
+            ConsolePrinter.DeathPrinter(this);
             this.Armor = null;
             this.Weapon = null;
             this.MagicItem = null;
@@ -65,7 +65,7 @@ public class Elves : ICharacter
         }
         else
         {
-            Console.WriteLine($"\"{this.Name}\" is still alive: {this.HP} HP.");
+            ConsolePrinter.AlivePrinter(this);
             return true;
         }
     }

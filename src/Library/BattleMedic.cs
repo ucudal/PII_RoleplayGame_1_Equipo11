@@ -9,7 +9,7 @@ public class BattleMedic
 {
     public BattleMedic(string name)
     {
-        this.Description= "atencion cliente, verifique tener todos sus organos antes de salir del consultorio!, no reembolsos!!! ";
+        this.Description= "¡Be aware! It is probable you lose some of your organs during the consult; no refunds!!! ";
         this.Name = Name; //nombre
     }
     public string Description { get; }
