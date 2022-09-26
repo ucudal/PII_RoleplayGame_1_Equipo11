@@ -72,12 +72,12 @@ public class Armors : IItems
         Console.WriteLine($"\"{character.Name}\" now equips \"{this.name}\".");
     }
 
-    public void Desequip(ICharacter character)
+    public void Unequip(ICharacter character)
     {
         if (character.Armor == this)
         {
             Console.WriteLine($"{character.Armor.name} removed successfully.");
-            character.Weapon = null;
+            character.Armor = null;
         }
         else
         {
