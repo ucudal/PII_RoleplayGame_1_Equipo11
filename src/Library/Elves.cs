@@ -76,7 +76,7 @@ public class Elves : ICharacter, IInventory, IBalance
         if (this.HP <= 0)
         {
             //Si fallece, se le vacia el inventario y se le reducen las coins a la mitad.
-            ConsolePrinter.DeathPrinter(this);
+            
             this.Armor = null;
             this.Weapon = null;
             Transaction(false,this.Coins/2);
