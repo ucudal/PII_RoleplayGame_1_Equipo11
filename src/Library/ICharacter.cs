@@ -37,27 +37,20 @@ public interface ICharacter
     //  Getter de vida
     int GetHP();
 
-    //  WeaponInventory:    lista cuyos elementos son armas (de tipo Weapons)
+//  WeaponInventory:    lista cuyos elementos son armas (de tipo Weapons)
     public List<Weapons> WeaponInventory { get; set; }
-
-    //  Agrega un arma al inventario de armas
-    void WeaponInventoryAdd(Weapons weapon);
-
-    //      uita un arma del inventario de armas
-    void WeaponInventoryRemove(Weapons weapon);
-
-    //  Activa un arma como la principal de un personaje (con la que va a atacar)
-    public void WeaponEquip(Weapons weapon); 
-
-    //  Desactiva el arma principal de un personaje
-    public void WeaponUnequip();
+    void InventoryAdd(Weapons weapon);
+    void InventoryRemove(Weapons weapon);
+    public void Equip(Weapons weapon); //equipamiento de items --> afecta al inventario
+    public void WeaponUnequip(); //desequipamiento de items --> afecta al inventario
     //public void Specialty(); no se puede porque los elfos necesitan el parametro (ally), que no aplica a wizards y dwarves
 
 
     //ArmorInventory:    lista cuyos elementos son piezas de armadura (de tipo Armors)
     public List<Armors> ArmorInventory { get; set; }
-    void ArmorInventoryAdd(Armors armor);
-    void ArmorInventoryRemove(Armors armor);
-    public void ArmorEquip(Armors armor); 
+    void InventoryAdd(Armors armor);
+    void InventoryRemove(Armors armor);
+    public void Equip(Armors armor); 
     public void ArmorUnequip();
 }
+

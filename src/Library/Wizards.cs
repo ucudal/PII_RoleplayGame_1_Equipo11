@@ -55,8 +55,8 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     public List<IItems> Inventory { get; set; }
 
     
-    public List<Weapons> WeaponInventory {get; set;}
-    public List<Armors> ArmorInventory {get; set;}
+    //public List<Weapons> WeaponInventory {get; set;}
+    //public List<Armors> ArmorInventory {get; set;}
     public int GetCoins()
     {
         return this.Coins;
@@ -147,24 +147,23 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         }
     }
 
-    //------------------------WeaponEquipment----------
-    public void WeaponInventoryAdd(Weapons weapon)
+
+    //-----------WeaponInventory----------
+    public List<Weapons> WeaponInventory { get; set; }
+    public List<Armors> ArmorInventory { get; set; }
+    public void InventoryAdd(Weapons weapon)
     {
         this.WeaponInventory.Add(weapon);
     }
-    public void WeaponInventoryRemove(Weapons weapon)
+    public void InventoryRemove(Weapons weapon)
     {
         this.WeaponInventory.Remove(weapon);
     }
-    public void WeaponEquip(Weapons weapon) 
+    public void Equip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
         if (this.WeaponInventory.Contains(weapon))
         {
             this.Weapon=weapon;
-        }
-        else
-        {
-            ConsolePrinter.NotInInventory(weapon);
         }
     }
     public void WeaponUnequip()
@@ -172,15 +171,15 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         this.Weapon=null;
     }
     //------------------------ArmorEquipment----------
-    public void ArmorInventoryAdd(Armors armor)
+    public void InventoryAdd(Armors armor)
     {
         this.ArmorInventory.Add(armor);
     }
-    public void ArmorInventoryRemove(Armors armor)
+    public void InventoryRemove(Armors armor)
     {
         this.ArmorInventory.Remove(armor);
     }
-    public void ArmorEquip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    public void Equip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
         if (this.ArmorInventory.Contains(armor))
         {

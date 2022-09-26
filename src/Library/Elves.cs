@@ -133,16 +133,16 @@ public class Elves : ICharacter, IInventory, IBalance
 
     public List<Weapons> WeaponInventory { get; set; }
     public List<Armors> ArmorInventory { get; set; }
-    public void WeaponInventoryAdd(Weapons weapon)
+    public void InventoryAdd(Weapons weapon)
     {
         this.WeaponInventory.Add(Weapon);
     }
-    public void WeaponInventoryRemove(Weapons weapon)
+    public void InventoryRemove(Weapons weapon)
     {
         this.WeaponInventory.Remove(weapon);
     }
     //metodo para equipar armas como principales a la hora de luchar
-    public void WeaponEquip(Weapons weapon)
+    public void Equip(Weapons weapon)
     {
         if (this.WeaponInventory.Contains(weapon))
         {
@@ -156,17 +156,17 @@ public class Elves : ICharacter, IInventory, IBalance
         this.Weapon = null;
     }
     //------------------------ArmorEquipment----------
-    public void ArmorInventoryAdd(Armors armor)
+    public void InventoryAdd(Armors armor)
     {
         this.ArmorInventory.Add(armor);
     }
-    public void ArmorInventoryRemove(Armors armor)
+    public void InventoryRemove(Armors armor)
     {
         this.ArmorInventory.Remove(armor);
     }
 
     //  metodo para equipar una pieza de armadura del inventario como armadura principal
-    public void ArmorEquip(Armors armor)
+    public void Equip(Armors armor)
     {
         if (this.ArmorInventory.Contains(armor))
         {
