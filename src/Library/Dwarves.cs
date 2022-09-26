@@ -21,11 +21,10 @@ public class Dwarves : ICharacter, IBalance, IInventory
         this.HP = 120; //tiene una vida maxima de 120, otros personajes pueden tener mas o menos, son los mas robustos
 
         this.WeaponInventory = new List<Weapons>() {this.Weapon };
-        this.ArmorsInventory = new List<Armors>() {this.Armor };
+        this.ArmorInventory = new List<Armors>() {this.Armor };
 
     }
-    public List<Weapons> WeaponInventory { get; set; }
-    public List<Armors> ArmorsInventory { get; set; }
+
     public string Description { get; }
     private string name;
     public string Name
@@ -89,6 +88,8 @@ public class Dwarves : ICharacter, IBalance, IInventory
             return true;
         }
     }
+    public List<Weapons> WeaponInventory { get; set; }
+    public List<Armors> ArmorInventory { get; set; }
     public void WeaponInventoryAdd(Weapons weapon)
     {
         this.WeaponInventory.Add(Weapon);
@@ -104,8 +105,28 @@ public class Dwarves : ICharacter, IBalance, IInventory
             this.Weapon=weapon;
         }
     }
-    public void WeaponUnequip(IItems item)
+    public void WeaponUnequip()
     {
-
+        this.Weapon=null;
+    }
+    //------------------------ArmorEquipment----------
+    public void ArmorInventoryAdd(Armors armor)
+    {
+        this.ArmorInventory.Add(armor);
+    }
+    public void ArmorInventoryRemove(Armors armor)
+    {
+        this.ArmorInventory.Remove(armor);
+    }
+    public void ArmorEquip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    {
+        if (this.ArmorInventory.Contains(armor))
+        {
+            this.Armor=armor;
+        }
+    }
+    public void ArmorUnequip()
+    {
+        this.Armor=null;
     }
 }

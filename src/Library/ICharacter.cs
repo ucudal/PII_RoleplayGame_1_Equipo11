@@ -23,10 +23,16 @@ public interface ICharacter
     int GetCoins();  //get de coins
     void HPChanger(int value);
     int GetHP();
-    public List<IItems> Inventory { get; set; }
-    void InventoryAdd(IItems item);
-    void InventoryRemove(IItems item);
-    public void Equip(IItems item); //equipamiento de items --> afecta al inventario
-    public void Unequip(IItems item); //desequipamiento de items --> afecta al inventario
+    public List<Weapons> WeaponInventory { get; set; }
+    void WeaponInventoryAdd(Weapons weapon);
+    void WeaponInventoryRemove(Weapons weapon);
+    public void WeaponEquip(Weapons weapon); //equipamiento de items --> afecta al inventario
+    public void WeaponUnequip(); //desequipamiento de items --> afecta al inventario
     //public void Specialty(); no se puede porque los elfos necesitan el parametro (ally), que no aplica a wizards y dwarves
+    //__________________
+    public List<Armors> ArmorInventory { get; set; }
+    void ArmorInventoryAdd(Armors armor);
+    void ArmorInventoryRemove(Armors armor);
+    public void ArmorEquip(Armors armor); 
+    public void ArmorUnequip();
 }
