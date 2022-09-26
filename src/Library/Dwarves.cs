@@ -10,12 +10,15 @@ public class Dwarves : ICharacter, IBalance, IInventory
     {
         this.Description = "Son seres temperamentales que se destacan en el combate, su gran resistencia y lealtad.";
         this.Name = name; //nombre
-        this.Weapon = weapon; //armas
-        this.Armor = armor; //armaduras
-        //Recordar que los enanos no tienen capacidades magicas
-        this.Coins = 30; //riqueza 
-        this.Strength = 10; // cada golpe saca 10 de vida
-        this.HP = 120; //tiene una vida maxima de 120, otros personajes pueden tener mas o menos, son los mas robustos*/
+        //arma
+        this.Weapon = weapon;
+        //armaduras
+        this.Armor = armor;
+        //riqueza  
+        this.Coins = 30;
+        // cada golpe saca 10 de vida 
+        this.Strength = 10; 
+        this.HP = 120; //tiene una vida maxima de 120, otros personajes pueden tener mas o menos, son los mas robustos
 
         this.WeaponInventory = new List<Weapons>() {this.Weapon };
         this.ArmorsInventory = new List<Armors>() {this.Armor };

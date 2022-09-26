@@ -1,4 +1,4 @@
-using System;
+using System.Collections.Generic;
 using Characters;
 
 namespace Inventory;
@@ -46,6 +46,7 @@ public class MagicItems
         this.Name = name;
         this.Power = power;
     }
+    
 
 
 

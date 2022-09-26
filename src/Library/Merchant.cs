@@ -32,7 +32,7 @@ public class Merchant
         }
         else
         {
-            ConsolePrinter.notInInventoryItem();
+            ConsolePrinter.NotInInventory(item);
         }
     }
 }

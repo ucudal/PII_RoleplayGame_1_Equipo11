@@ -1,13 +1,13 @@
 //Juan Magrini
 using System;
-using Characters;
 using Inventory;
 using System.Collections.Generic;
 
-namespace WizardCharacter;
+namespace Characters;
 public class Wizards : ICharacter, IBalance, IMagic, IInventory
 {
     ICharacter character;
+    IMagic magician;
     private string name;
 
     public int Strength { get; }
@@ -72,7 +72,7 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     {
         if (this.HP <= 0)
         {
-            ConsolePrinter.DeathPrinter(character);
+            //ConsolePrinter.DeathPrinter(character);
             this.Armor = null;
             this.Weapon = null;
             Transaction(false, this.Coins / 2);// divide su oro a la mitad
@@ -94,53 +94,72 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         else
         {
             if (value < this.Coins) //determina si la operacion es posible
-            { 
-                this.Coins -= value; return true; 
-            }           
+            {
+                this.Coins -= value; return true;
+            }
             else
-            { 
+            {
                 ConsolePrinter.NotEnoughCoins();
-                return false; 
+                return false;
             }
         }
     }
-    private List<string> BookOfSpells = new List<string>()
+    public void Unequip(IItems item)
     {
-        "Fortune",
-        "Healing Potion",
-        "Poison Gas",
-        "Weapon Enchantment",
-        "Armor Enchantment",
-        "Magic Improvement",
-    };
-    public void MagicSpell(ICharacter deffender)
+        if (this.Inventory.Contains(item))
+        {
+            this.Inventory.Remove(item);
+            ConsolePrinter.unequippedItem(this, item);
+        }
+        else
+        {
+            ConsolePrinter.NotInInventory(item);
+        }
+    }
+
+    public void MagicSpell(IItems item)
     {
         var rand = new Random();
         int userNumber = 0;
-        int gameNumber = rand.Next(101); //crea un numero random entre 0 y 100
-        for (int i = 0; i <= 4; i++) // 5 veces se crea un numero al azar del 0 al 100 
+        //crea un numero random entre 0 y 100
+        int gameNumber = rand.Next(101);
+        // 5 veces se crea un numero al azar del 0 al 100  
+        for (int i = 0; i <= 4; i++) 
         {
+            //se compara si el numero del usuario equivale al de "la casa"
             userNumber = rand.Next(101);
-            if (userNumber == gameNumber) //se compara si el numero del usuario equivale al de "la casa"
+            if (userNumber == gameNumber) 
             {
                 ConsolePrinter.spellSuccessfullyCast();
-                int spellNumber = rand.Next(7); //se crea un numero al azar del 0 al 6
-                this.Spells(BookOfSpells[spellNumber]);
+                //se crea un numero al azar del 0 al 5
+                int spellNumber = rand.Next(6); 
+                string spell = BookOfSpells.bookOfSpells[spellNumber];
+                if (spell == "Fortune")
+                {
+                    BookOfSpells.Fortune(this);
+                }
+                if (spell == "Healing Potion")
+                {
+                    BookOfSpells.HealingPotion(this);
+                }
+                if (spell == "Poison Gas")
+                {
+                    BookOfSpells.PoisonGas(this);
+                }
+                if (spell == "Item Enchantment")
+                {
+                    BookOfSpells.ItemEnchantment(item);
+                }
+
+                if (spell == "Magic Improvement")
+                {
+                    BookOfSpells.MagicImprovement(this);
+                }
             }
         }
     }
 
-    //Poderes del Book Of Spells:
-
-    public void Spells(string spell)
-    {
-        if (spell == "Fortune") { this.Transaction(true, this.GetCoins() * 2); Console.WriteLine($"¡Fortune! {this.Name}'s coins have been doubled; you now have {this.GetCoins}"); }
-        if (spell == "Healing Potion") { this.HPChanger(10); Console.WriteLine($"¡Healing Poiton! {this.Name} gained 10 Health Points."); }
-        if (spell == "Poison Gas") { this.HPChanger(-10); Console.WriteLine($"¡Oh no! The spell was Poison gas. {this.Name} lost 10 Health Points."); }
-        if (spell == "Weapon Enchantment") { this.Weapon.Power = this.Weapon.Power * (5 / 4); Console.WriteLine($"Weapon Enchantment! {this.Weapon}´s damage has increased by 25%."); } //mejora el daño en un 25%
-        if (spell == "Armor Enchantment") { this.ArmorDefense = this.ArmorDefense * (5 / 4); Console.WriteLine($"¡Armor Enchantment! {this.Armor}´s protection has increased by 25%."); }
-        if (spell == "Magic Improvement") { this.Magic += 2; Console.WriteLine($"¡Magic Improvement! {this.Name} has learnt a new spell. Your chances of successfully casting a Magic Spell has increased"); } //mejora probabilidades de MagicSpell un 2%
-    }
+    
     public void InventoryAdd(IItems item)
     {
         this.Inventory.Add(item);
@@ -158,7 +177,7 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         }
         else
         {
-            ConsolePrinter.notInInventoryItem();
+            ConsolePrinter.NotInInventory(item);
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse

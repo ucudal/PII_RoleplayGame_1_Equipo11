@@ -81,7 +81,7 @@ public class Armors : IItems
         }
         else
         {
-            ConsolePrinter.notInInventoryItem();
+            ConsolePrinter.NotInInventory(this);
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse

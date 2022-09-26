@@ -28,7 +28,7 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(item);
+            ConsolePrinter.NotInInventory(item);
         }
     }
     public void Enchantment(ICharacter character, IItems item)
@@ -48,7 +48,7 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(item);
+            ConsolePrinter.NotInInventory(item);
         }
     }
 }

@@ -2,7 +2,9 @@ using System;
 using Characters;
 using Inventory;
 
-public interface IMagic
+public interface IMagic 
 {
-    public MagicItems MagicItem {get; set; }
+    string Name {get;}
+    MagicItems MagicItem {get; set; }
+    int Magic {get; set;}
 }

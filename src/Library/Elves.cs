@@ -6,7 +6,7 @@ using Inventory;
 
 namespace Characters;
 
-public class Elves : ICharacter, IMagic, IInventory, IBalance
+public class Elves : ICharacter, IInventory, IBalance
 {
     public Elves(string name, Weapons weapon, Armors armor, MagicItems magicItem)
     {
@@ -14,7 +14,6 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
         this.Name = name; //nombre
         this.Weapon = weapon; //armas
         this.Armor = armor; //armaduras
-        this.MagicItem = magicItem; //objetos magicos
         this.Coins = 20; //riqueza 
         this.Strength = 5; 
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
@@ -54,9 +53,6 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
     //pieza de armadura
     public Armors Armor { get; set; } 
 
-    //item magico
-    public MagicItems MagicItem { get; set; } 
-
     //Aseguro que no se ingrese una string vacia como nombre de personaje
     public string Name
     {
@@ -82,7 +78,6 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
             ConsolePrinter.DeathPrinter(this);
             this.Armor = null;
             this.Weapon = null;
-            this.MagicItem = null;
             Transaction(false,this.Coins/2);
             return false;
         }
@@ -152,7 +147,7 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(item);
+            ConsolePrinter.NotInInventory(item);
         }
     }
 
