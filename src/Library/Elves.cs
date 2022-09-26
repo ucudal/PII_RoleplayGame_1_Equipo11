@@ -6,7 +6,7 @@ using Inventory;
 
 namespace Characters;
 
-public class Elves : ICharacter
+public class Elves : ICharacter, IMagic, IInventory, IBalance
 {
     public Elves(string name, Weapons weapon, Armors armor, MagicItems magicItem)
     {
@@ -20,23 +20,44 @@ public class Elves : ICharacter
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
         this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
     }
+
+    //Lista con los objetos de tipo IItems que posee el personaje (pueden ser de tipo Armors/MagicItems/Weapons)
     public List<IItems> Inventory {get;set;}
-    public string Description { get; } //breve descripcion de las caracteristicas de un Elfo
+
+    //breve descripcion de las caracteristicas de un Elfo
+    public string Description { get; }
+
+    //nombre del personaje 
     private string name;
-    private int HP { get; set; } //medido en porcentaje del 1 al 100
+
+    //propiedad "Health Points" que mide la cantidad de vida en una escala del 1 al 100 (0 es muerte)
+    private int HP { get; set; } 
+
+    //metodo para obtener la vida del personaje
     public int GetHP(){return this.HP;}
+
+    //Metodo para modificar la vida del personaje
     public void HPChanger(int value)
     {
         this.HP+=value;
     }
-    public int Strength { get; } //medido en porcentaje del 1 al 100
+
+    //fuerza de los golpes
+    public int Strength { get; } 
+
+    //daño del arma unido a la fuerza del elfo
     public int Damage {get; set;}
 
-    public Weapons Weapon { get; set; } //lista de armas
-    public Armors Armor { get; set; } //lista de piezas de armadura
-    public MagicItems MagicItem { get; set; } //lista de items magicos
+    //arma
+    public Weapons Weapon { get; set; } 
 
-    
+    //pieza de armadura
+    public Armors Armor { get; set; } 
+
+    //item magico
+    public MagicItems MagicItem { get; set; } 
+
+    //Aseguro que no se ingrese una string vacia como nombre de personaje
     public string Name
     {
         get
@@ -52,15 +73,17 @@ public class Elves : ICharacter
         }
     }
     
+    //metodo que retorna un valor booleano segun si un personaje sigue vivo (true) o ha muerto (false). Es llamado luego de cada ataque
     public bool IsAlive()
     {
         if (this.HP <= 0)
         {
+            //Si fallece, se le vacia el inventario y se le reducen las coins a la mitad.
             ConsolePrinter.DeathPrinter(this);
             this.Armor = null;
             this.Weapon = null;
             this.MagicItem = null;
-            Transaction(false,this.Coins/2);// divide su oro a la mitad
+            Transaction(false,this.Coins/2);
             return false;
         }
         else
@@ -69,12 +92,18 @@ public class Elves : ICharacter
             return true;
         }
     }
+
+    //sistema monetariodel juego
     private int Coins { get;set;}
+
+    //metodo que retorna la cantidad de monedas que posee el personaje
     public int GetCoins()
     {
         return this.Coins;
     }
     
+    ///bool operation: true --> las coins aumentan (Ventas/Looteos),   false --> las coins disminuyen (Compras/Reparaciones)
+    /// int value: entero que indican en que medida las coins aumentaran/disminuiran
     public bool Transaction(bool operation, int value)
     {
         if (operation)
@@ -84,10 +113,12 @@ public class Elves : ICharacter
         }
         else 
         {
-            if (value<this.Coins){this.Coins-=value; return true;}           //determina si la operacion es posible
-            else{Console.WriteLine($"{this.name} no tiene oro suficiente!"); return false;}
+            //se valida que el personaje posea el dinero suficiente para realizar la compra/reparación
+            if (value<this.Coins){this.Coins-=value; return true;}
+            ConsolePrinter.NotEnoughCoins(); return false;}
         }  
-    }
+    
+    //Ligada a la descripcion del personaje --> se implementa la habilidad de otorgar beneficios varios a un aliado indicado por parametro
     public void Specialty(ICharacter partner)
     {
         partner.Damage =+ ((5*partner.Damage)/100);
@@ -96,32 +127,39 @@ public class Elves : ICharacter
         partner.Armor.Durability =+ ((5*partner.Armor.Durability)/100);
         //Incremento de 5% en vida/daño/durabilidad al aliado seleccionado.
     }
+
+    //metodo a traves del cual agregar un item de tipo IItems al Inventario del personaje
     public void InventoryAdd(IItems item)
     {
         this.Inventory.Add(item);
+        ConsolePrinter.equippedItem(this, item);
     }
+
+    //metodo a traves del cual quitar un item del Inventario del personaje
     public void InventoryRemove(IItems item)
     {
         this.Inventory.Remove(item);
+        ConsolePrinter.unequippedItem(this, item);
     }
+
+    //metodo a traves del cual agregar un item de tipo IItems al Inventario del personaje
     public void Desequip(IItems item)
     {
         if (this.Inventory.Contains(item))
         {
-            Console.WriteLine($"\"{item.name}\" removed successfully.");
             this.Inventory.Remove(item);
+            ConsolePrinter.unequippedItem(this, item);
         }
         else
         {
-            Console.WriteLine($"Error: \"{this.Name}\" does not equip \"{item.name}\".");
+            ConsolePrinter.ItemNotEquipped(item);
         }
-        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
-        //Tambien se podria dar un aviso cuando este al borde de romperse
     }
-    public void Equip(IItems item) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
 
+    //metodo para equipar items de tipo IItems al inventario del personaje
+    public void Equip(IItems item) 
     {
         this.Inventory.Add(item);
-        Console.WriteLine($"\"{this.Name}\" now equips \"{item.name}\".");
+        ConsolePrinter.equippedItem(this, item);
     }
 }

@@ -4,7 +4,7 @@ using Inventory;
 
 namespace Characters;
 
-public class Dwarves : ICharacter
+public class Dwarves : ICharacter, IBalance, IInventory
 {
     public Dwarves(string name, Weapons weapon, Armors armor)
     {

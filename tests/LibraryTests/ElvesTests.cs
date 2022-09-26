@@ -113,7 +113,7 @@ namespace Test.Library
             ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), new Armors("Iron Helmet"), initialElfMagicItem);
 
             //Comprobacion
-            Assert.AreEqual(expectedElfMagicItem, elfTest.MagicItem);
+            Assert.AreEqual(expectedElfMagicItem, elfTest.);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace Test.Library
             ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), new Armors("Iron Helmet"), initialElfMagicItem);
 
             //Comprobacion
-            Assert.AreEqual(expectedElfMagicItem, elfTest.MagicItem);
+            Assert.AreEqual(expectedElfMagicItem, elfTest.);
         }
         //faltan los tests de Attack, de IsAlive
     }

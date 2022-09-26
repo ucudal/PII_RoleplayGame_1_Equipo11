@@ -5,7 +5,7 @@ using Inventory;
 using System.Collections.Generic;
 
 namespace WizardCharacter;
-public class Wizards : ICharacter, IBalance
+public class Wizards : ICharacter, IBalance, IMagic, IInventory
 {
     ICharacter character;
     private string name;
