@@ -21,7 +21,7 @@ namespace Test.Library
             string expectedName = "Ragnar";
 
             //Ejecucion
-            ICharacter NTest = new Elves(initialName, new Weapons("Elf Hammer"), new Armors("Iron Helmet"), new MagicItems("Rabbit´s Foot"));
+            ICharacter NTest = new Dwarves(initialName,new Weapons("Mythril BattleAxe"),new Armors("Iron Helmet"));
 
             //Comprobacion
             Assert.AreEqual(expectedName,NTest.Name);
