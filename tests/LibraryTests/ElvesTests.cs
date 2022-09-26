@@ -46,7 +46,7 @@ namespace Test.Library
         }
 
         [Test]
-        public void CorrectElfWeaponTest()
+        public void ExistingWeaponTest()
         {
             //Creacion
             Weapons initialElfWeapon = new Weapons("Elf Hammer");
@@ -60,17 +60,17 @@ namespace Test.Library
         }
 
         [Test]
-        public void IncorrectElfWeaponTest()
+        public void InexistantWeaponTest()
         {
             //CreacionB
             Weapons initialElfWeapon = new Weapons("Not in ItemsStore");
-            Weapons expectedElfWeapon = null;
+            string expectedElfWeapon = null;
 
             //Ejecucion
             ICharacter elfTest = new Elves("Ragnar", initialElfWeapon, new Armors("Iron Helmet"));
 
             //Comprobacion
-            Assert.AreEqual(expectedElfWeapon, elfTest.Weapon);
+            Assert.AreEqual(expectedElfWeapon, elfTest.Weapon.name);
         }
 
         [Test]

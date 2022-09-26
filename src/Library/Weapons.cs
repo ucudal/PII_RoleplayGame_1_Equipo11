@@ -11,7 +11,7 @@ public class Weapons : IItems
     {
         this.Name = name;
         this.Power = power;
-        this.Durability = 100; 
+        this.Durability = 100;
     }
     ICharacter character;
     public string name { get; set; }
@@ -52,27 +52,31 @@ public class Weapons : IItems
 
         set
         {
-            if (ItemsStore.Weapons.ContainsKey(this.name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+            if (name != null)
             {
-                this.power = ItemsStore.Weapons[this.name];
+                if (ItemsStore.Weapons.ContainsKey(name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+                {
+                    this.power = ItemsStore.Weapons[name];
+                }
             }
+
         }
 
-    } 
+    }
 
     //metodo mediante el cual se elimina el arma del inventario de un personaje si su durabilidad es igual o menor a 0
     public void Break(ICharacter character)
-    {   
+    {
         //se elimina el arma del personaje
         if (this.Durability <= 0)
         {
             ConsolePrinter.brokenItem(this);
-            character.Weapon = null; 
+            character.Weapon = null;
         }
         //aviso de cuando este por romperse
-        if (this.Durability <= 15) 
+        if (this.Durability <= 15)
         {
-            ConsolePrinter.aboutToGetBrokenItem(this); 
+            ConsolePrinter.aboutToGetBrokenItem(this);
         }
     }
 
