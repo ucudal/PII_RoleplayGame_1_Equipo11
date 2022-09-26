@@ -90,15 +90,15 @@ public class Dwarves : ICharacter, IBalance, IInventory
     }
     public List<Weapons> WeaponInventory { get; set; }
     public List<Armors> ArmorInventory { get; set; }
-    public void WeaponInventoryAdd(Weapons weapon)
+    public void InventoryAdd(Weapons weapon)
     {
         this.WeaponInventory.Add(Weapon);
     }
-    public void WeaponInventoryRemove(Weapons weapon)
+    public void InventoryRemove(Weapons weapon)
     {
         this.WeaponInventory.Remove(weapon);
     }
-    public void WeaponEquip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    public void Equip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
         if (this.WeaponInventory.Contains(weapon))
         {
@@ -110,15 +110,15 @@ public class Dwarves : ICharacter, IBalance, IInventory
         this.Weapon=null;
     }
     //------------------------ArmorEquipment----------
-    public void ArmorInventoryAdd(Armors armor)
+    public void InventoryAdd(Armors armor)
     {
         this.ArmorInventory.Add(armor);
     }
-    public void ArmorInventoryRemove(Armors armor)
+    public void InventoryRemove(Armors armor)
     {
         this.ArmorInventory.Remove(armor);
     }
-    public void ArmorEquip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    public void Equip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
         if (this.ArmorInventory.Contains(armor))
         {

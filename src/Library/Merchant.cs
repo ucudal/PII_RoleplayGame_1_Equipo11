@@ -8,7 +8,7 @@ public class Merchant
     {
         if (Buyer.GetCoins() >= ItemsStore.GetPrice(Armor))
         {
-            Buyer.ArmorInventoryAdd(Armor);
+            Buyer.InventoryAdd(Armor);
             Buyer.Transaction(false, ItemsStore.GetPrice(Armor));
         }
         else { ConsolePrinter.NotEnoughCoins(); }
@@ -32,7 +32,7 @@ public class Merchant
         }
         else
         {
-            ConsolePrinter.notInInventoryItem();
+            ConsolePrinter.NotInInventory(Armor);
         }
     }
 
@@ -42,7 +42,7 @@ public class Merchant
     {
         if (Buyer.GetCoins() >= ItemsStore.GetPrice(weapon))
         {
-            Buyer.WeaponInventoryAdd(weapon);
+            Buyer.InventoryAdd(weapon);
             Buyer.Transaction(false, ItemsStore.GetPrice(weapon));
         }
         else { ConsolePrinter.NotEnoughCoins(); }
@@ -66,7 +66,7 @@ public class Merchant
         }
         else
         {
-            ConsolePrinter.NotInInventory(item);
+            ConsolePrinter.NotInInventory(weapon);
         }
     }
 }
