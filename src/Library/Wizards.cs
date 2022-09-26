@@ -5,7 +5,7 @@ using Inventory;
 using System.Collections.Generic;
 
 namespace WizardCharacter;
-public class Wizards : ICharacter
+public class Wizards : ICharacter, IBalance
 {
     ICharacter character;
     private string name;
@@ -68,26 +68,11 @@ public class Wizards : ICharacter
     {
         this.HP += value;
     }
-
-    public void Attack(ICharacter enemy)
-    {
-        if (Weapon.Durability > 10)
-        {
-            int enemysHP = enemy.GetHP() + enemy.Armor.Power;
-            enemysHP -= this.Damage;
-            Weapon.Durability -= 10;
-            enemy.Armor.Durability -= 5;
-        }
-        else
-        {
-            Console.WriteLine("Your weapon is about to get broken, you need to fix it in order to use it.");
-        }
-    }
     public bool IsAlive()
     {
         if (this.HP <= 0)
         {
-            Console.WriteLine($"¡\"{this.Name}\" could not survive the attack!");
+            ConsolePrinter.DeathPrinter(character);
             this.Armor = null;
             this.Weapon = null;
             Transaction(false, this.Coins / 2);// divide su oro a la mitad
@@ -95,7 +80,7 @@ public class Wizards : ICharacter
         }
         else
         {
-            Console.WriteLine($"\"{this.Name}\" is still alive: {this.HP} HP.");
+            ConsolePrinter.AlivePrinter(character);
             return true;
         }
     }
@@ -108,8 +93,15 @@ public class Wizards : ICharacter
         }
         else
         {
-            if (value < this.Coins) { this.Coins -= value; return true; }           //determina si la operacion es posible
-            else { Console.WriteLine($"{this.name} no tiene oro suficiente!"); return false; }
+            if (value < this.Coins) //determina si la operacion es posible
+            { 
+                this.Coins -= value; return true; 
+            }           
+            else
+            { 
+                ConsolePrinter.NotEnoughCoins();
+                return false; 
+            }
         }
     }
     private List<string> BookOfSpells = new List<string>()
@@ -131,7 +123,7 @@ public class Wizards : ICharacter
             userNumber = rand.Next(101);
             if (userNumber == gameNumber) //se compara si el numero del usuario equivale al de "la casa"
             {
-                Console.WriteLine("¡Yes! The magic spell was casted succesfully. The spell is...");
+                ConsolePrinter.spellSuccessfullyCast();
                 int spellNumber = rand.Next(7); //se crea un numero al azar del 0 al 6
                 this.Spells(BookOfSpells[spellNumber]);
             }
@@ -161,12 +153,12 @@ public class Wizards : ICharacter
     {
         if (this.Inventory.Contains(item))
         {
-            Console.WriteLine($"\"{item.name}\" removed successfully.");
+            ConsolePrinter.unequippedItem(character, item);
             this.Inventory.Remove(item);
         }
         else
         {
-            Console.WriteLine($"Error: \"{this.Name}\" does not equip \"{item.name}\".");
+            ConsolePrinter.notInInventoryItem();
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse
@@ -175,7 +167,7 @@ public class Wizards : ICharacter
 
     {
         this.Inventory.Add(item);
-        Console.WriteLine($"\"{this.Name}\" now equips \"{item.name}\".");
+        ConsolePrinter.equippedItem(character, item);
     }
 }
 

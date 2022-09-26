@@ -25,16 +25,12 @@ public class AttackInitiator
 
             finalDamage -= protection; //el daño final termina siendo el daño total del pj - la proteccion de la armadura de quien se defiende
             deffender.HPChanger(-finalDamage); //le resto a la vida de quien se defiende, tantos puntos valga el daño final
+            ConsolePrinter.AttackOnTarget(Attacker, deffender);
         }
-        else { Console.WriteLine($"{Attacker.Name} no pudo atacar a {deffender.Name}"); }
-        if (deffender.GetHP()<=0)
+        else 
         {
-           Kill(deffender,Attacker);
+            ConsolePrinter.unsuccessfullAttack(Attacker,deffender); 
         }
-    }
-    private static void Kill(ICharacter deffender,ICharacter killer)
-    {
-        ConsolePrinter.CharactersDeath(deffender,killer);
     }
 
 }

@@ -56,12 +56,12 @@ public class Weapons : IItems
     {
         if (this.Durability <= 0)
         {
-            Console.WriteLine($"¡\"{this.name}\" has broken! You should buy a new one."); //aviso
+            ConsolePrinter.brokenItem(this);
             character.Weapon = null; //se elimina el arma del personaje
         }
         if (this.Durability <= 15) //aviso de cuando este por romperse
         {
-            Console.WriteLine($"¡\"{this.name}\" is about to break! You should repair it."); //aviso
+            ConsolePrinter.aboutToGetBrokenItem(this); //aviso
         }
     }
 

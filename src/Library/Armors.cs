@@ -57,31 +57,31 @@ public class Armors : IItems
     {
         if (this.Durability <= 0)
         {
-            Console.WriteLine($"¡\"{this.name}\" has broken! You should buy a new one."); //aviso
+            ConsolePrinter.brokenItem(this); //aviso
             character.Armor = null; //se elimina el arma del personaje
         }
         if (this.Durability <= 15) //aviso de cuando este por romperse
         {
-            Console.WriteLine($"¡\"{this.name}\" is about to break! You should repair it."); //aviso
+            ConsolePrinter.aboutToGetBrokenItem(this); //aviso
         }
     }
     public void Equip(ICharacter character) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
 
     {
         character.Armor = this;
-        Console.WriteLine($"\"{character.Name}\" now equips \"{this.name}\".");
+        ConsolePrinter.equippedItem(character, this);
     }
 
     public void Unequip(ICharacter character)
     {
         if (character.Armor == this)
         {
-            Console.WriteLine($"{character.Armor.name} removed successfully.");
+            ConsolePrinter.unequippedItem(character, this);
             character.Armor = null;
         }
         else
         {
-            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.name}\".");
+            ConsolePrinter.notInInventoryItem();
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse
