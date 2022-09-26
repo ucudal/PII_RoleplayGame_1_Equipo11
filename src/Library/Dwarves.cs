@@ -34,7 +34,12 @@ public class Dwarves : ICharacter
             }
         }
     }
-    public int HP { get; set; }
+    private int HP { get; set; }
+    public int GetHP(){return this.HP;}
+    public void HPChanger(int value)
+    {
+        this.HP+=value;
+    }
     public int Strength { get; } 
 
     public Weapons Weapon { get; set; } //lista de armas

@@ -21,7 +21,12 @@ public class Elves : ICharacter
     }
     public string Description { get; } //breve descripcion de las caracteristicas de un Elfo
     private string name;
-    public int HP { get; set; } //medido en porcentaje del 1 al 100
+    private int HP { get; set; } //medido en porcentaje del 1 al 100
+    public int GetHP(){return this.HP;}
+    public void HPChanger(int value)
+    {
+        this.HP+=value;
+    }
     public int Strength { get; } //medido en porcentaje del 1 al 100
 
     public Weapons Weapon { get; set; } //lista de armas
@@ -45,26 +50,7 @@ public class Elves : ICharacter
             }
         }
     }
-    public void Attack(ICharacter deffender) //Este seria el modelo de ataque de un elfo, se llama al metodo mediante la interfaz aun no creada "IAttack"
-    {
-        int finalDamage = this.Strength;
-        int protection = 0;
-        if (this.Weapon != null)
-        {
-            int weaponDamage = ItemsStore.Weapons[this.Weapon.WeaponName] * 1 / 2; //Se multiplica el golpe por la mitad de daño del arma, es simplemente por jugabilidad, abierto a modificaciones
-            this.Weapon.WeaponDurability -= 5; //la "vida" del arma disminuye un 5% con cada golpe
-            finalDamage += weaponDamage; //sumo el daño del arma mas el daño predeterminado del personaje
-        }
-        if (deffender.Armor != null) //aseguro que el personaje tenga una armadura equipada
-        {
-            protection = (finalDamage * ItemsStore.Armors[this.Armor.ArmorName]) / 100; //regla de tres donde calculo, en base al puntaje de armorProtection cuanta vida salva
-            this.Armor.ArmorDurability -= 5; //la "vida" de cada pieza disminuye en un 5% por cada golpe
-        }
-
-        finalDamage -= protection; //el daño final termina siendo el daño total del elfo - la proteccion de la armadura de quien se defiende
-        deffender.HP = deffender.HP - finalDamage; //le resto a la vida de quien se defiende, tantos puntos valga el daño final
-
-    }
+    
     public bool IsAlive()
     {
         if (this.HP <= 0)
