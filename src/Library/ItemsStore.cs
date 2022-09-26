@@ -7,7 +7,7 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
 {
     public static Dictionary <string, int> Weapons= new Dictionary<string, int> 
     {
-        {"Elf Hammer", 5}, 
+        {"Elf Hammer", 6}, 
         {"Ultimate Sword", 32},
         {"Viking Axe", 15},
         {"Wizard Melee",20},
@@ -19,7 +19,7 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
 
     public static Dictionary <string, int> Armors= new Dictionary<string, int> 
     {
-        {"Iron Helmet", 9}, //armadura predeterminada de los elfos
+        {"Iron Helmet", 10}, //armadura predeterminada de los elfos
         {"Merlin Cape", 10},
         {"Spirit Belt", 5},
         {"Guardian Chest", 4},
