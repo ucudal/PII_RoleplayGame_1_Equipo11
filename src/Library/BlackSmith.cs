@@ -4,7 +4,7 @@ using Inventory;
 
 namespace NPC;
 
-public class BlackSmith  //:IInventory, IBalance
+public class BlackSmith
 {
     public void ArmorRepair(ICharacter character, Armors Armor)
     {

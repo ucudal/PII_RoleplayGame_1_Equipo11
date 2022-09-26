@@ -6,10 +6,24 @@ using System.Collections.Generic;
 namespace Characters;
 public class Wizards : ICharacter, IBalance, IMagic, IInventory
 {
+    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
+    {
+        this.ArmorDefense = itemArmor.Power;
+        this.Armor = itemArmor;
+        this.Description = "This character has the power of magic";
+        this.Damage = 20 + itemWeapon.Power;
+        this.Weapon = itemWeapon;
+        this.HP = 100;
+        this.Coins = 500;
+        this.MagicItem = magicItems;
+        this.Name = name;
+        this.Strength = 1;
+        this.WeaponInventory = new List<Weapons>() {this.Weapon };
+        this.ArmorInventory = new List<Armors>() { this.Armor};
+    }
     ICharacter character;
     IMagic magician;
     private string name;
-
     public int Strength { get; }
     public string Name
     {
@@ -40,23 +54,9 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     public Armors Armor { get; set; }
     public List<IItems> Inventory { get; set; }
 
-    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
-    {
-        this.ArmorDefense = itemArmor.Power;
-        this.Armor = itemArmor;
-        this.Description = "This character has the power of magic";
-        this.Damage = 20 + itemWeapon.Power;
-        this.Weapon = itemWeapon;
-        this.HP = 100;
-        this.Coins = 500;
-        this.MagicItem = magicItems;
-        this.Name = name;
-        this.Strength = 1;
-        this.WeaponInventory = new List<Weapons>() {this.Weapon };
-        this.ArmorInventory = new List<Armors>() { this.Armor};
-
-    }
-
+    
+    //public List<Weapons> WeaponInventory {get; set;}
+    //public List<Armors> ArmorInventory {get; set;}
     public int GetCoins()
     {
         return this.Coins;
@@ -74,15 +74,13 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     {
         if (this.HP <= 0)
         {
-            //ConsolePrinter.DeathPrinter(character);
             this.Armor = null;
             this.Weapon = null;
-            Transaction(false, this.Coins / 2);// divide su oro a la mitad
+            Transaction(false, this.Coins / 2);
             return false;
         }
         else
         {
-            ConsolePrinter.AlivePrinter(character);
             return true;
         }
     }
@@ -104,18 +102,6 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
                 ConsolePrinter.NotEnoughCoins();
                 return false;
             }
-        }
-    }
-    public void Unequip(IItems item)
-    {
-        if (this.Inventory.Contains(item))
-        {
-            this.Inventory.Remove(item);
-            ConsolePrinter.unequippedItem(this, item);
-        }
-        else
-        {
-            ConsolePrinter.NotInInventory(item);
         }
     }
 
@@ -177,7 +163,7 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     public List<Armors> ArmorInventory { get; set; }
     public void InventoryAdd(Weapons weapon)
     {
-        this.WeaponInventory.Add(Weapon);
+        this.WeaponInventory.Add(weapon);
     }
     public void InventoryRemove(Weapons weapon)
     {

@@ -27,7 +27,6 @@ public class Elves : ICharacter, IInventory, IBalance
     //breve descripcion de las caracteristicas de un Elfo
     public string Description { get; }
 
-    //nombre del personaje 
     private string name;
 
     //propiedad "Health Points" que mide la cantidad de vida en una escala del 1 al 100 (0 es muerte)
@@ -76,7 +75,6 @@ public class Elves : ICharacter, IInventory, IBalance
         if (this.HP <= 0)
         {
             //Si fallece, se le vacia el inventario y se le reducen las coins a la mitad.
-            
             this.Armor = null;
             this.Weapon = null;
             Transaction(false,this.Coins/2);
@@ -84,7 +82,6 @@ public class Elves : ICharacter, IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.AlivePrinter(this);
             return true;
         }
     }
@@ -143,6 +140,8 @@ public class Elves : ICharacter, IInventory, IBalance
             this.Weapon=weapon;
         }
     }
+    
+    //  "Desactiva" el arma
     public void WeaponUnequip()
     {
         this.Weapon=null;
