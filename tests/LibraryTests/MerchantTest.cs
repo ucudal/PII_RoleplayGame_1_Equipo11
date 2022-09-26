@@ -13,7 +13,7 @@ namespace Test.Library
             Weapons sword = new Weapons("Ultimate Sword");
             Merchant.WeaponBuy(wizard, sword);
             Assert.IsTrue(wizard.WeaponInventory.Contains(sword));
-            Assert.AreEqual(431,wizard.GetCoins());
+            Assert.AreEqual(31,wizard.GetCoins());
 
         }
         [Test]
@@ -23,7 +23,7 @@ namespace Test.Library
             Armors armor = new Armors("Spirit Belt");
             Merchant.ArmorBuy(wizard, armor);
             Assert.IsTrue(wizard.ArmorInventory.Contains(armor));
-            Assert.AreEqual(482,wizard.GetCoins());
+            Assert.AreEqual(82,wizard.GetCoins());
         }
 
         [Test]
@@ -73,23 +73,5 @@ namespace Test.Library
             Assert.IsTrue(!wizard.ArmorInventory.Contains(armor));
             Assert.IsTrue(wizard.GetCoins()==100);
         }
-
-        /*
-        [Test]
-        public void incorrectWizardArmorInput()
-        {
-            Armors wrongArmor = new Armors("Not in ItemsStore");
-            Armors expectedArmor = null;
-            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadon's Hat"), wrongArmor, new MagicItems("Book of spells"));
-            Assert.AreEqual(wizard.Armor,expectedArmor);
-        }
-        [Test]
-        public void incorrectWizardNameInput()
-        {
-            string expectedName = null;
-            ICharacter wizard = new Wizards("", new Weapons("Rabadon's Hat"), new Armors("Merlin Cape"), new MagicItems("Book of spells"));
-            Assert.AreEqual(wizard.Name,null);
-        }
-        */
     }
 }
