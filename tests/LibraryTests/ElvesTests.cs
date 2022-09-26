@@ -23,7 +23,7 @@ namespace Test.Library
             string expectedElfName = "Ragnar";
 
             //Ejecucion
-            ICharacter elfTest = new Elves(initialElfName, new Weapons("Elf Hammer"), new Armors("Iron Helmet"), new MagicItems("Rabbit´s Foot"));
+            ICharacter elfTest = new Elves(initialElfName, new Weapons("Elf Hammer"), new Armors("Iron Helmet"));
 
             //Comprobacion
             Assert.AreEqual(expectedElfName,elfTest.Name);
@@ -39,7 +39,7 @@ namespace Test.Library
             string expectedElfName = null;
 
             //Ejecucion
-            ICharacter elfTest = new Elves(initialElfName, new Weapons("Elf Hammer"), new Armors("Iron Helmet"), new MagicItems("Rabbit´s Foot"));
+            ICharacter elfTest = new Elves(initialElfName, new Weapons("Elf Hammer"), new Armors("Iron Helmet"));
 
             //Comprobacion
             Assert.AreEqual(expectedElfName, elfTest.Name);
@@ -53,7 +53,7 @@ namespace Test.Library
             Weapons expectedElfWeapon = initialElfWeapon;
 
             //Ejecucion        
-            ICharacter elfTest = new Elves("Ragnar", initialElfWeapon, new Armors("Iron Helmet"), new MagicItems("Rabbit´s Foot"));
+            ICharacter elfTest = new Elves("Ragnar", initialElfWeapon, new Armors("Iron Helmet"));
 
             //Comprobacion
             Assert.AreEqual(expectedElfWeapon, elfTest.Weapon);
@@ -67,7 +67,7 @@ namespace Test.Library
             Weapons expectedElfWeapon = null;
 
             //Ejecucion
-            ICharacter elfTest = new Elves("Ragnar", initialElfWeapon, new Armors("Iron Helmet"), new MagicItems("Rabbit´s Foot"));
+            ICharacter elfTest = new Elves("Ragnar", initialElfWeapon, new Armors("Iron Helmet"));
 
             //Comprobacion
             Assert.AreEqual(expectedElfWeapon, elfTest.Weapon);
@@ -82,7 +82,7 @@ namespace Test.Library
             
 
             //Ejecucion
-            ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), initialElfArmor, new MagicItems("Rabbit´s Foot"));
+            ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), initialElfArmor);
 
             //Comprobacion
             Assert.AreEqual(expectedElfArmor, elfTest.Armor);
@@ -97,40 +97,10 @@ namespace Test.Library
             
 
             //Ejecucion
-            ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), initialElfArmor, new MagicItems("Rabbit´s Foot"));
+            ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), initialElfArmor);
 
             //Comprobacion
             Assert.AreEqual(expectedElfArmor, elfTest.Armor);
-        }
-
-        [Test]
-        public void CorrectElfMagicItemTest()
-        {
-            //Creacion
-            MagicItems initialElfMagicItem = new MagicItems("Rabbit's Foot"); //atento a cambiar esto cuando se desarrolle esta clase
-            MagicItems expectedElfMagicItem = initialElfMagicItem;
-            
-
-            //Ejecucion
-            ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), new Armors("Iron Helmet"), initialElfMagicItem);
-
-            //Comprobacion
-            Assert.AreEqual(expectedElfMagicItem, elfTest.);
-        }
-
-        [Test]
-        public void IncorrectElfMagicItemTest()
-        {
-            //Creacion
-            MagicItems initialElfMagicItem = new MagicItems("Not in ItemsStore"); //atento a cambiar esto cuando se desarrolle esta clase
-            MagicItems expectedElfMagicItem = null;
-            
-
-            //Ejecucion
-            ICharacter elfTest = new Elves("Ragnar", new Weapons("Elf Hammer"), new Armors("Iron Helmet"), initialElfMagicItem);
-
-            //Comprobacion
-            Assert.AreEqual(expectedElfMagicItem, elfTest.);
         }
         //faltan los tests de Attack, de IsAlive
     }

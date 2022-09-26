@@ -8,7 +8,7 @@ namespace Characters;
 
 public class Elves : ICharacter, IInventory, IBalance
 {
-    public Elves(string name, Weapons weapon, Armors armor, MagicItems magicItem)
+    public Elves(string name, Weapons weapon, Armors armor)
     {
         this.Description = "Son criaturas supernaturales que tambien poseen características mágicas, se destacan por su compañerismo";
         this.Name = name;
