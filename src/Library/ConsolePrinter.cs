@@ -44,8 +44,13 @@ public class ConsolePrinter
         Console.WriteLine($"{Attacker.Name} could not perform his attack on {}");
     }
 
-    public static void brokenWeapon()
+    public static void brokenWeapon(ICharacter character)
     {
-        
+        Console.WriteLine($"Oh no, {character.Weapon.WeaponName} has broken! You should fix it or buy another");
+    }
+
+    public static void aboutToGetBrokenWeapon(ICharacter character)
+    {
+        Console.WriteLine($"{character.Weapon.WeaponName} is about to get broken, you should consider fixing it or buying another");
     }
 }
