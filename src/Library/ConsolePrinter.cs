@@ -10,8 +10,8 @@ public class ConsolePrinter
 {
 
     //  Life State - Printers
-    public static void DeathPrinter(ICharacter character,ICharacter killer)
-   {
+    public static void DeathPrinter(ICharacter character, ICharacter killer)
+    {
         string DeathString = String.Join(
         Environment.NewLine,
         "  __________",
@@ -20,10 +20,10 @@ public class ConsolePrinter
         $"| {character.Name,11} |",
         "|_____________|",
         $"In hands of {killer.Name}");
-        
-        Console.WriteLine(DeathString); 
-   }
-    public static void AlivePrinter( ICharacter character)
+
+        Console.WriteLine(DeathString);
+    }
+    public static void AlivePrinter(ICharacter character)
     {
         Console.WriteLine($"\"{character.Name}\" is still alive: {character.GetHP()} HP.");
     }
@@ -39,7 +39,7 @@ public class ConsolePrinter
         Console.WriteLine($"\"{item.name}\" has been repaired up to {item.Durability}.");
         Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
     }
-    public static void soldItem(ICharacter character,IItems item)
+    public static void soldItem(ICharacter character, IItems item)
     {
         Console.WriteLine($"\"{item.name}\" has been successfully sold\n{character.Name} now has {character.GetCoins()} coins");
     }
@@ -53,7 +53,7 @@ public class ConsolePrinter
     {
         Console.WriteLine($"¡Miserable! You better come back with coins next time.");
     }
-   
+
     //Combat - Printers
     public static void AttackOnTarget(ICharacter Attacker, ICharacter Deffender)
     {
@@ -94,15 +94,15 @@ public class ConsolePrinter
     }
     public static void FortuneSpell(IMagic magician)
     {
-        Console.WriteLine($"¡Fortune! {magician.Name}'s coins have been doubled; you now have {magician.GetCoins()}"); 
+        Console.WriteLine($"¡Fortune! {magician.Name}'s coins have been doubled; you now have {magician.GetCoins()}");
     }
     public static void CurativeSpell(IMagic magician)
     {
-        Console.WriteLine($"¡Healing Poiton! {magician.Name} gained 10 Health Points."); 
+        Console.WriteLine($"¡Healing Poiton! {magician.Name} gained 10 Health Points.");
     }
     public static void PoisonSpell(IMagic magician)
     {
-        Console.WriteLine($"¡Oh no! The spell was Poison gas. {magician.Name} lost 10 Health Points."); 
+        Console.WriteLine($"¡Oh no! The spell was Poison gas. {magician.Name} lost 10 Health Points.");
     }
     public static void ItemEnchantmentSpell(IItems item)
     {
@@ -112,4 +112,4 @@ public class ConsolePrinter
     {
         Console.WriteLine($"¡Magic Improvement! {magician.Name} has learnt a new spell. Your chances of successfully casting a Magic Spell has increased");
     }
-}    
+}

@@ -17,11 +17,11 @@ public class Dwarves : ICharacter, IBalance, IInventory
         //riqueza  
         this.Coins = 30;
         // cada golpe saca 10 de vida 
-        this.Strength = 10; 
+        this.Strength = 10;
         this.HP = 120; //tiene una vida maxima de 120, otros personajes pueden tener mas o menos, son los mas robustos
 
-        this.WeaponInventory = new List<Weapons>() {this.Weapon };
-        this.ArmorInventory = new List<Armors>() {this.Armor };
+        this.WeaponInventory = new List<Weapons>() { this.Weapon };
+        this.ArmorInventory = new List<Armors>() { this.Armor };
 
     }
 
@@ -102,12 +102,12 @@ public class Dwarves : ICharacter, IBalance, IInventory
     {
         if (this.WeaponInventory.Contains(weapon))
         {
-            this.Weapon=weapon;
+            this.Weapon = weapon;
         }
     }
     public void WeaponUnequip()
     {
-        this.Weapon=null;
+        this.Weapon = null;
     }
     //------------------------ArmorEquipment----------
     public void ArmorInventoryAdd(Armors armor)
@@ -122,11 +122,11 @@ public class Dwarves : ICharacter, IBalance, IInventory
     {
         if (this.ArmorInventory.Contains(armor))
         {
-            this.Armor=armor;
+            this.Armor = armor;
         }
     }
     public void ArmorUnequip()
     {
-        this.Armor=null;
+        this.Armor = null;
     }
 }

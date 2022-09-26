@@ -17,24 +17,24 @@ public class BookOfSpells
     //  Monedas Duplicadas
     public static void Fortune(IMagic magician)
     {
-        magician.Transaction(true, magician.GetCoins() * 2); 
+        magician.Transaction(true, magician.GetCoins() * 2);
         ConsolePrinter.FortuneSpell(magician);
     }
 
     //  Pocion curativa que incrementa la vida del personaje en 30 puntos
     public static void HealingPotion(IMagic magician)
     {
-        magician.HPChanger(30);  
-        ConsolePrinter.CurativeSpell(magician);  
+        magician.HPChanger(30);
+        ConsolePrinter.CurativeSpell(magician);
     }
 
     //  Hechizo perjudicial al propio personaje, le quita 15 de vida
     public static void PoisonGas(IMagic magician)
     {
-        magician.HPChanger(-15); 
+        magician.HPChanger(-15);
         ConsolePrinter.PoisonSpell(magician);
     }
-    
+
     //  Mejora el poder del item (seleccionado por el usuario), en un 50%
     public static void ItemEnchantment(IItems item)
     {

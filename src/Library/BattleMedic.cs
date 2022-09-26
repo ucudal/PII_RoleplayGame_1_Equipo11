@@ -9,8 +9,8 @@ public class BattleMedic
 {
     public BattleMedic(string name)
     {
-        this.Description= "¡Be aware! It is probable you lose some of your organs during the consult; no refunds!!! ";
-        this.Name = Name; //nombre
+        this.Description = "¡Be aware! It is probable you lose some of your organs during the consult; no refunds!!! ";
+        this.Name = name;
     }
     public string Description { get; }
     private string name;
@@ -22,7 +22,7 @@ public class BattleMedic
         }
         set
         {
-            if (!string.IsNullOrEmpty(value))//que el nombre no este vacio
+            if (!string.IsNullOrEmpty(value))
             {
                 this.name = value;
             }
@@ -30,18 +30,18 @@ public class BattleMedic
     }
     public void BigPotion(ICharacter character)
     {
-        if (character.Transaction(false,15))
+        if (character.Transaction(false, 15))
         {
             character.HPChanger(100);
         }
-        else{ConsolePrinter.NotEnoughCoins();}//Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}   
+        else { ConsolePrinter.NotEnoughCoins(); }
     }
     public void MediumPotion(ICharacter character)
     {
-        if (character.Transaction(false,7))
+        if (character.Transaction(false, 7))
         {
             character.HPChanger(45);
         }
-        else{ConsolePrinter.NotEnoughCoins();}//Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}        
+        else { ConsolePrinter.NotEnoughCoins(); }
     }
 }

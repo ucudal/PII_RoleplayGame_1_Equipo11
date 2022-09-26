@@ -3,8 +3,6 @@ using Inventory;
 using Characters;
 using NPC;
 using Combat;
-
-using WizardCharacter;
 using System.Collections.Generic;
 
 namespace Program
