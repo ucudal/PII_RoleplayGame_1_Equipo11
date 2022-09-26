@@ -38,6 +38,7 @@ public class Wizards : ICharacter
     public Weapons Weapon {get; set;}
 
     public Armors Armor {get; set;}
+    public List<IItems> Inventory;
 
     public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
     {
@@ -51,6 +52,7 @@ public class Wizards : ICharacter
         this.MagicItem= magicItems;
         this.Name=name;
         this.Strength=1;
+        this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
     }
 
     public int GetCoins()
@@ -113,6 +115,14 @@ public class Wizards : ICharacter
     public void Magic()
     {
         int chanceSuperAttack= 5; //arranca en 10 xq la magia es innata a ellos
+    }
+    public void InventoryAdd(IItems item)
+    {
+        this.Inventory.Add(item);
+    }
+    public void InventoryRemove(IItems item)
+    {
+        this.Inventory.Remove(item);
     }
 }
 

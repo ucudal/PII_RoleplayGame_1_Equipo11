@@ -18,7 +18,9 @@ public class Elves : ICharacter
         this.Coins = 20; //riqueza 
         this.Strength = 5; 
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
+        this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
     }
+    public List<IItems> Inventory;
     public string Description { get; } //breve descripcion de las caracteristicas de un Elfo
     private string name;
     private int HP { get; set; } //medido en porcentaje del 1 al 100
@@ -93,5 +95,13 @@ public class Elves : ICharacter
         partner.Weapon.WeaponDurability =+ ((5*partner.Weapon.WeaponDurability)/100);
         partner.Armor.ArmorDurability =+ ((5*partner.Armor.ArmorDurability)/100);
         //Incremento de 5% en vida/daño/durabilidad al aliado seleccionado.
+    }
+    public void InventoryAdd(IItems item)
+    {
+        this.Inventory.Add(item);
+    }
+    public void InventoryRemove(IItems item)
+    {
+        this.Inventory.Remove(item);
     }
 }
