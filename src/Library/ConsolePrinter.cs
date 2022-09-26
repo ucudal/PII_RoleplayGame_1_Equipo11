@@ -41,7 +41,7 @@ public class ConsolePrinter
 
     public static void unsuccessfullAttack(ICharacter Attacker, ICharacter Deffender)
     {
-        Console.WriteLine($"{Attacker.Name} could not perform his attack on {}");
+        Console.WriteLine($"{Attacker.Name} could not perform his attack on {Deffender.Name}");
     }
 
     public static void brokenItem(IItems item)
@@ -68,4 +68,14 @@ public class ConsolePrinter
     {
         Console.WriteLine($"You do not have this item in your inventory");
     }
-}
+
+    public static void spellSuccessfullyCast()
+    {
+        Console.WriteLine("¡Yes! The magic spell was casted succesfully. The spell is...");
+    }
+
+    public static void soldItem(ICharacter character,IItems item)
+    {
+        Console.WriteLine($"{item.name} has been successfully sold\n{character.Name} now has {character.GetCoins()} coins");
+    }
+}    
