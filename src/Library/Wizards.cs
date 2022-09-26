@@ -63,6 +63,7 @@ public class Wizards : ICharacter
                 int enemysHP= enemy.HP+enemy.Armor.ArmorProtection;
                 enemysHP-=this.Damage;
                 Weapon.WeaponDurability-=10;
+                enemy.Armor.ArmorDurability-=5;
             }
             else
             {
@@ -73,9 +74,12 @@ public class Wizards : ICharacter
 
     public bool IsAlive()
     {
-        if(this.HP<=0)
+        if (this.HP <= 0)
         {
             Console.WriteLine($"¡\"{this.Name}\" could not survive the attack!");
+            this.Armor = null;
+            this.Weapon = null;
+            Transaction(false,this.Coins/2);// divide su oro a la mitad
             return false;
         }
         else
