@@ -58,17 +58,17 @@ public class Weapons : IItems
         {
             int repairCost = ((100 - this.WeaponDurability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
                                                                        //se cobran 2 coins; y calcula cuanto cuesta arreglar la weapon hasta llegar a 100%
-            if (character.Coins >= repairCost) //tiene suficientes coins
+            if (character.GetCoins() >= repairCost) //tiene suficientes coins
             {
                 this.WeaponDurability = 100;
                 Console.WriteLine($"{this.WeaponName} has been fully repaired.");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
+                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
             }
             else
             {
-                this.WeaponDurability = +(character.Coins * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
+                this.WeaponDurability = +(character.GetCoins() * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
                 Console.WriteLine($"{this.WeaponName} has been repaired up to {this.WeaponDurability}");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
+                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
             }
         }
         else
@@ -83,15 +83,15 @@ public class Weapons : IItems
         {
             if (this.WeaponDurability == 100)
             {
-                character.Coins += ItemsStore.Prices[this.WeaponName];
+                character.GetCoins() += ItemsStore.Prices[this.WeaponName];
             }
             else
             {
                 //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
                 //sino se puede hacer regla de tres de acuerdo a que tan roto esta
-                character.Coins += (ItemsStore.Prices[this.WeaponName] / 2);
+                character.GetCoins() += (ItemsStore.Prices[this.WeaponName] / 2);
                 Console.WriteLine($"\"{this.WeaponName}\" has been sold, and removed succesfully.");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
+                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
 
             }
             character.Weapon = null;
@@ -106,11 +106,11 @@ public class Weapons : IItems
     {
         if (ItemsStore.Weapons.ContainsKey(this.WeaponName))
         {
-            if (character.Coins >= ItemsStore.Prices[this.WeaponName])
+            if (character.GetCoins() >= ItemsStore.Prices[this.WeaponName])
             {
-                character.Coins = -ItemsStore.Prices[this.WeaponName];
+                character.GetCoins() = -ItemsStore.Prices[this.WeaponName];
                 Console.WriteLine($"\"{this.WeaponName}\" has been bought, and equiped succesfully.");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.Coins} coins.");
+                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
             }
             character.Weapon = this;
         }

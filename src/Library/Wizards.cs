@@ -28,7 +28,7 @@ public class Wizards : ICharacter
     public MagicItems MagicItem {get; set;} //Lista que contiene los items del character
 
     public int ArmorDefense {get; set;}
-    public int Coins {get; set;}
+    private int Coins {get; set;}
     public string Description {get;}
     public int Damage {get; set;}
     public int HP {get; set;}
@@ -48,6 +48,11 @@ public class Wizards : ICharacter
         this.Coins=500;
         this.MagicItem= magicItems;
         this.Name=name;
+    }
+
+    public int GetCoins()
+    {
+        return this.Coins;
     }
     
 
