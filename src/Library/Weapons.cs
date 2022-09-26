@@ -82,43 +82,6 @@ public class Weapons : IItems
         }
 
     }
-    /*public void Sell(ICharacter character)
-    {
-        if (character.Weapon == this)
-        {
-            if (this.WeaponDurability == 100)
-            {
-                character.Transaction(true, ItemsStore.Prices[this.WeaponName]);
-            }
-            else
-            {
-                //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
-                //sino se puede hacer regla de tres de acuerdo a que tan roto esta
-                character.Transaction(true, (ItemsStore.Prices[this.WeaponName] / 2) );
-                Console.WriteLine($"\"{this.WeaponName}\" has been sold, and removed succesfully.");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
-
-            }
-            character.Weapon = null;
-        }
-        else
-        {
-            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
-        }
-
-    }
-    public void Buy(ICharacter character)
-    {
-        if (ItemsStore.Weapons.ContainsKey(this.WeaponName))
-        {
-            character.Transaction(false, ItemsStore.Prices[this.WeaponName]);
-            character.Weapon = this;
-        }
-        else
-        {
-            Console.WriteLine($"Error: the store does not include the weapon \"{this.WeaponName}\".");
-        }
-    }*/
 
     public void Equip(ICharacter character) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
 

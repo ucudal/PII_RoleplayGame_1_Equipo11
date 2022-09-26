@@ -1,7 +1,8 @@
 using System;
 using Characters;
+using Inventory;
 
-namespace Inventory;
+namespace Combat;
 public class AttackIniciator
 {
     public static void Attack(ICharacter deffender,ICharacter Attacker) //Este seria el modelo de ataque de un pj, se llama al metodo mediante la interfaz aun no creada "IAttack"

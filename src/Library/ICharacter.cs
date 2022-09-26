@@ -21,7 +21,7 @@ public interface ICharacter
     // void Steal(); se podria hacer un metodo que luego de un personaje matar a otro, le permita lootear un solo objeto 
     bool Transaction(bool operation,int value); //hace una transaccion ,el operation determina si se añade o pierde dinero, el bool determina si fue posible o no
     int GetCoins();  //get de coins
-    void HPChanger(int value);// valores positivos restan!!!y alrevez
+    void HPChanger(int value);
     int GetHP();
     
     void InventoryAdd(IItems item);

@@ -38,7 +38,6 @@ public class Wizards : ICharacter
 
     public Weapons Weapon { get; set; }
 
-<<<<<<< HEAD
     public Armors Armor {get; set;}
     public List<IItems> Inventory;
 
@@ -55,22 +54,7 @@ public class Wizards : ICharacter
         this.Name=name;
         this.Strength=1;
         this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
-=======
-    public Armors Armor { get; set; }
-
-    public Wizards(string name, Weapons itemWeapon, Armors itemArmor, MagicItems magicItems)
-    {
-        this.ArmorDefense = itemArmor.ArmorProtection;
-        this.Armor = itemArmor;
-        this.Description = "This character has the power of magic";
-        this.Weapon = itemWeapon;
-        this.HP = 100;
-        this.Coins = 500;
-        this.MagicItem = magicItems;
-        this.Name = name;
-        this.Strength = 1;
         this.Magic = 5; //este entero mide posibilidades de realizar habilidades unicas gracias a la magia
->>>>>>> ccbdbbfd5e66f85f6933d36fbe31af327fc252bf
     }
 
     public int GetCoins()
