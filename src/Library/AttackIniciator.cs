@@ -13,13 +13,13 @@ public class AttackIniciator
             int protection = 0;
             if (Attacker.Weapon != null & Attacker.Weapon.WeaponDurability>=0)
             {
-                int weaponDamage = ItemsStore.Weapons[Attacker.Weapon.WeaponName] * 1 / 2; //Se multiplica el golpe por la mitad de daño del arma, es simplemente por jugabilidad, abierto a modificaciones
+                int weaponDamage = Attacker.Weapon.Damage * 1 / 2; //Se multiplica el golpe por la mitad de daño del arma, es simplemente por jugabilidad, abierto a modificaciones
                 Attacker.Weapon.WeaponDurability -= 5; //la "vida" del arma disminuye un 5% con cada golpe
                 finalDamage += weaponDamage; //sumo el daño del arma mas el daño predeterminado del personaje
             }
             if (deffender.Armor != null) //aseguro que el personaje tenga una armadura equipada
             {
-                protection = ItemsStore.Armors[Attacker.Armor.ArmorName]; //regla de tres donde calculo, en base al puntaje de armorProtection cuanta vida salva
+                protection = deffender.Armor.ArmorProtection; //regla de tres donde calculo, en base al puntaje de armorProtection cuanta vida salva
                 finalDamage=finalDamage/protection;
                 Attacker.Armor.ArmorDurability -= 5; //la "vida" de cada pieza disminuye en un 5% por cada golpe
             }
