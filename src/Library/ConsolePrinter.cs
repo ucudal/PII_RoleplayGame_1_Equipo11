@@ -25,4 +25,19 @@ public class ConsolePrinter
     {
         Console.WriteLine($"¡Miserable! You better come back with coins next time.");
     }
+
+    public static void AttackOnTarget(ICharacter Attacker, ICharacter Deffender)
+    {
+        Console.WriteLine($"{Attacker.Name} has attacked {Deffender.Name}!");
+    }
+
+    public static void unsuccessfullAttack(ICharacter Attacker, ICharacter Deffender)
+    {
+        Console.WriteLine($"{Attacker.Name} could not perform his attack on {}");
+    }
+
+    public static void brokenWeapon()
+    {
+        
+    }
 }
