@@ -20,7 +20,7 @@ public class Elves : ICharacter
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
         this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
     }
-    public List<IItems> Inventory;
+    public List<IItems> Inventory {get;set;}
     public string Description { get; } //breve descripcion de las caracteristicas de un Elfo
     private string name;
     private int HP { get; set; } //medido en porcentaje del 1 al 100
@@ -92,8 +92,8 @@ public class Elves : ICharacter
     {
         partner.Damage =+ ((5*partner.Damage)/100);
         partner.HPChanger((5*partner.GetHP())/100);
-        partner.Weapon.WeaponDurability =+ ((5*partner.Weapon.WeaponDurability)/100);
-        partner.Armor.ArmorDurability =+ ((5*partner.Armor.ArmorDurability)/100);
+        partner.Weapon.Durability =+ ((5*partner.Weapon.Durability)/100);
+        partner.Armor.Durability =+ ((5*partner.Armor.Durability)/100);
         //Incremento de 5% en vida/daño/durabilidad al aliado seleccionado.
     }
     public void InventoryAdd(IItems item)
@@ -103,5 +103,25 @@ public class Elves : ICharacter
     public void InventoryRemove(IItems item)
     {
         this.Inventory.Remove(item);
+    }
+    public void Desequip(IItems item)
+    {
+        if (this.Inventory.Contains(item))
+        {
+            Console.WriteLine($"\"{item.name}\" removed successfully.");
+            this.Inventory.Remove(item);
+        }
+        else
+        {
+            Console.WriteLine($"Error: \"{this.Name}\" does not equip \"{item.name}\".");
+        }
+        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
+        //Tambien se podria dar un aviso cuando este al borde de romperse
+    }
+    public void Equip(IItems item) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+
+    {
+        this.Inventory.Add(item);
+        Console.WriteLine($"\"{this.Name}\" now equips \"{item.name}\".");
     }
 }

@@ -6,24 +6,26 @@ namespace Characters;
 
 public interface ICharacter
 {
-    Armors Armor {get; set;} //Lista que contiene las piezas de armadura del character
-    Weapons Weapon {get; set;} //Lista que contiene las armas del character
+    Armors Armor { get; set; } //Lista que contiene las piezas de armadura del character
+    Weapons Weapon { get; set; } //Lista que contiene las armas del character
     //MagicItems MagicItem {get; set;} //Lista que contiene los items del character --> ver como hacer con los dwarves que no tienen habilidades magicas
-    int Damage {get; set;}
+    int Damage { get; set; }
 
     //private int HP { get; set;} //Health Points; permite fijar y modificar la vida de un personaje luego de reciber ataques
-    
-    string Name {get;} //Nombre; permite el facil acceso al nombre del personaje en cuestion para su facil impresion en la consola (impresiones de interaccion: jugador-juego)
+
+    string Name { get; } //Nombre; permite el facil acceso al nombre del personaje en cuestion para su facil impresion en la consola (impresiones de interaccion: jugador-juego)
     //void Attack(ICharacter defender); //metodo de ataque de un personaje a otro; permite elegir con que arma atacar en caso que el personaje disponga de varias
-    public int Strength { get; } 
+    public int Strength { get; }
     bool IsAlive(); //indica si el character sigue vivo luego de haber recibido un ataque
 
     // void Steal(); se podria hacer un metodo que luego de un personaje matar a otro, le permita lootear un solo objeto 
-    bool Transaction(bool operation,int value); //hace una transaccion ,el operation determina si se añade o pierde dinero, el bool determina si fue posible o no
+    bool Transaction(bool operation, int value); //hace una transaccion ,el operation determina si se añade o pierde dinero, el bool determina si fue posible o no
     int GetCoins();  //get de coins
     void HPChanger(int value);
     int GetHP();
-    
+    public List<IItems> Inventory { get; set; }
     void InventoryAdd(IItems item);
     void InventoryRemove(IItems item);
+    public void Equip(IItems item); //equipamiento de items --> afecta al inventario
+    public void Desequip(IItems item); //desequipamiento de items --> afecta al inventario
 }

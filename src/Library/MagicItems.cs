@@ -3,7 +3,7 @@ using Characters;
 
 namespace Inventory;
 
-public class MagicItems 
+public class MagicItems
 {
     ICharacter character;
 
@@ -20,11 +20,11 @@ public class MagicItems
         {
             if (ItemsStore.Items.ContainsKey(name)) //comprueba que el nombre del item exista en la "base de datos" (ItemsStore)
             {
-                this.power= ItemsStore.Items[name];
+                this.power = ItemsStore.Items[name];
             }
         }
     }
-    
+
     public string Name
     {
 
@@ -37,20 +37,16 @@ public class MagicItems
         {
             if (ItemsStore.Items.ContainsKey(value)) //comprueba que el nombre del item exista en la "base de datos" (ItemsStore)
             {
-                this.name= value;
+                this.name = value;
             }
         }
     }
     public MagicItems(string name)
     {
-        this.Name= name;
-        this.Power= power;
+        this.Name = name;
+        this.Power = power;
     }
-    public void BookOfSpells()
-    {
-        
-    }
-    
+
 
 
 

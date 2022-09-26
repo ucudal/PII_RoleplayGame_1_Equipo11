@@ -5,65 +5,83 @@ namespace Inventory;
 
 public class Armors : IItems
 {
-    public Armors(string armorName)
+    public Armors(string name)
     {
-        this.ArmorName = armorName;
-        this.ArmorProtection = ItemsStore.Armors[armorName];
-        this.ArmorDurability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
+        this.ArmorName = name;
+        this.Power = power;
+        this.Durability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
     }
     //ICharacter character;
-    private string armorName;
+    private int power;
+    public int Power
+    {
+
+        get
+        {
+            if (this.Durability <= 0) { return 0; }
+            else { return this.power; }
+        }
+
+        set
+        {
+            if (ItemsStore.Armors.ContainsKey(this.name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+            {
+                this.power = ItemsStore.Armors[this.name];
+            }
+        }
+
+    }
+    public string name { get; set; }
     public string ArmorName
     {
 
         get
         {
-            return this.armorName;
+            return this.name;
         }
 
         set
         {
             if (ItemsStore.Armors.ContainsKey(value)) //comprueba que el nombre del armor exista en la "base de datos" (ItemsStore)
             {
-                this.armorName = value;
+                this.name = value;
             }
         }
         //seguir haciendo el resto (durabilidad, precio, proteccion)
         //metodos de comprar, vender, tradear, reparar, mejorar(¿?), equipar, y quitar del inventario
     }
 
-    public int ArmorProtection {get;}
-    public int ArmorDurability { get; set; }
+    public int Durability { get; set; }
 
     public void Break(ICharacter character)
     {
-        if (this.ArmorDurability <= 0)
+        if (this.Durability <= 0)
         {
-            Console.WriteLine($"¡\"{this.ArmorName}\" has broken! You should buy a new one."); //aviso
+            Console.WriteLine($"¡\"{this.name}\" has broken! You should buy a new one."); //aviso
             character.Armor = null; //se elimina el arma del personaje
         }
-        if (this.ArmorDurability <= 15) //aviso de cuando este por romperse
+        if (this.Durability <= 15) //aviso de cuando este por romperse
         {
-            Console.WriteLine($"¡\"{this.ArmorName}\" is about to break! You should repair it."); //aviso
+            Console.WriteLine($"¡\"{this.name}\" is about to break! You should repair it."); //aviso
         }
     }
-     public void Equip(ICharacter character) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    public void Equip(ICharacter character) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
 
     {
         character.Armor = this;
-        Console.WriteLine($"\"{character.Name}\" now equips \"{this.ArmorName}\".");
+        Console.WriteLine($"\"{character.Name}\" now equips \"{this.name}\".");
     }
 
     public void Desequip(ICharacter character)
     {
         if (character.Armor == this)
         {
-            Console.WriteLine($"{character.Armor.ArmorName} removed successfully.");
+            Console.WriteLine($"{character.Armor.name} removed successfully.");
             character.Weapon = null;
         }
         else
         {
-            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.ArmorName}\".");
+            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.name}\".");
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse
