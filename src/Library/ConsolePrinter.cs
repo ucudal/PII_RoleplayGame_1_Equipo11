@@ -2,6 +2,7 @@ using System;
 using Inventory;
 using NPC;
 using Combat;
+using System.Text;
 
 namespace Characters;
 
@@ -25,4 +26,17 @@ public class ConsolePrinter
     {
         Console.WriteLine($"¡Miserable! You better come back with coins next time.");
     }
+   public static void CharactersDeath(ICharacter character,ICharacter killer)
+   {
+        string DeathString = String.Join(
+        Environment.NewLine,
+        "  __________",
+        "/   R.I.P.   \\",
+        "| Here lies   |",
+        $"| {character.Name,11} |",
+        "|_____________|",
+        $"In hands of {killer.Name}");
+        
+        Console.WriteLine(DeathString); 
+   }
 }

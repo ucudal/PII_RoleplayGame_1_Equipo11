@@ -27,6 +27,14 @@ public class AttackInitiator
             deffender.HPChanger(-finalDamage); //le resto a la vida de quien se defiende, tantos puntos valga el daño final
         }
         else { Console.WriteLine($"{Attacker.Name} no pudo atacar a {deffender.Name}"); }
+        if (deffender.GetHP()<=0)
+        {
+           Kill(deffender,Attacker);
+        }
+    }
+    private static void Kill(ICharacter deffender,ICharacter killer)
+    {
+        ConsolePrinter.CharactersDeath(deffender,killer);
     }
 
 }

@@ -9,7 +9,7 @@ public class Dwarves : ICharacter
     public Dwarves(string name, Weapons weapon, Armors armor)
     {
         this.Description = "Son seres temperamentales que se destacan en el combate, su gran resistencia y lealtad.";
-        this.Name = Name; //nombre
+        this.Name = name; //nombre
         this.Weapon = weapon; //armas
         this.Armor = armor; //armaduras
         //Recordar que los enanos no tienen capacidades magicas
@@ -31,7 +31,7 @@ public class Dwarves : ICharacter
         }
         set
         {
-            if (!string.IsNullOrEmpty(value))//que el nombre no este vacio
+            if (!string.IsNullOrEmpty(value)) //comprueba que no se haya ingresado una string vacia
             {
                 this.name = value;
             }
