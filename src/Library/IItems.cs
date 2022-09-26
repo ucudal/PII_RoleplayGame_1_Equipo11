@@ -11,5 +11,7 @@ public interface IItems
     public void Buy(ICharacter character); //compra de items --> afecta a la property "Coins" y al inventario
     public void Sell(ICharacter character); //venta de items --> afecta a la property "Coins" y al inventario
     public void Break(); //item se rompe luego de determinada cantidad de usos
+    public int GetPrice();
+    public string name{get;set;}
 
 }
