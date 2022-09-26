@@ -34,7 +34,7 @@ public class BattleMedic
         {
             character.HPChanger(100);
         }
-        else{Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}   
+        else{ConsolePrinter.NotEnoughCoins();}//Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}   
     }
     public void MediumPotion(ICharacter character)
     {
@@ -42,6 +42,6 @@ public class BattleMedic
         {
             character.HPChanger(45);
         }
-        else{Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}        
+        else{ConsolePrinter.NotEnoughCoins();}//Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}        
     }
 }

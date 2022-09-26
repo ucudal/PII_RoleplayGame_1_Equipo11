@@ -15,8 +15,6 @@ public class BlackSmith  //:IInventory, IBalance
             if (character.Transaction(false, repairCost)) //tiene suficientes coins
             {
                 item.Durability = 100;
-                Console.WriteLine($"{item.name} has been fully repaired.");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
             }
             else
             {
@@ -25,24 +23,32 @@ public class BlackSmith  //:IInventory, IBalance
                 repairCost = (repairedDurability * 2) / 10; //calculo cuanto costo el arreglo realizado
                 item.Durability = +repairedDurability;
                 character.Transaction(false, repairCost);
-                Console.WriteLine($"{item.name} has been repaired up to {item.Durability}");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
             }
+            ConsolePrinter.ReparationPrinter(character, item);
         }
         else
         {
-            Console.WriteLine($"¡Cheater! You don't equip \"{item.name}\". ¡Get out of my sight! if you appreciate your life.");
+            ConsolePrinter.ItemNotEquipped(item);
         }
     }
     public void Enchantment(ICharacter character, IItems item)
     {
         if (character.Inventory.Contains(item))
         {
-            
+            //El precio de encanar un item, es igual al de compra en la tienda; es como comprarlo por segunda vez
+            int enchantmentCost= ItemsStore.Prices[item.name];
+            if (character.Transaction(false, enchantmentCost))
+            {
+                ConsolePrinter.EnchantmentPrinter(character, item);
+            }
+            else
+            {
+                ConsolePrinter.NotEnoughCoins();
+            }
         }
         else
         {
-            Console.WriteLine($"¡Cheater! You don't equip \"{item.name}\". ¡Get out of my sight! if you appreciate your life.");
+            ConsolePrinter.ItemNotEquipped(item);
         }
     }
 }
