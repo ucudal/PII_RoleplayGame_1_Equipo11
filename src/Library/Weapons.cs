@@ -8,26 +8,26 @@ public class Weapons : IItems
 {
     public Weapons(string weaponName)
     {
-        this.WeaponName = weaponName;
+        this.name = weaponName;
         this.Damage = damage;
         this.WeaponDurability = 100; //arranca con 100%, en cada ataque va a ir disminuyendo
     }
     ICharacter character;
-    private string weaponName;
+    public string name{get; set;}
     private int damage;
     public string WeaponName
     {
 
         get
         {
-            return this.weaponName;
+            return this.name;
         }
 
         set
         {
             if (ItemsStore.Weapons.ContainsKey(value)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
             {
-                this.weaponName = value;
+                this.name = value;
             }
         }
 
@@ -38,14 +38,15 @@ public class Weapons : IItems
 
         get
         {
-            return this.damage;
+            if (this.WeaponDurability<=0){return 0;}
+            else{return this.damage;}
         }
 
         set
         {
-            if (ItemsStore.Weapons.ContainsKey(this.WeaponName)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+            if (ItemsStore.Weapons.ContainsKey(this.name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
             {
-                this.damage = ItemsStore.Weapons[weaponName];
+                this.damage = ItemsStore.Weapons[this.name];
             }
         }
 
@@ -136,7 +137,7 @@ public class Weapons : IItems
         }
         else
         {
-            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.WeaponName}\".");
+            Console.WriteLine($"Error: \"{character.Name}\" does not equip \"{this.name}\".");
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse
@@ -146,13 +147,15 @@ public class Weapons : IItems
     {
         if (this.WeaponDurability <= 0)
         {
-            Console.WriteLine($"¡\"{this.WeaponName}\" has broken! You should buy a new one."); //aviso
+            Console.WriteLine($"¡\"{this.name}\" has broken! You should buy a new one."); //aviso
             character.Weapon = null; //se elimina el arma del personaje
         }
         if (this.WeaponDurability <= 15) //aviso de cuando este por romperse
         {
-            Console.WriteLine($"¡\"{this.WeaponName}\" is about to break! You should repair it."); //aviso
+            Console.WriteLine($"¡\"{this.name}\" is about to break! You should repair it."); //aviso
         }
     }
+
+   
 }
 
