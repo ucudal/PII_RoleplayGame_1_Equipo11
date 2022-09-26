@@ -6,40 +6,40 @@ namespace NPC;
 
 public class BlackSmith  //:IInventory, IBalance
 {
-    public void Repair(ICharacter character, IItems item)
+    public void ArmorRepair(ICharacter character, Armors Armor)
     {
-        if (character.Inventory.Contains(item))
+        if (character.ArmorInventory.Contains(Armor))
         {
-            int repairCost = ((100 - item.Durability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
+            int repairCost = ((100 - Armor.Durability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
                                                                  //se cobran 2 coins; y calcula cuanto cuesta arreglar el item hasta llegar a 100%
             if (character.Transaction(false, repairCost)) //tiene suficientes coins
             {
-                item.Durability = 100;
+                Armor.Durability = 100;
             }
             else
             {
 
                 int repairedDurability = (character.GetCoins() * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
                 repairCost = (repairedDurability * 2) / 10; //calculo cuanto costo el arreglo realizado
-                item.Durability = +repairedDurability;
+                Armor.Durability = +repairedDurability;
                 character.Transaction(false, repairCost);
             }
-            ConsolePrinter.ReparationPrinter(character, item);
+            ConsolePrinter.ReparationPrinter(character, Armor);
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(item);
+            ConsolePrinter.ItemNotEquipped(Armor);
         }
     }
-    public void Enchantment(ICharacter character, IItems item)
+    public void ArmorEnchantment(ICharacter character, Armors Armor)
     {
-        if (character.Inventory.Contains(item))
+        if (character.ArmorInventory.Contains(Armor))
         {
             //El precio de encanar un item, es igual al de compra en la tienda; es como comprarlo por segunda vez
-            int enchantmentCost= ItemsStore.Prices[item.name];
+            int enchantmentCost= ItemsStore.Prices[Armor.name];
             if (character.Transaction(false, enchantmentCost))
             {
-                ConsolePrinter.EnchantmentPrinter(character, item);
+                ConsolePrinter.EnchantmentPrinter(character, Armor);
             }
             else
             {
@@ -48,7 +48,54 @@ public class BlackSmith  //:IInventory, IBalance
         }
         else
         {
-            ConsolePrinter.ItemNotEquipped(item);
+            ConsolePrinter.ItemNotEquipped(Armor);
         }
     }
+//-----------------weapons------------------
+    public void WeaponRepair(ICharacter character, Weapons weapon)
+    {
+        if (character.WeaponInventory.Contains(weapon))
+        {
+            int repairCost = ((100 - weapon.Durability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
+                                                                 //se cobran 2 coins; y calcula cuanto cuesta arreglar el item hasta llegar a 100%
+            if (character.Transaction(false, repairCost)) //tiene suficientes coins
+            {
+                weapon.Durability = 100;
+            }
+            else
+            {
+
+                int repairedDurability = (character.GetCoins() * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
+                repairCost = (repairedDurability * 2) / 10; //calculo cuanto costo el arreglo realizado
+                weapon.Durability = +repairedDurability;
+                character.Transaction(false, repairCost);
+            }
+            ConsolePrinter.ReparationPrinter(character, weapon);
+        }
+        else
+        {
+            ConsolePrinter.ItemNotEquipped(weapon);
+        }
+    }
+    public void WeaponEnchantment(ICharacter character, Weapons weapon)
+    {
+        if (character.WeaponInventory.Contains(weapon))
+        {
+            //El precio de encanar un item, es igual al de compra en la tienda; es como comprarlo por segunda vez
+            int enchantmentCost= ItemsStore.Prices[weapon.name];
+            if (character.Transaction(false, enchantmentCost))
+            {
+                ConsolePrinter.EnchantmentPrinter(character, weapon);
+            }
+            else
+            {
+                ConsolePrinter.NotEnoughCoins();
+            }
+        }
+        else
+        {
+            ConsolePrinter.ItemNotEquipped(weapon);
+        }
+    }
+
 }
