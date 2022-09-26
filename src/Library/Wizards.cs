@@ -13,7 +13,7 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         this.Description = "This character has the power of magic";
         this.Weapon = itemWeapon;
         this.HP = 100;
-        this.Coins = 500;
+        this.Coins = 100;
         this.MagicItem = magicItems;
         this.Name = name;
         this.Strength = 1;

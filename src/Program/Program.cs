@@ -16,11 +16,9 @@ namespace Program
             ICharacter dwarf1 = new Dwarves("Grimli",new Weapons("Mythril BattleAxe"), new Armors("Dwarf heavy Chain Chesplate"));
             
 
-            //ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of spells"));
-            //Primer instancia de un Wizard
-            //Console.WriteLine(wizard.Weapon.WeaponName);
-            //ConsolePrinter.(dwarf1);
-           // Console.WriteLine(elf1.Name);
+            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
+            Merchant.WeaponBuy(wizard, new Weapons("Ultimate Sword"));
+            Console.WriteLine($"{wizard.WeaponInventory.ToString()}");
         }
     }
 }

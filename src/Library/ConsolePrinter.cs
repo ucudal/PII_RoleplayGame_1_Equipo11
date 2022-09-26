@@ -29,6 +29,18 @@ public class ConsolePrinter
     }
 
     // Store - Printers
+
+    public static void succesfullWeaponSale(Weapons weapon)
+    {
+        Console.WriteLine($"{weapon.name} has been successfully bought");
+    }
+
+    public static void succesfullArmorSale(Armors armor)
+    {
+        Console.WriteLine($"{armor.name} has been successfully bought");
+    }
+
+
     public static void EnchantmentPrinter(ICharacter character, IItems item)
     {
         Console.WriteLine($"\"{item.name}´s\" power has now increased up to {item.Power}.");
