@@ -46,6 +46,10 @@ public class MagicItems
         this.Name= name;
         this.Power= power;
     }
+    public void BookOfSpells()
+    {
+        
+    }
     
 
 
