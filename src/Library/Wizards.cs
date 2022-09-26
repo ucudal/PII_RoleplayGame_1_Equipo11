@@ -92,5 +92,9 @@ public class Wizards : ICharacter
             else{Console.WriteLine($"{this.name} no tiene oro suficiente!"); return false;}
         }  
     }
+    public void Magic()
+    {
+        int chanceSuperAttack= 5; //arranca en 10 xq la magia es innata a ellos
+    }
 }
 

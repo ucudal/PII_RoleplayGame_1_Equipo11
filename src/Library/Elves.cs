@@ -16,20 +16,17 @@ public class Elves : ICharacter
         this.Armor = armor; //armaduras
         this.MagicItem = magicItem; //objetos magicos
         this.Coins = 20; //riqueza 
-        this.Strength = 8; // cada golpe saca 8 de vida
+        this.Damage = 3 + this.Weapon.Damage; 
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
     }
     public string Description { get; } //breve descripcion de las caracteristicas de un Elfo
     private string name;
     public int HP { get; set; } //medido en porcentaje del 1 al 100
-    public int Strength { get; } //medido en porcentaje del 1 al 100
-
+    public int Damage { get; set; }
     public Weapons Weapon { get; set; } //lista de armas
     public Armors Armor { get; set; } //lista de piezas de armadura
     public MagicItems MagicItem { get; set; } //lista de items magicos
 
-
-    public int Damage { get; set; }
     
     public string Name
     {
@@ -45,9 +42,9 @@ public class Elves : ICharacter
             }
         }
     }
-    public void Attack(ICharacter deffender) //Este seria el modelo de ataque de un elfo, se llama al metodo mediante la interfaz aun no creada "IAttack"
+    /*public void Attack(ICharacter deffender) //Este seria el modelo de ataque de un elfo, se llama al metodo mediante la interfaz aun no creada "IAttack"
     {
-        int finalDamage = this.Strength;
+        int finalDamage = this.Damage;
         int protection = 0;
         if (this.Weapon != null)
         {
@@ -64,7 +61,7 @@ public class Elves : ICharacter
         finalDamage -= protection; //el daño final termina siendo el daño total del elfo - la proteccion de la armadura de quien se defiende
         deffender.HP = deffender.HP - finalDamage; //le resto a la vida de quien se defiende, tantos puntos valga el daño final
 
-    }
+    }*/
     public bool IsAlive()
     {
         if (this.HP <= 0)
@@ -100,5 +97,13 @@ public class Elves : ICharacter
             if (value<this.Coins){this.Coins-=value; return true;}           //determina si la operacion es posible
             else{Console.WriteLine($"{this.name} no tiene oro suficiente!"); return false;}
         }  
+    }
+    public void Specialty(ICharacter partner)
+    {
+        partner.Damage =+ ((5*partner.Damage)/100);
+        partner.HP =+ ((5*partner.HP)/100);
+        partner.Weapon.WeaponDurability =+ ((5*partner.Weapon.WeaponDurability)/100);
+        partner.Armor.ArmorDurability =+ ((5*partner.Armor.ArmorDurability)/100);
+        //Incremento de 5% en vida/daño/durabilidad al aliado seleccionado.
     }
 }

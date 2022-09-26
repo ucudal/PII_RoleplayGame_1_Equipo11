@@ -58,7 +58,7 @@ public class Weapons : IItems
         {
             int repairCost = ((100 - this.WeaponDurability) * 2) / 10; //simple regla de tres que establece que cada 10% que se arregla, 
                                                                        //se cobran 2 coins; y calcula cuanto cuesta arreglar la weapon hasta llegar a 100%
-            if (character.GetCoins() >= repairCost) //tiene suficientes coins
+            if (character.Transaction(false, repairCost)) //tiene suficientes coins
             {
                 this.WeaponDurability = 100;
                 Console.WriteLine($"{this.WeaponName} has been fully repaired.");
@@ -66,7 +66,11 @@ public class Weapons : IItems
             }
             else
             {
-                this.WeaponDurability = +(character.GetCoins() * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
+                
+                int repairedDurability= (character.GetCoins() * 10) / 2; //regla de tres que establece cuanto porcentaje arreglar de acuerdo a las coins que tiene
+                repairCost= (repairedDurability * 2) / 10; //calculo cuanto costo el arreglo realizado
+                this.WeaponDurability = + repairedDurability; 
+                character.Transaction(false, repairCost);
                 Console.WriteLine($"{this.WeaponName} has been repaired up to {this.WeaponDurability}");
                 Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
             }
@@ -77,19 +81,19 @@ public class Weapons : IItems
         }
 
     }
-    public void Sell(ICharacter character)
+    /*public void Sell(ICharacter character)
     {
         if (character.Weapon == this)
         {
             if (this.WeaponDurability == 100)
             {
-                character.GetCoins() += ItemsStore.Prices[this.WeaponName];
+                character.Transaction(true, ItemsStore.Prices[this.WeaponName]);
             }
             else
             {
                 //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
                 //sino se puede hacer regla de tres de acuerdo a que tan roto esta
-                character.GetCoins() += (ItemsStore.Prices[this.WeaponName] / 2);
+                character.Transaction(true, (ItemsStore.Prices[this.WeaponName] / 2) );
                 Console.WriteLine($"\"{this.WeaponName}\" has been sold, and removed succesfully.");
                 Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
 
@@ -106,19 +110,14 @@ public class Weapons : IItems
     {
         if (ItemsStore.Weapons.ContainsKey(this.WeaponName))
         {
-            if (character.GetCoins() >= ItemsStore.Prices[this.WeaponName])
-            {
-                character.GetCoins() = -ItemsStore.Prices[this.WeaponName];
-                Console.WriteLine($"\"{this.WeaponName}\" has been bought, and equiped succesfully.");
-                Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
-            }
+            character.Transaction(false, ItemsStore.Prices[this.WeaponName]);
             character.Weapon = this;
         }
         else
         {
             Console.WriteLine($"Error: the store does not include the weapon \"{this.WeaponName}\".");
         }
-    }
+    }*/
 
     public void Equip(ICharacter character) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
 
@@ -143,7 +142,7 @@ public class Weapons : IItems
         //Tambien se podria dar un aviso cuando este al borde de romperse
     }
 
-    public void Break()
+    public void Break(ICharacter character)
     {
         if (this.WeaponDurability <= 0)
         {
