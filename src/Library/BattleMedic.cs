@@ -30,12 +30,18 @@ public class BattleMedic
     }
     public void BigPotion(ICharacter character)
     {
-        character.HPChanger(100);
-        character.Transaction(false,15);
+        if (character.Transaction(false,15))
+        {
+            character.HPChanger(100);
+        }
+        else{Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}   
     }
     public void MediumPotion(ICharacter character)
     {
-        character.HPChanger(45);
-        character.Transaction(false,7);
+        if (character.Transaction(false,7))
+        {
+            character.HPChanger(45);
+        }
+        else{Console.WriteLine("No enough money sir, Can i take ur kidney instead?");}        
     }
 }
