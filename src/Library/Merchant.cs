@@ -11,7 +11,7 @@ public class Merchant
         Buyer.InventoryAdd(item);
         Buyer.Transaction(false,ItemsStore.GetPrice(item));
     }
-    else{Console.WriteLine("Not Enough Gold,Get out of my sight!");}
+    else{Console.WriteLine("Not Enough Gold,Get out of my sight!Fool");}
  }
 
 }
