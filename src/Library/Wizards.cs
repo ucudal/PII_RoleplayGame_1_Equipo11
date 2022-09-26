@@ -52,7 +52,9 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         this.MagicItem = magicItems;
         this.Name = name;
         this.Strength = 1;
-        this.Inventory = new List<IItems>() { this.Armor, this.Weapon };
+        this.WeaponInventory = new List<Weapons>() {this.Weapon };
+        this.ArmorInventory = new List<Armors>() { this.Armor};
+
     }
 
     public int GetCoins()
@@ -141,33 +143,47 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         if (spell == "Armor Enchantment") { this.ArmorDefense = this.ArmorDefense * (5 / 4); Console.WriteLine($"¡Armor Enchantment! {this.Armor}´s protection has increased by 25%."); }
         if (spell == "Magic Improvement") { this.Magic += 2; Console.WriteLine($"¡Magic Improvement! {this.Name} has learnt a new spell. Your chances of successfully casting a Magic Spell has increased"); } //mejora probabilidades de MagicSpell un 2%
     }
-    public void InventoryAdd(IItems item)
+    //-----------WeaponInventory----------
+    public List<Weapons> WeaponInventory { get; set; }
+    public List<Armors> ArmorInventory { get; set; }
+    public void WeaponInventoryAdd(Weapons weapon)
     {
-        this.Inventory.Add(item);
+        this.WeaponInventory.Add(Weapon);
     }
-    public void InventoryRemove(IItems item)
+    public void WeaponInventoryRemove(Weapons weapon)
     {
-        this.Inventory.Remove(item);
+        this.WeaponInventory.Remove(weapon);
     }
-    public void Desequip(IItems item)
+    public void WeaponEquip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
-        if (this.Inventory.Contains(item))
+        if (this.WeaponInventory.Contains(weapon))
         {
-            ConsolePrinter.unequippedItem(character, item);
-            this.Inventory.Remove(item);
+            this.Weapon=weapon;
         }
-        else
-        {
-            ConsolePrinter.notInInventoryItem();
-        }
-        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
-        //Tambien se podria dar un aviso cuando este al borde de romperse
     }
-    public void Equip(IItems item) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
-
+    public void WeaponUnequip()
     {
-        this.Inventory.Add(item);
-        ConsolePrinter.equippedItem(character, item);
+        this.Weapon=null;
+    }
+    //------------------------ArmorEquipment----------
+    public void ArmorInventoryAdd(Armors armor)
+    {
+        this.ArmorInventory.Add(armor);
+    }
+    public void ArmorInventoryRemove(Armors armor)
+    {
+        this.ArmorInventory.Remove(armor);
+    }
+    public void ArmorEquip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    {
+        if (this.ArmorInventory.Contains(armor))
+        {
+            this.Armor=armor;
+        }
+    }
+    public void ArmorUnequip()
+    {
+        this.Armor=null;
     }
 }
 

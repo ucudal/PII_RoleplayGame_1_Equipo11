@@ -18,7 +18,8 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
         this.Coins = 20; //riqueza 
         this.Strength = 5; 
         this.HP = 80; //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
-        this.Inventory= new List<IItems>(){this.Armor,this.Weapon};
+        this.ArmorInventory= new List<Armors>(){this.Armor};
+        this.WeaponInventory= new List<Weapons>(){this.Weapon};
     }
 
     //Lista con los objetos de tipo IItems que posee el personaje (pueden ser de tipo Armors/MagicItems/Weapons)
@@ -129,37 +130,46 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
     }
 
     //metodo a traves del cual agregar un item de tipo IItems al Inventario del personaje
-    public void InventoryAdd(IItems item)
+   
+    public List<Weapons> WeaponInventory { get; set; }
+    public List<Armors> ArmorInventory { get; set; }
+    public void WeaponInventoryAdd(Weapons weapon)
     {
-        this.Inventory.Add(item);
-        ConsolePrinter.equippedItem(this, item);
+        this.WeaponInventory.Add(Weapon);
     }
-
-    //metodo a traves del cual quitar un item del Inventario del personaje
-    public void InventoryRemove(IItems item)
+    public void WeaponInventoryRemove(Weapons weapon)
     {
-        this.Inventory.Remove(item);
-        ConsolePrinter.unequippedItem(this, item);
+        this.WeaponInventory.Remove(weapon);
     }
-
-    //metodo a traves del cual agregar un item de tipo IItems al Inventario del personaje
-    public void Unequip(IItems item)
+    public void WeaponEquip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
-        if (this.Inventory.Contains(item))
+        if (this.WeaponInventory.Contains(weapon))
         {
-            this.Inventory.Remove(item);
-            ConsolePrinter.unequippedItem(this, item);
-        }
-        else
-        {
-            ConsolePrinter.ItemNotEquipped(item);
+            this.Weapon=weapon;
         }
     }
-
-    //metodo para equipar items de tipo IItems al inventario del personaje
-    public void Equip(IItems item) 
+    public void WeaponUnequip()
     {
-        this.Inventory.Add(item);
-        ConsolePrinter.equippedItem(this, item);
+        this.Weapon=null;
+    }
+    //------------------------ArmorEquipment----------
+    public void ArmorInventoryAdd(Armors armor)
+    {
+        this.ArmorInventory.Add(armor);
+    }
+    public void ArmorInventoryRemove(Armors armor)
+    {
+        this.ArmorInventory.Remove(armor);
+    }
+    public void ArmorEquip(Armors armor) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    {
+        if (this.ArmorInventory.Contains(armor))
+        {
+            this.Armor=armor;
+        }
+    }
+    public void ArmorUnequip()
+    {
+        this.Armor=null;
     }
 }
