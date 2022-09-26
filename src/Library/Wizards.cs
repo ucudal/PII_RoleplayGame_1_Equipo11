@@ -10,6 +10,8 @@ public class Wizards : ICharacter
 {
     ICharacter character;
     private string name;
+
+    public int Strength {get;}
     public string Name
     {
         get
@@ -28,10 +30,10 @@ public class Wizards : ICharacter
     public MagicItems MagicItem {get; set;} //Lista que contiene los items del character
 
     public int ArmorDefense {get; set;}
-    public int Coins {get; set;}
+    private int Coins {get; set;}
     public string Description {get;}
     public int Damage {get; set;}
-    public int HP {get; set;}
+    private int HP {get; set;}
 
     public Weapons Weapon {get; set;}
 
@@ -48,29 +50,45 @@ public class Wizards : ICharacter
         this.Coins=500;
         this.MagicItem= magicItems;
         this.Name=name;
+        this.Strength=1;
+    }
+
+    public int GetCoins()
+    {
+        return this.Coins;
     }
     
+    public int GetHP()
+    {
+        return this.HP;
+    }
+    public void HPChanger(int value)
+    {
+        this.HP+=value;
+    }
 
     public void Attack(ICharacter enemy)
     {
             if(Weapon.WeaponDurability>10)
             {
-                int enemysHP= enemy.HP+enemy.Armor.ArmorProtection;
+                int enemysHP= enemy.GetHP()+enemy.Armor.ArmorProtection;
                 enemysHP-=this.Damage;
                 Weapon.WeaponDurability-=10;
+                enemy.Armor.ArmorDurability-=5;
             }
             else
             {
                 Console.WriteLine("Your weapon is about to get broken, you need to fix it in order to use it.");
             }
     }
-
-
     public bool IsAlive()
     {
-        if(this.HP<=0)
+        if (this.HP <= 0)
         {
             Console.WriteLine($"¡\"{this.Name}\" could not survive the attack!");
+            this.Armor = null;
+            this.Weapon = null;
+            Transaction(false,this.Coins/2);// divide su oro a la mitad
             return false;
         }
         else

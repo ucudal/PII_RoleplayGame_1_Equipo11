@@ -34,7 +34,12 @@ public class Dwarves : ICharacter
             }
         }
     }
-    public int HP { get; set; }
+    private int HP { get; set; }
+    public int GetHP(){return this.HP;}
+    public void HPChanger(int value)
+    {
+        this.HP+=value;
+    }
     public int Strength { get; } 
 
     public Weapons Weapon { get; set; } //lista de armas
@@ -75,26 +80,5 @@ public class Dwarves : ICharacter
             Console.WriteLine($"\"{this.Name}\" is still alive: {this.HP} HP.");
             return true;
         }
-    }
-//igual que el del elfo
-    public void Attack(ICharacter deffender) //Este seria el modelo de ataque de un pj, se llama al metodo mediante la interfaz aun no creada "IAttack"
-    {
-        int finalDamage = this.Strength;
-        int protection = 0;
-        if (this.Weapon != null)
-        {
-            int weaponDamage = ItemsStore.Weapons[this.Weapon.WeaponName] * 1 / 2; //Se multiplica el golpe por la mitad de daño del arma, es simplemente por jugabilidad, abierto a modificaciones
-            this.Weapon.WeaponDurability -= 5; //la "vida" del arma disminuye un 5% con cada golpe
-            finalDamage += weaponDamage; //sumo el daño del arma mas el daño predeterminado del personaje
-        }
-        if (deffender.Armor != null) //aseguro que el personaje tenga una armadura equipada
-        {
-            protection = (finalDamage * ItemsStore.Armors[this.Armor.ArmorName]) / 100; //regla de tres donde calculo, en base al puntaje de armorProtection cuanta vida salva
-            this.Armor.ArmorDurability -= 5; //la "vida" de cada pieza disminuye en un 5% por cada golpe
-        }
-
-        finalDamage -= protection; //el daño final termina siendo el daño total del pj - la proteccion de la armadura de quien se defiende
-        deffender.HP = deffender.HP - finalDamage; //le resto a la vida de quien se defiende, tantos puntos valga el daño final
-
     }
 }
