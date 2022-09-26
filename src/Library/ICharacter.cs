@@ -27,6 +27,6 @@ public interface ICharacter
     void InventoryAdd(IItems item);
     void InventoryRemove(IItems item);
     public void Equip(IItems item); //equipamiento de items --> afecta al inventario
-    public void Desequip(IItems item); //desequipamiento de items --> afecta al inventario
+    public void Unequip(IItems item); //desequipamiento de items --> afecta al inventario
     //public void Specialty(); no se puede porque los elfos necesitan el parametro (ally), que no aplica a wizards y dwarves
 }

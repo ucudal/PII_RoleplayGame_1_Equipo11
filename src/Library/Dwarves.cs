@@ -17,10 +17,12 @@ public class Dwarves : ICharacter, IBalance, IInventory
         this.Strength = 10; // cada golpe saca 10 de vida
         this.HP = 120; //tiene una vida maxima de 120, otros personajes pueden tener mas o menos, son los mas robustos*/
 
-        this.Inventory = new List<IItems>() { this.Armor, this.Weapon };
+        this.WeaponInventory = new List<Weapons>() {this.Weapon };
+        this.ArmorsInventory = new List<Armors>() {this.Armor };
 
     }
-    public List<IItems> Inventory { get; set; }
+    public List<Weapons> WeaponInventory { get; set; }
+    public List<Armors> ArmorsInventory { get; set; }
     public string Description { get; }
     private string name;
     public string Name
@@ -84,32 +86,23 @@ public class Dwarves : ICharacter, IBalance, IInventory
             return true;
         }
     }
-    public void InventoryAdd(IItems item)
+    public void WeaponInventoryAdd(Weapons weapon)
     {
-        this.Inventory.Add(item);
+        this.WeaponInventory.Add(Weapon);
     }
-    public void InventoryRemove(IItems item)
+    public void WeaponInventoryRemove(Weapons weapon)
     {
-        this.Inventory.Remove(item);
+        this.WeaponInventory.Remove(weapon);
     }
-    public void Desequip(IItems item)
+    public void WeaponEquip(Weapons weapon) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
     {
-        if (this.Inventory.Contains(item))
+        if (this.WeaponInventory.Contains(weapon))
         {
-            Console.WriteLine($"\"{item.name}\" removed successfully.");
-            this.Inventory.Remove(item);
+            this.Weapon=weapon;
         }
-        else
-        {
-            Console.WriteLine($"Error: \"{this.Name}\" does not equip \"{item.name}\".");
-        }
-        //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
-        //Tambien se podria dar un aviso cuando este al borde de romperse
     }
-    public void Equip(IItems item) //metodo para equipar armas obtenidas no desde la tienda (e.g: peleando)
+    public void WeaponUnequip(IItems item)
+    {
 
-    {
-        this.Inventory.Add(item);
-        Console.WriteLine($"\"{this.Name}\" now equips \"{item.name}\".");
     }
 }

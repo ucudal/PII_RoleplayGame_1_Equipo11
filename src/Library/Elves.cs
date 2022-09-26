@@ -143,7 +143,7 @@ public class Elves : ICharacter, IMagic, IInventory, IBalance
     }
 
     //metodo a traves del cual agregar un item de tipo IItems al Inventario del personaje
-    public void Desequip(IItems item)
+    public void Unequip(IItems item)
     {
         if (this.Inventory.Contains(item))
         {
