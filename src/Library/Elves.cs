@@ -140,16 +140,7 @@ public class Elves : ICharacter, IInventory, IBalance
     {
         if (this.WeaponInventory.Contains(weapon))
         {
-<<<<<<< HEAD
-            this.Inventory.Remove(item);
-            ConsolePrinter.unequippedItem(this, item);
-        }
-        else
-        {
-            ConsolePrinter.NotInInventory(item);
-=======
             this.Weapon=weapon;
->>>>>>> ec7dc4c269526dcfd9cd81873680ef18246a5a98
         }
     }
     public void WeaponUnequip()
