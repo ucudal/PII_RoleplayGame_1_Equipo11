@@ -15,10 +15,8 @@ public interface ICharacter
     //  Weapon:  arma activa del personaje
     Weapons Weapon { get; set; } 
 
-    int Damage { get; set; }
-
     //  Fuerza de cada personaje
-    public int Strength { get; }
+    public int Strength { get; set; }
 
     //  Indica si el character sigue vivo luego de haber recibido un ataque
     bool IsAlive(); 

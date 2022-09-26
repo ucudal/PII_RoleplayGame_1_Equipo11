@@ -17,7 +17,7 @@ public class Elves : ICharacter, IInventory, IBalance
         //  pieza de armadura principal
         this.Armor = armor;
         //  dinero 
-        this.Coins = 20;
+        this.Coins = 1000;
         //  fuerza predeterminada de los elves
         this.Strength = 5;
         //tiene una vida maxima de 80, otros personajes pueden tener mas o menos
@@ -49,7 +49,7 @@ public class Elves : ICharacter, IInventory, IBalance
     }
 
     //fuerza de los golpes
-    public int Strength { get; }
+    public int Strength { get; set; }
 
     //daño del arma unido a la fuerza del elfo
     public int Damage { get; set; }
@@ -120,16 +120,14 @@ public class Elves : ICharacter, IInventory, IBalance
     }
 
     //Ligada a la descripcion del personaje --> se implementa la habilidad de otorgar beneficios varios a un aliado indicado por parametro
-    public void Specialty(ICharacter partner)
+    public void Specialty(ICharacter ally)
     {
-        partner.Damage = +((5 * partner.Damage) / 100);
-        partner.HPChanger((5 * partner.GetHP()) / 100);
-        partner.Weapon.Durability = +((5 * partner.Weapon.Durability) / 100);
-        partner.Armor.Durability = +((5 * partner.Armor.Durability) / 100);
+        ally.Strength = +((5 * ally.Strength) / 100);
+        ally.HPChanger((5 * ally.GetHP()) / 100);
+        ally.Weapon.Durability = +((5 * ally.Weapon.Durability) / 100);
+        ally.Armor.Durability = +((5 * ally.Armor.Durability) / 100);
         //Incremento de 5% en vida/daño/durabilidad al aliado seleccionado.
     }
-
-    //metodo a traves del cual agregar un item de tipo IItems al Inventario del personaje
 
     public List<Weapons> WeaponInventory { get; set; }
     public List<Armors> ArmorInventory { get; set; }

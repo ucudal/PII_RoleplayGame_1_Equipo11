@@ -11,7 +11,6 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         this.ArmorDefense = itemArmor.Power;
         this.Armor = itemArmor;
         this.Description = "This character has the power of magic";
-        this.Damage = 20 + itemWeapon.Power;
         this.Weapon = itemWeapon;
         this.HP = 100;
         this.Coins = 500;
@@ -20,11 +19,13 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         this.Strength = 1;
         this.WeaponInventory = new List<Weapons>() {this.Weapon };
         this.ArmorInventory = new List<Armors>() { this.Armor};
+        //porcentaje de probabilidad de realizar con exito el Specialty
+        this.Magic= 8;
     }
     ICharacter character;
     IMagic magician;
     private string name;
-    public int Strength { get; }
+    public int Strength { get; set;}
     public string Name
     {
         get
@@ -45,7 +46,6 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     public int ArmorDefense { get; set; }
     private int Coins { get; set; }
     public string Description { get; }
-    public int Damage { get; set; }
     private int HP { get; set; }
     public int Magic { get; set; }
 
@@ -55,8 +55,6 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
     public List<IItems> Inventory { get; set; }
 
     
-    //public List<Weapons> WeaponInventory {get; set;}
-    //public List<Armors> ArmorInventory {get; set;}
     public int GetCoins()
     {
         return this.Coins;
@@ -105,7 +103,7 @@ public class Wizards : ICharacter, IBalance, IMagic, IInventory
         }
     }
 
-    public void MagicSpell(IItems item)
+    public void Specialty(IItems item)
     {
         var rand = new Random();
         int userNumber = 0;

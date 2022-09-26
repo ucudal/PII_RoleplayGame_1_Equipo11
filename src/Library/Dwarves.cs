@@ -47,7 +47,7 @@ public class Dwarves : ICharacter, IBalance, IInventory
     {
         this.HP += value;
     }
-    public int Strength { get; }
+    public int Strength { get; set; }
 
     public Weapons Weapon { get; set; } //lista de armas
     public Armors Armor { get; set; } //lista de piezas de armadura
