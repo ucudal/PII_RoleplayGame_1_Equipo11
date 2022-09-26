@@ -44,13 +44,28 @@ public class ConsolePrinter
         Console.WriteLine($"{Attacker.Name} could not perform his attack on {}");
     }
 
-    public static void brokenWeapon(ICharacter character)
+    public static void brokenItem(IItems item)
     {
-        Console.WriteLine($"Oh no, {character.Weapon.WeaponName} has broken! You should fix it or buy another");
+        Console.WriteLine($"Oh no, {item.name} has broken! You should fix it or buy another");
     }
 
-    public static void aboutToGetBrokenWeapon(ICharacter character)
+    public static void aboutToGetBrokenItem(IItems item)
     {
-        Console.WriteLine($"{character.Weapon.WeaponName} is about to get broken, you should consider fixing it or buying another");
+        Console.WriteLine($"{item.name} is about to get broken, you should consider fixing it or buying another");
+    }
+
+    public static void equippedItem(ICharacter character, IItems item)
+    {
+        Console.WriteLine($"{character.Name} now equips {item.name}");
+    }
+
+    public static void unequippedItem(ICharacter character, IItems item)
+    {
+        Console.WriteLine($"{character.Name} has successfully unequipped {item.name}");
+    }
+
+    public static void notInInventoryItem()
+    {
+        Console.WriteLine($"You do not have this item in your inventory");
     }
 }

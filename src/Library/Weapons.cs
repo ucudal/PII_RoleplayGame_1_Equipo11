@@ -56,12 +56,12 @@ public class Weapons : IItems
     {
         if (this.Durability <= 0)
         {
-            ConsolePrinter.brokenWeapon(character);
+            ConsolePrinter.brokenItem(this);
             character.Weapon = null; //se elimina el arma del personaje
         }
         if (this.Durability <= 15) //aviso de cuando este por romperse
         {
-            ConsolePrinter.aboutToGetBrokenWeapon(character); //aviso
+            ConsolePrinter.aboutToGetBrokenItem(this); //aviso
         }
     }
 
