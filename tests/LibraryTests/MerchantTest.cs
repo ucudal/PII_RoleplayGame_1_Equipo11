@@ -94,11 +94,12 @@ namespace Test.Library
             //Construccion
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             Armors armor = new Armors("Spirit Belt");
+            
 
             //Ejecucion
             Merchant.ArmorBuy(wizard, armor);
             Merchant.ArmorSell(wizard, armor);
-            
+
             //Comprobacion
             Assert.IsTrue(!wizard.ArmorInventory.Contains(armor));
             Assert.IsTrue(wizard.GetCoins()==100);

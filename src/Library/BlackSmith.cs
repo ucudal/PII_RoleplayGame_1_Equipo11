@@ -6,7 +6,7 @@ namespace NPC;
 
 public class BlackSmith
 {
-    public void ArmorRepair(ICharacter character, Armors Armor)
+    public static void ArmorRepair(ICharacter character, Armors Armor)
     {
         //  Aseguro que el personaje disponga de la armadura
         if (character.ArmorInventory.Contains(Armor))
@@ -38,7 +38,7 @@ public class BlackSmith
             ConsolePrinter.NotInInventory(Armor);
         }
     }
-    public void ArmorEnchantment(ICharacter character, Armors Armor)
+    public static void ArmorEnchantment(ICharacter character, Armors Armor)
     {
         if (character.ArmorInventory.Contains(Armor))
         {
@@ -59,7 +59,7 @@ public class BlackSmith
         }
     }
     //-----------------weapons------------------ Repito operaciones solo que para un arma
-    public void WeaponRepair(ICharacter character, Weapons weapon)
+    public static void WeaponRepair(ICharacter character, Weapons weapon)
     {
         if (character.WeaponInventory.Contains(weapon))
         {
@@ -83,13 +83,15 @@ public class BlackSmith
             ConsolePrinter.NotInInventory(weapon);
         }
     }
-    public void WeaponEnchantment(ICharacter character, Weapons weapon)
+    public static void WeaponEnchantment(ICharacter character, Weapons weapon)
     {
         if (character.WeaponInventory.Contains(weapon))
         {
             int enchantmentCost = ItemsStore.Prices[weapon.name];
             if (character.Transaction(false, enchantmentCost))
             {
+                int originalPower=weapon.Power;
+                weapon.Power+=((originalPower*30)/100); //Aumenta el poder del arma en un 30%
                 ConsolePrinter.EnchantmentPrinter(character, weapon);
             }
             else

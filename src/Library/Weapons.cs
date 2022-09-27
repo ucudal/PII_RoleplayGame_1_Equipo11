@@ -9,6 +9,7 @@ public class Weapons : IItems
 {
     public Weapons(string name)
     {
+        this.name=name;
         this.Name = name;
         this.Power = power;
         this.Durability = 100;
