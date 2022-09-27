@@ -41,8 +41,6 @@ namespace Test.Library
             Assert.AreEqual(wizard.Name,expectedName);
             Assert.AreEqual(wizard.Weapon,weapon);
             Assert.AreEqual(wizard.Armor,armor);
-
-
         }
 
         
