@@ -1,4 +1,4 @@
-/*using NUnit.Framework;
+using NUnit.Framework;
 using Inventory;
 using Characters;
 
@@ -9,30 +9,73 @@ namespace Test.Library
         [Test]
         public void correctWizardInput()
         {
-            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of spells"));
-            string expectedName= "Kassadin";
-            int expectedArmor= 10;
-            int expectedDamage=40;
-            string expectedWeaponName = "Rabadons Hat";
+            //Construccion
+            Weapons weapon = new Weapons("Rabadons Hat");
+            Armors armor = new Armors("Merlin Cape");
+            MagicItems magicItem = new MagicItems("Book of Spells");
+
+            //Ejecucion
+            ICharacter wizard = new Wizards("Kassadin", weapon, armor, magicItem);
+
+            //Comprobacion
+            string expectedName="Kassadin";
             Assert.AreEqual(wizard.Name,expectedName);
-            Assert.AreEqual(wizard.Armor.ArmorProtection,expectedArmor);
-            Assert.AreEqual(expectedDamage,wizard.Damage);
-            Assert.AreEqual(wizard.Weapon.WeaponName,expectedWeaponName);
+            Assert.AreEqual(wizard.Weapon,weapon);
+            Assert.AreEqual(wizard.Armor,armor);
+
+
         }
         [Test]
-        public void incorrectWizardArmorInput()
+        public void incorrectWizardInput()
         {
-            Armors wrongArmor = new Armors("Not in ItemsStore");
-            Armors expectedArmor = null;
-            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadon's Hat"), wrongArmor, new MagicItems("Book of spells"));
-            Assert.AreEqual(wizard.Armor,expectedArmor);
+            //Construccion
+            Weapons weapon = new Weapons("Rabadons Hat");
+            Armors armor = new Armors("Merlin Cape");
+            MagicItems magicItem = new MagicItems("Book of Spells");
+
+            //Ejecucion
+            ICharacter wizard = new Wizards("", weapon, armor, magicItem);
+
+            //Comprobacion
+            string expectedName=null;
+            Assert.AreEqual(wizard.Name,expectedName);
+            Assert.AreEqual(wizard.Weapon,weapon);
+            Assert.AreEqual(wizard.Armor,armor);
+
+
         }
+
+        
         [Test]
-        public void incorrectWizardNameInput()
+        public void IncorrectWeaponName()
         {
+            //Consturccion
+            const string initialName = "Not in ItemsStore";
             string expectedName = null;
-            ICharacter wizard = new Wizards("", new Weapons("Rabadon's Hat"), new Armors("Merlin Cape"), new MagicItems("Book of spells"));
-            Assert.AreEqual(wizard.Name,null);
+            int expectedPower = 0;
+
+            //Ejecucion
+            IItems weaponTest = new Weapons(initialName);
+
+            //Comprobacion
+            Assert.AreEqual(expectedName, weaponTest.name);
+            Assert.AreEqual(expectedPower, weaponTest.Power);
         }
+
+        public void IncorrectArmorName()
+        {
+            //Construccion
+            const string initialName = "Not in ItemsStore";
+            const string expectedName = null;
+            int expectedPower= 0;
+            
+
+            //Ejecucion
+            IItems armorTest= new Armors (initialName);
+
+            //Comprobacion
+            Assert.AreEqual(expectedName, armorTest.name);
+            Assert.AreEqual(expectedPower, armorTest.Power);
+        }  
     }
-}*/
+}

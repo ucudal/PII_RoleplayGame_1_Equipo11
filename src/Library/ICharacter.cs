@@ -4,7 +4,7 @@ using Inventory;
 
 namespace Characters;
 
-public interface ICharacter
+public interface ICharacter 
 {
     //  Nombre del personaje
     string Name { get; } 
