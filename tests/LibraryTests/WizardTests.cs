@@ -42,38 +42,5 @@ namespace Test.Library
             Assert.AreEqual(wizard.Weapon,weapon);
             Assert.AreEqual(wizard.Armor,armor);
         }
-
-        
-        [Test]
-        public void IncorrectWeaponName()
-        {
-            //Consturccion
-            const string initialName = "Not in ItemsStore";
-            string expectedName = null;
-            int expectedPower = 0;
-
-            //Ejecucion
-            IItems weaponTest = new Weapons(initialName);
-
-            //Comprobacion
-            Assert.AreEqual(expectedName, weaponTest.name);
-            Assert.AreEqual(expectedPower, weaponTest.Power);
-        }
-
-        public void IncorrectArmorName()
-        {
-            //Construccion
-            const string initialName = "Not in ItemsStore";
-            const string expectedName = null;
-            int expectedPower= 0;
-            
-
-            //Ejecucion
-            IItems armorTest= new Armors (initialName);
-
-            //Comprobacion
-            Assert.AreEqual(expectedName, armorTest.name);
-            Assert.AreEqual(expectedPower, armorTest.Power);
-        }  
     }
 }
