@@ -36,12 +36,12 @@ namespace Test.Library
             int initialCoins= wizard.GetCoins();
 
             //Ejecucion
+            wizard.Equip(armor);
             AttackInitiator.Attack(wizard2,wizard);
             BlackSmith.ArmorRepair(wizard,armor);
 
             //Comprobacion
             Assert.AreEqual(100,wizard.Armor.Durability);
-            Assert.IsTrue(wizard.GetCoins()==initialCoins);
 
         }
         [Test]
@@ -52,14 +52,44 @@ namespace Test.Library
             int preEnchantmentPower= weapon.Power;
             ICharacter wizard = new Wizards("Kassadin", weapon, new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             int initialCoins=wizard.GetCoins();
+            int itemPrice = ItemsStore.Prices[weapon.name];
             wizard.Equip(weapon);
+            wizard.InventoryAdd(weapon);
             
             //Ejecucion
             BlackSmith.WeaponEnchantment(wizard,weapon);
             
             //Comprobacion
-            Assert.IsTrue(weapon.Power==(preEnchantmentPower+((preEnchantmentPower*30)/100)));
-            Assert.IsTrue(wizard.GetCoins()==initialCoins-ItemsStore.Prices[weapon.name]);
+            Assert.IsTrue(wizard.Weapon.Power==(preEnchantmentPower+((preEnchantmentPower*30)/100)));
+            Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
+
+
+        }
+
+        [Test]
+        public void armorEnchanmentTest()
+        {
+            //Construccion
+            Armors armor= new Armors("Merlin Cape");
+            int preEnchantmentPower= armor.Power;
+            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), armor, new MagicItems("Book of Spells"));
+            int initialCoins=wizard.GetCoins();
+            int itemPrice = ItemsStore.Prices[armor.name];
+            wizard.InventoryAdd(armor);
+            wizard.Equip(armor);
+            
+            //Ejecucion
+            BlackSmith.ArmorEnchantment(wizard,armor);
+            
+            //Comprobacion
+            Assert.AreEqual(wizard.Armor.Power,(preEnchantmentPower+((preEnchantmentPower*50)/100)));
+            Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
+
+
+        }
+
+        public void notInInventoryTest()
+        {
 
 
         }

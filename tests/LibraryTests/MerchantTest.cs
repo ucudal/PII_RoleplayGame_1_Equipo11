@@ -12,13 +12,15 @@ namespace Test.Library
             //Construccion
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             Weapons sword = new Weapons("Ultimate Sword");
+            int initialCoins= wizard.GetCoins();
+            int itemPrice= ItemsStore.Prices[sword.name];
             
             //Ejecucion
             Merchant.WeaponBuy(wizard, sword);
             //Comprobacion´
             
             Assert.IsTrue(wizard.WeaponInventory.Contains(sword));
-            Assert.AreEqual(31,wizard.GetCoins());
+            Assert.AreEqual(initialCoins-itemPrice,wizard.GetCoins());
 
         }
         [Test]
@@ -27,13 +29,15 @@ namespace Test.Library
             //Construccion
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             Armors armor = new Armors("Spirit Belt");
+            int initialCoins= wizard.GetCoins();
+            int itemPrice= ItemsStore.Prices[armor.name];
             
             //Ejecucion
             Merchant.ArmorBuy(wizard, armor);
             
             //Comprobacion
             Assert.IsTrue(wizard.ArmorInventory.Contains(armor));
-            Assert.AreEqual(82,wizard.GetCoins());
+            Assert.AreEqual(initialCoins-itemPrice,wizard.GetCoins());
         }
 
         [Test]
@@ -46,10 +50,11 @@ namespace Test.Library
 
             //Ejecucion
             Merchant.WeaponBuy(wizard, sword);
+            int preTryCoins= wizard.GetCoins();
             Merchant.WeaponBuy(wizard, sword2);
 
             //Comprobacion
-            Assert.AreEqual(wizard.GetCoins(),31);
+            Assert.AreEqual(wizard.GetCoins(),preTryCoins);
             Assert.IsTrue(!wizard.WeaponInventory.Contains(sword2));
             
         }
@@ -64,10 +69,11 @@ namespace Test.Library
 
             //Ejecucion
             Merchant.WeaponBuy(wizard, sword);
+            int preTryCoins= wizard.GetCoins();
             Merchant.ArmorBuy(wizard, armor);
             
             //Comprobacion
-            Assert.AreEqual(wizard.GetCoins(),31);
+            Assert.AreEqual(wizard.GetCoins(),preTryCoins);
             Assert.IsTrue(!wizard.ArmorInventory.Contains(armor));
             
         }
