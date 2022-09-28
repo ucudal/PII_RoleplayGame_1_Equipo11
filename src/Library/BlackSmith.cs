@@ -93,7 +93,9 @@ public class BlackSmith
             int enchantmentCost = ItemsStore.Prices[weapon.name];
             if (character.Transaction(false, enchantmentCost))
             {
-                weapon.Power+=((weapon.Power*30)/100); //Aumenta el poder del arma en un 30%
+                character.WeaponInventory.Remove(weapon);
+                weapon.Power= 3*weapon.Power/2; //Aumenta el poder del arma en un 50%
+                character.WeaponInventory.Add(weapon);
                 ConsolePrinter.EnchantmentPrinter(character, weapon);
             }
             else

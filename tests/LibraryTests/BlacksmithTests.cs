@@ -53,14 +53,12 @@ namespace Test.Library
             ICharacter wizard = new Wizards("Kassadin", weapon, new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             int initialCoins=wizard.GetCoins();
             int itemPrice = ItemsStore.Prices[weapon.name];
-            wizard.Equip(weapon);
-            wizard.InventoryAdd(weapon);
             
             //Ejecucion
             BlackSmith.WeaponEnchantment(wizard,weapon);
             
             //Comprobacion
-            Assert.IsTrue(wizard.Weapon.Power==(preEnchantmentPower+((preEnchantmentPower*30)/100)));
+            Assert.IsTrue(wizard.Weapon.Power.Equals(3*preEnchantmentPower/2));
             Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
 
 
@@ -81,7 +79,7 @@ namespace Test.Library
             BlackSmith.ArmorEnchantment(wizard, armor);
             
             //Comprobacion
-            Assert.AreEqual(expectedPower, wizard.Armor.Power);
+            Assert.AreEqual(expectedPower, armor.Power);
             Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
         }
 
