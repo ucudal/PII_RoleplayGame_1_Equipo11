@@ -10,12 +10,12 @@ public class Weapons : IItems
     public Weapons(string name)
     {
         this.Name = name;
-        this.Power = power;
+        this.Power = ItemsStore.Weapons[name];
         this.Durability = 100;
     }
     ICharacter character;
-    public string name { get; set; }
     private int power;
+    private string name;
 
     //nombre del arma --> se asegura que exista un arma con dicho nombre en el ItemsStore 
     public string Name
@@ -56,7 +56,7 @@ public class Weapons : IItems
             {
                 if (ItemsStore.Weapons.ContainsKey(name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
                 {
-                    this.power = ItemsStore.Weapons[name];
+                    this.power = value;
                 }
             }
 
@@ -79,8 +79,10 @@ public class Weapons : IItems
             ConsolePrinter.aboutToGetBrokenItem(this);
         }
     }
-
-    
+    public void PowerChange(int value)
+    {
+        this.Power += value;
+    }
 
 
 }

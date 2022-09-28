@@ -50,7 +50,7 @@ namespace Test.Library
             //Creacion
             const string initialName = "Viking Axe";
             const string expectedName = "Viking Axe";
-            int expectedPower= 3*(ItemsStore.Armors[initialName])/2;
+            int expectedPower= 3*(ItemsStore.Weapons[initialName])/2;
 
             //Ejecucion
             Weapons weaponTest= new Weapons (initialName);

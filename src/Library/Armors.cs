@@ -8,7 +8,7 @@ public class Armors : IItems
     public Armors(string name)
     {
         this.Name = name;
-        this.Power = power;
+        this.Power = ItemsStore.Armors[name];
         this.Durability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
     }
     //ICharacter character;
@@ -29,7 +29,7 @@ public class Armors : IItems
             {
                 if (ItemsStore.Armors.ContainsKey(name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
                 {
-                    this.power = ItemsStore.Armors[name];
+                    this.power = value;
                 }
             }
 
