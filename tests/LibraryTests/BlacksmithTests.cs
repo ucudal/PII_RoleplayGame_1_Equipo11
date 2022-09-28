@@ -82,7 +82,7 @@ namespace Test.Library
             BlackSmith.ArmorEnchantment(wizard,armor);
             
             //Comprobacion
-            Assert.AreEqual(wizard.Armor.Power,(preEnchantmentPower+((preEnchantmentPower*50)/100)));
+            Assert.AreEqual(wizard.Armor.Power,(3*preEnchantmentPower/2));
             Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
 
 
