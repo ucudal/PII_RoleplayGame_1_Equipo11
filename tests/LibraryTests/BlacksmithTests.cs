@@ -47,19 +47,19 @@ namespace Test.Library
         [Test]
         public void weaponEnchanmentTest()
         {
-            //Construccion
-            Weapons weapon = new Weapons("Rabadons Hat");
-            int preEnchantmentPower= weapon.Power;
-            ICharacter wizard = new Wizards("Kassadin", weapon, new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
-            int initialCoins=wizard.GetCoins();
-            int itemPrice = ItemsStore.Prices[weapon.name];
-            
+            //Creacion
+            const string initialName = "Viking Axe";
+            const string expectedName = "Viking Axe";
+            int expectedPower= 3*(ItemsStore.Armors[initialName])/2;
+
             //Ejecucion
-            BlackSmith.WeaponEnchantment(wizard,weapon);
-            
+            Weapons weaponTest= new Weapons (initialName);
+            ICharacter elf = new Elves ("Ragnar", weaponTest, new Armors("Merlin Cape"));
+            BlackSmith.ArmorEnchantment(elf, armorTest);
+
             //Comprobacion
-            Assert.IsTrue(wizard.Weapon.Power.Equals(3*preEnchantmentPower/2));
-            Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
+            Assert.AreEqual(expectedName, weaponTest.name);
+            Assert.AreEqual(expectedPower, weaponTest.Power);
 
 
         }
@@ -67,26 +67,21 @@ namespace Test.Library
         [Test]
         public void armorEnchanmentTest()
         {
-            //Construccion
-            Armors armor= new Armors("Merlin Cape");
-            int expectedPower= 3*armor.Power/2;
-            ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), armor, new MagicItems("Book of Spells"));
-            
-            
+            //Creacion
+            const string initialName = "Merlin Cape";
+            const string expectedName = "Merlin Cape";
+            int expectedPower= 3*(ItemsStore.Armors[initialName])/2;
+
             //Ejecucion
-            int initialCoins=wizard.GetCoins();
-            int itemPrice = ItemsStore.Prices[armor.name];
-            BlackSmith.ArmorEnchantment(wizard, armor);
-            
+            Armors armorTest= new Armors (initialName);
+            ICharacter elf = new Elves ("Ragnar", new Weapons ("Elf Hammer"), armorTest);
+            BlackSmith.ArmorEnchantment(elf, armorTest);
+
             //Comprobacion
-            Assert.AreEqual(expectedPower, armor.Power);
-            Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
-        }
-
-        public void notInInventoryTest()
-        {
-
+            Assert.AreEqual(expectedName, armorTest.name);
+            Assert.AreEqual(expectedPower, armorTest.Power);
 
         }
+
     }
 }
