@@ -32,34 +32,34 @@ public class ConsolePrinter
 
     public static void succesfullWeaponSale(Weapons weapon)
     {
-        Console.WriteLine($"{weapon.name} has been successfully bought");
+        Console.WriteLine($"{weapon.Name} has been successfully bought");
     }
 
     public static void succesfullArmorSale(Armors armor)
     {
-        Console.WriteLine($"{armor.name} has been successfully bought");
+        Console.WriteLine($"{armor.Name} has been successfully bought");
     }
 
 
     public static void EnchantmentPrinter(ICharacter character, IItems item)
     {
-        Console.WriteLine($"\"{item.name}´s\" power has now increased up to {item.Power}.");
+        Console.WriteLine($"\"{item.Name}´s\" power has now increased up to {item.Power}.");
         Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
     }
     public static void ReparationPrinter(ICharacter character, IItems item)
     {
-        Console.WriteLine($"\"{item.name}\" has been repaired up to {item.Durability}.");
+        Console.WriteLine($"\"{item.Name}\" has been repaired up to {item.Durability}.");
         Console.WriteLine($"\"{character.Name}\" now has an amount of {character.GetCoins()} coins.");
     }
     public static void soldItem(ICharacter character, IItems item)
     {
-        Console.WriteLine($"\"{item.name}\" has been successfully sold\n{character.Name} now has {character.GetCoins()} coins");
+        Console.WriteLine($"\"{item.Name}\" has been successfully sold\n{character.Name} now has {character.GetCoins()} coins");
     }
 
     //  Action denied - Printers
     public static void NotInInventory(IItems item)
     {
-        Console.WriteLine($"¡Cheater! You don't equip \"{item.name}\". ¡Get out of my sight! if you appreciate your life.");
+        Console.WriteLine($"¡Cheater! You don't equip \"{item.Name}\". ¡Get out of my sight! if you appreciate your life.");
     }
     public static void NotEnoughCoins()
     {
@@ -79,23 +79,23 @@ public class ConsolePrinter
 
     public static void brokenItem(IItems item)
     {
-        Console.WriteLine($"Oh no, \"{item.name}\" has broken! You should fix it or buy another");
+        Console.WriteLine($"Oh no, \"{item.Name}\" has broken! You should fix it or buy another");
     }
 
     public static void aboutToGetBrokenItem(IItems item)
     {
-        Console.WriteLine($"\"{item.name}\" is about to get broken, you should consider fixing it or buying another");
+        Console.WriteLine($"\"{item.Name}\" is about to get broken, you should consider fixing it or buying another");
     }
 
     //  Inventory - Printers
     public static void equippedItem(ICharacter character, IItems item)
     {
-        Console.WriteLine($"{character.Name} now equips \"{item.name}\".");
+        Console.WriteLine($"{character.Name} now equips \"{item.Name}\".");
     }
 
     public static void unequippedItem(ICharacter character, IItems item)
     {
-        Console.WriteLine($"{character.Name} has successfully unequipped \"{item.name}\"");
+        Console.WriteLine($"{character.Name} has successfully unequipped \"{item.Name}\"");
     }
 
 
@@ -118,7 +118,7 @@ public class ConsolePrinter
     }
     public static void ItemEnchantmentSpell(IItems item)
     {
-        Console.WriteLine($"Item Enchantment! \"{item.name}´s\" power has increased by 25%.");
+        Console.WriteLine($"Item Enchantment! \"{item.Name}´s\" power has increased by 25%.");
     }
     public static void MagicImprovementSpell(IMagic magician)
     {

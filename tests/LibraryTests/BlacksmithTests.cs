@@ -55,10 +55,10 @@ namespace Test.Library
             //Ejecucion
             Weapons weaponTest= new Weapons (initialName);
             ICharacter elf = new Elves ("Ragnar", weaponTest, new Armors("Merlin Cape"));
-            BlackSmith.ArmorEnchantment(elf, armorTest);
+            BlackSmith.WeaponEnchantment(elf, weaponTest);
 
             //Comprobacion
-            Assert.AreEqual(expectedName, weaponTest.name);
+            Assert.AreEqual(expectedName, weaponTest.Name);
             Assert.AreEqual(expectedPower, weaponTest.Power);
 
 
@@ -78,7 +78,7 @@ namespace Test.Library
             BlackSmith.ArmorEnchantment(elf, armorTest);
 
             //Comprobacion
-            Assert.AreEqual(expectedName, armorTest.name);
+            Assert.AreEqual(expectedName, armorTest.Name);
             Assert.AreEqual(expectedPower, armorTest.Power);
 
         }

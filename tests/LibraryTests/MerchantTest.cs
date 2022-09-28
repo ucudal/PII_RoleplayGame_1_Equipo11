@@ -13,7 +13,7 @@ namespace Test.Library
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             Weapons sword = new Weapons("Ultimate Sword");
             int initialCoins= wizard.GetCoins();
-            int itemPrice= ItemsStore.Prices[sword.name];
+            int itemPrice= ItemsStore.Prices[sword.Name];
             
             //Ejecucion
             Merchant.WeaponBuy(wizard, sword);
@@ -30,7 +30,7 @@ namespace Test.Library
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             Armors armor = new Armors("Spirit Belt");
             int initialCoins= wizard.GetCoins();
-            int itemPrice= ItemsStore.Prices[armor.name];
+            int itemPrice= ItemsStore.Prices[armor.Name];
             
             //Ejecucion
             Merchant.ArmorBuy(wizard, armor);

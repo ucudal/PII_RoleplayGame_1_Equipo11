@@ -52,11 +52,11 @@ public class ItemsStore //Esto serian todas los items disponibles a conseguir, p
 
     public static int GetPrice(Armors armor)
     {
-        return Prices.GetValueOrDefault(armor.name,99999999);
+        return Prices.GetValueOrDefault(armor.Name,99999999);
     }
         public static int GetPrice(Weapons weapon)
     {
-        return Prices.GetValueOrDefault(weapon.name,99999999);
+        return Prices.GetValueOrDefault(weapon.Name,99999999);
     }
 }
 /*NOTAS:

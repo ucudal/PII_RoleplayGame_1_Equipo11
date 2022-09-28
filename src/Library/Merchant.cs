@@ -20,13 +20,13 @@ public class Merchant
         {
             if (Armor.Durability == 100)
             {
-                Seller.Transaction(true, ItemsStore.Prices[Armor.name]);
+                Seller.Transaction(true, ItemsStore.Prices[Armor.Name]);
             }
             else
             {
                 //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
                 //sino se puede hacer regla de tres de acuerdo a que tan roto esta
-                Seller.Transaction(true, (ItemsStore.Prices[Armor.name] / 2));
+                Seller.Transaction(true, (ItemsStore.Prices[Armor.Name] / 2));
                 ConsolePrinter.soldItem(Seller, Armor);
             }
             Seller.ArmorInventory.Remove(Armor);
@@ -56,14 +56,14 @@ public class Merchant
         {
             if (weapon.Durability == 100)
             {
-                Seller.Transaction(true, ItemsStore.Prices[weapon.name]);
+                Seller.Transaction(true, ItemsStore.Prices[weapon.Name]);
                 ConsolePrinter.soldItem(Seller,weapon);
             }
             else
             {
                 //sin importar que este en 1 o 99 que la venda a la mitad de precio de la tienda
                 //sino se puede hacer regla de tres de acuerdo a que tan roto esta
-                Seller.Transaction(true, (ItemsStore.Prices[weapon.name] / 2));
+                Seller.Transaction(true, (ItemsStore.Prices[weapon.Name] / 2));
                 ConsolePrinter.soldItem(Seller,weapon);
             }
             Seller.WeaponInventory.Remove(weapon);

@@ -43,12 +43,11 @@ public class BlackSmith
         if (character.ArmorInventory.Contains(Armor))
         {
             //El precio de encanar un item, es igual al de compra en la tienda; es como comprarlo por segunda vez
-            int enchantmentCost = ItemsStore.Prices[Armor.name];
+            int enchantmentCost = ItemsStore.Prices[Armor.Name];
             if (character.Transaction(false, enchantmentCost))
             {
-                character.ArmorInventory.Remove(Armor);
-                Armor.Power = 3*Armor.Power/2; //Aumenta en un 50%
-                character.ArmorInventory.Add(Armor);
+                int powerUpgrade= Armor.Power/2; //Aumento del poder de la armadura en un 50%
+                Armor.PowerChange(powerUpgrade);
                 ConsolePrinter.EnchantmentPrinter(character, Armor);
             }
             else
@@ -90,12 +89,11 @@ public class BlackSmith
     {
         if (character.WeaponInventory.Contains(weapon))
         {
-            int enchantmentCost = ItemsStore.Prices[weapon.name];
+            int enchantmentCost = ItemsStore.Prices[weapon.Name];
             if (character.Transaction(false, enchantmentCost))
             {
-                character.WeaponInventory.Remove(weapon);
-                weapon.Power= 3*weapon.Power/2; //Aumenta el poder del arma en un 50%
-                character.WeaponInventory.Add(weapon);
+                int powerUpgrade= weapon.Power/2; //Aumento del poder del arma en un 50%
+                weapon.PowerChange(powerUpgrade);
                 ConsolePrinter.EnchantmentPrinter(character, weapon);
             }
             else

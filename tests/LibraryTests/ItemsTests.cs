@@ -27,7 +27,7 @@ namespace Test.Library
             IItems weaponTest = new Weapons("Elf Hammer");
 
             //Comprobacion
-            Assert.AreEqual(expectedName, weaponTest.name);
+            Assert.AreEqual(expectedName, weaponTest.Name);
             Assert.AreEqual(expectedPower, weaponTest.Power);
         }
 
@@ -43,7 +43,7 @@ namespace Test.Library
             IItems weaponTest = new Weapons(initialName);
 
             //Comprobacion
-            Assert.AreEqual(expectedName, weaponTest.name);
+            Assert.AreEqual(expectedName, weaponTest.Name);
             Assert.AreEqual(expectedPower, weaponTest.Power);
         }
 
@@ -59,7 +59,7 @@ namespace Test.Library
             IItems armorTest= new Armors (initialName);
 
             //Comprobacion
-            Assert.AreEqual(expectedName, armorTest.name);
+            Assert.AreEqual(expectedName, armorTest.Name);
             Assert.AreEqual(expectedPower, armorTest.Power);
         }
 
@@ -76,7 +76,7 @@ namespace Test.Library
             IItems armorTest= new Armors (initialName);
 
             //Comprobacion
-            Assert.AreEqual(expectedName, armorTest.name);
+            Assert.AreEqual(expectedName, armorTest.Name);
             Assert.AreEqual(expectedPower, armorTest.Power);
         }  
     }

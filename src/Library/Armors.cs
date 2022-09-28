@@ -7,11 +7,12 @@ public class Armors : IItems
 {
     public Armors(string name)
     {
-        this.ArmorName = name;
+        this.Name = name;
         this.Power = power;
         this.Durability = 100; //arranca con 100%, en cada ataque recibido va a ir disminuyendo
     }
     //ICharacter character;
+    private string name;
     private int power;
     public int Power
     {
@@ -26,17 +27,16 @@ public class Armors : IItems
         {
             if (name != null)
             {
-                if (ItemsStore.Armors.ContainsKey(this.name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
+                if (ItemsStore.Armors.ContainsKey(name)) //comprueba que el nombre de la weapon exista en la "base de datos" (ItemsStore)
                 {
-                    this.power = ItemsStore.Armors[this.name];
+                    this.power = ItemsStore.Armors[name];
                 }
             }
 
         }
 
     }
-    public string name { get; set; }
-    public string ArmorName
+    public string Name
     {
 
         get
@@ -89,6 +89,10 @@ public class Armors : IItems
         }
         //Es necesario agregar un metodo Break, que quite el arma del inventario cuando se rompa
         //Tambien se podria dar un aviso cuando este al borde de romperse
+    }
+    public void PowerChange(int value)
+    {
+        this.Power += value;
     }
 
 
