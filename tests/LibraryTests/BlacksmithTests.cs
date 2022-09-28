@@ -72,18 +72,19 @@ namespace Test.Library
             //Construccion
             Armors armor= new Armors("Merlin Cape");
             int preEnchantmentPower= armor.Power;
+            int expectedPower= 3*preEnchantmentPower/2;
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), armor, new MagicItems("Book of Spells"));
             
             
             //Ejecucion
-            /*int initialCoins=wizard.GetCoins();
+            int initialCoins=wizard.GetCoins();
             int itemPrice = ItemsStore.Prices[armor.name];
-            wizard.InventoryAdd(armor);
+            /*wizard.InventoryAdd(armor);
             wizard.Equip(armor);*/
             BlackSmith.ArmorEnchantment(wizard,armor);
             
             //Comprobacion
-            Assert.AreEqual(wizard.Armor.Power,(3*preEnchantmentPower/2));
+            Assert.AreEqual(expectedPower, wizard.Armor.Power);
             Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
 
 
