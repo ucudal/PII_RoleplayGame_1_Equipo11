@@ -46,7 +46,9 @@ public class BlackSmith
             int enchantmentCost = ItemsStore.Prices[Armor.name];
             if (character.Transaction(false, enchantmentCost))
             {
-                character.Armor.Power+=((character.Armor.Power*50)/100); //Aumenta en un 50%
+                character.ArmorInventory.Remove(Armor);
+                Armor.Power = 3*Armor.Power/2; //Aumenta en un 50%
+                character.ArmorInventory.Add(Armor);
                 ConsolePrinter.EnchantmentPrinter(character, Armor);
             }
             else

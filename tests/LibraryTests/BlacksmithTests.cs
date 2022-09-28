@@ -48,7 +48,7 @@ namespace Test.Library
         public void weaponEnchanmentTest()
         {
             //Construccion
-            Weapons weapon = new Weapons("Rabadon's Hat");
+            Weapons weapon = new Weapons("Rabadons Hat");
             int preEnchantmentPower= weapon.Power;
             ICharacter wizard = new Wizards("Kassadin", weapon, new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             int initialCoins=wizard.GetCoins();
@@ -71,23 +71,18 @@ namespace Test.Library
         {
             //Construccion
             Armors armor= new Armors("Merlin Cape");
-            int preEnchantmentPower= armor.Power;
-            int expectedPower= 3*preEnchantmentPower/2;
+            int expectedPower= 3*armor.Power/2;
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), armor, new MagicItems("Book of Spells"));
             
             
             //Ejecucion
             int initialCoins=wizard.GetCoins();
             int itemPrice = ItemsStore.Prices[armor.name];
-            /*wizard.InventoryAdd(armor);
-            wizard.Equip(armor);*/
-            BlackSmith.ArmorEnchantment(wizard,armor);
+            BlackSmith.ArmorEnchantment(wizard, armor);
             
             //Comprobacion
             Assert.AreEqual(expectedPower, wizard.Armor.Power);
             Assert.IsTrue(wizard.GetCoins()==initialCoins-itemPrice);
-
-
         }
 
         public void notInInventoryTest()
