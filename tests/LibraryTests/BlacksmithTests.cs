@@ -48,7 +48,7 @@ namespace Test.Library
         public void weaponEnchanmentTest()
         {
             //Construccion
-            Weapons weapon = new Weapons("Rabadons Hat");
+            Weapons weapon = new Weapons("Rabadon's Hat");
             int preEnchantmentPower= weapon.Power;
             ICharacter wizard = new Wizards("Kassadin", weapon, new Armors("Merlin Cape"), new MagicItems("Book of Spells"));
             int initialCoins=wizard.GetCoins();
@@ -73,12 +73,13 @@ namespace Test.Library
             Armors armor= new Armors("Merlin Cape");
             int preEnchantmentPower= armor.Power;
             ICharacter wizard = new Wizards("Kassadin", new Weapons("Rabadons Hat"), armor, new MagicItems("Book of Spells"));
-            int initialCoins=wizard.GetCoins();
-            int itemPrice = ItemsStore.Prices[armor.name];
-            wizard.InventoryAdd(armor);
-            wizard.Equip(armor);
+            
             
             //Ejecucion
+            /*int initialCoins=wizard.GetCoins();
+            int itemPrice = ItemsStore.Prices[armor.name];
+            wizard.InventoryAdd(armor);
+            wizard.Equip(armor);*/
             BlackSmith.ArmorEnchantment(wizard,armor);
             
             //Comprobacion
